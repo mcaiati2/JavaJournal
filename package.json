@@ -1,0 +1,33 @@
+{
+  "name": "asdfasdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client:install": "cd ./client && npm i",
+    "client:dev": "cd ./client && npm run dev",
+    "client:build": "cd ./client && npm run build",
+    "server:install": "cd ./server && npm i",
+    "server:dev": "cd ./server && npm run dev",
+    "server:build": "cd ./server && npm run build",
+    "dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\"",
+    "seed": "cd ./server && npm run seed",
+    "start": "node ./server/dist/server.js",
+    "render:install": "cd ./server && npm i",
+    "install": "cd ./server && npm i && cd ../client && npm i",
+    "cypress:test": "cd ./client && npm run cypress:run",
+    "test": "start-server-and-test start http://localhost:10000 cypress:test",
+    "prep": "npm run client:build && npm run server:build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "start-server-and-test": "^2.0.8",
+    "wait-on": "^8.0.1"
+  },
+  "dependencies": {
+    "python": "^0.0.4"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+      "target": "ES2020",
+      "module": "ESNext",
+      "allowJs": true,
+      "checkJs": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      // Skip the library or the modules type checking when compiling
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "moduleResolution": "Bundler"
+    },
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+}
