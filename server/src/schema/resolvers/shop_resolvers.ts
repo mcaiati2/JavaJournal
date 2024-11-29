@@ -1,36 +1,36 @@
 import { Types } from 'mongoose';
 
-import Pet from '../../models/Pet.js';
-import Post from '../../models/Post.js';
+import Shop from '../../models/Shop.js';
+import Coffee from '../../models/Coffee.js';
 import Context from '../../interfaces/Context.js';
 
 import { errorHandler } from '../helpers/index.js';
 import { GraphQLError } from 'graphql';
 
 
-type PetArguments = {
+type ShopArguments = {
   name?: string;
   type?: string;
   age?: number;
 }
 
-type PostArguments = {
+type CoffeeArguments = {
   title: string;
   body: string;
-  pet: Types.ObjectId;
+  shop: Types.ObjectId;
 }
 
-const pet_resolvers = {
+const shop_resolvers = {
   Query: {
-    // Get all posts
-    async getAllPosts() {
-      const posts = await Post.find().populate('pet');
+    // Get all coffees
+    async getAllCoffees() {
+      const coffee = await Coffee.find().populate('shop');
 
-      return posts;
+      return coffee;
     },
 
-    // Get user pets
-    async getUserPets(_: any, __: any, context: Context) {
+    // Get user shops
+    async getUserShops(_: any, __: any, context: Context) {
 
       if (!context.req.user) {
         return {
@@ -38,26 +38,26 @@ const pet_resolvers = {
         }
       }
 
-      const pets = await Pet.find({
+      const shops = await Shop.find({
         owner: context.req.user._id
       });
 
-      return pets;
+      return shops;
     },
 
-    // Get pet posts
-    async getPostsForPet(_: any, args: { pet_id: Types.ObjectId }) {
-      const posts = await Post.find({
-        pet: args.pet_id
+    // Get shops' coffees
+    async getCoffeesForShop(_: any, args: { shop_id: Types.ObjectId }) {
+      const coffee = await Coffee.find({
+        shop: args.shop_id
       });
 
-      return posts;
+      return coffee;
     }
   },
 
   Mutation: {
-    // Create a pet
-    async createPet(_: any, args: PetArguments, context: Context) {
+    // Create a shop
+    async createShop(_: any, args: ShopArguments, context: Context) {
 
       if (!context.req.user) {
         return {
@@ -66,16 +66,16 @@ const pet_resolvers = {
       }
 
       try {
-        const pet = await Pet.create({
+        const shop = await Shop.create({
           ...args,
           owner: context.req.user._id
         });
 
-        context.req.user.pets.push(pet._id);
+        context.req.user.shops.push(shop._id);
         await context.req.user.save();
 
         return {
-          message: 'Pet added successfully!'
+          message: 'S added successfully!'
         }
 
       } catch (error) {
@@ -85,8 +85,8 @@ const pet_resolvers = {
       }
     },
 
-    // Create a post for a pet
-    async createPost(_: any, args: PostArguments, context: Context) {
+    // Create a coffee for a shop
+    async createCoffee(_: any, args: CoffeeArguments, context: Context) {
 
       if (!context.req.user) {
         return {
@@ -95,16 +95,16 @@ const pet_resolvers = {
       }
 
       try {
-        const post = await Post.create(args);
+        const coffee = await Coffee.create(args);
 
-        await Pet.findByIdAndUpdate(args.pet, {
+        await Shop.findByIdAndUpdate(args.shop, {
           $push: {
-            posts: post._id
+            coffees: coffee._id
           }
         });
 
         return {
-          message: 'Post created successfully!'
+          message: 'Coffee created successfully!'
         }
       } catch (error: any) {
         const errorMessage = errorHandler(error);
@@ -115,4 +115,4 @@ const pet_resolvers = {
   }
 }
 
-export default pet_resolvers;
+export default shop_resolvers;

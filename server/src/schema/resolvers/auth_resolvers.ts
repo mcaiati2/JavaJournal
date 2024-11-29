@@ -47,7 +47,7 @@ const auth_resolvers = {
         const user = await User.create(args);
         const token = createToken(user._id);
 
-        context.res.cookie('pet_token', token, {
+        context.res.cookie('shop_token', token, {
           httpOnly: true,
           secure: process.env.PORT ? true : false,
           sameSite: true
@@ -81,7 +81,7 @@ const auth_resolvers = {
 
       const token = createToken(user._id!);
 
-      context.res.cookie('pet_token', token, {
+      context.res.cookie('shop_token', token, {
         httpOnly: true,
         secure: process.env.PORT ? true : false,
         sameSite: true
@@ -94,7 +94,7 @@ const auth_resolvers = {
 
     // Log out user
     logoutUser(_: any, __: any, context: Context) {
-      context.res.clearCookie('pet_token');
+      context.res.clearCookie('shop_token');
 
       return {
         message: 'Logged out successfully!'

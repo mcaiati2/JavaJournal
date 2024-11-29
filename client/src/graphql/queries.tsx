@@ -11,36 +11,36 @@ export const GET_USER = gql`
   }
 `;
 
-export const GET_ALL_POSTS = gql`
-  query GetAllPosts {
-    getAllPosts {
+export const GET_ALL_COFFEES = gql`
+  query GetAllCoffees {
+    getAllCoffees {
       _id
       body
       title
-      pet {
+      shop {
         name
       }
     }
   }
 `;
 
-export const GET_USER_PETS = gql`
-  query GetUserPets {
-    getUserPets {
+export const GET_USER_SHOPS = gql`
+  query GetUserShops {
+    getUserShops {
       _id
       age
       name
       type
-      posts {
+      coffees {
         _id
       }
     }
   }
 `;
 
-export const GET_POSTS_FOR_PET = gql`
-  query GetPostsForPet($petId: ID) {
-    getPostsForPet(pet_id: $petId) {
+export const GET_COFFEES_FOR_SHOP = gql`
+  query GetCoffeesForShop($shopId: ID) {
+    getCoffeesForShop(shop_id: $shopId) {
       _id
       body
       title

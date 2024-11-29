@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 
-import { CREATE_PET } from '../graphql/mutations';
-import { GET_USER_PETS } from '../graphql/queries';
+import { CREATE_SHOP } from '../graphql/mutations';
+import { GET_USER_SHOPS } from '../graphql/queries';
 
 const initialFormData = {
   name: '',
@@ -13,10 +13,10 @@ const initialFormData = {
   errorMessage: ''
 };
 
-function PetForm() {
+function ShopForm() {
   const [formData, setFormData] = useState(initialFormData);
-  const [createPet] = useMutation(CREATE_PET, {
-    refetchQueries: [{ query: GET_USER_PETS }]
+  const [createShop] = useMutation(CREATE_SHOP, {
+    refetchQueries: [{ query: GET_USER_SHOPS }]
   });
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function PetForm() {
     event.preventDefault();
 
     try {
-      await createPet({
+      await createShop({
         variables: {
           ...formData,
           age: Number(formData.age)
@@ -50,7 +50,7 @@ function PetForm() {
   return (
     <Container>
       <Form onSubmit={handleSubmit} style={{ width: '500px' }} className="mx-auto mt-5">
-        <h2 className="text-center mt-3">Create Pet</h2>
+        <h2 className="text-center mt-3">Create Shop</h2>
 
         {formData.errorMessage && (
           <p className="text-center text-danger">{formData.errorMessage}</p>
@@ -58,16 +58,16 @@ function PetForm() {
 
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
-          <Form.Control name="name" onChange={handleInputChange} value={formData.name} type="text" placeholder="Enter the pet's name" />
+          <Form.Control name="name" onChange={handleInputChange} value={formData.name} type="text" placeholder="Enter the shop's name" />
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Type</Form.Label>
-          <Form.Control name="type" onChange={handleInputChange} value={formData.type} type="text" placeholder="Enter the pet's type" />
+          <Form.Control name="type" onChange={handleInputChange} value={formData.type} type="text" placeholder="Enter the shop's type" />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Enter the Pet's Age</Form.Label>
+          <Form.Label>Enter the Shop's Age</Form.Label>
           <Form.Control name="age" onChange={handleInputChange} value={formData.age} type="number" />
         </Form.Group>
 
@@ -81,5 +81,5 @@ function PetForm() {
   )
 }
 
-export default PetForm;
+export default ShopForm;
 

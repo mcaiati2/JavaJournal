@@ -2,71 +2,72 @@ import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 
-import { GET_USER_PETS } from '../../graphql/queries';
-import { Pet } from '../../interfaces';
+import { GET_USER_SHOPS } from '../../graphql/queries';
+import { Shop } from '../../interfaces';
 
-import CreatePostModal from './components/CreatePostModal';
-import ViewPostModal from './components/ViewPostModal';
+import CreateCoffeeModal from './components/CreateCoffeeModal';
+import ViewCoffeeModal from './components/ViewCoffeeModal';
 
 function Dashboard() {
-  const { data: petData } = useQuery(GET_USER_PETS);
-  
-  const [selectedPet, setSelectedPet] = useState<null | Pet>(null);
-  const [showCreatePostModal, setShowCreatePostModal] = useState(false);
-  const [showPostsModal, setShowPostsModal] = useState(false);
+  const { data: shopData } = useQuery(GET_USER_SHOPS);
+
+  const [selectedShop, setSelectedShop] = useState<null | Shop>(null);
+  const [showCreateCoffeeModal, setShowCreateCoffeeModal] = useState(false);
+  const [showCoffeesModal, setShowCoffeesModal] = useState(false);
 
 
-  const handleShowCreatePostModal = (pet: Pet) => {
-    setSelectedPet(pet);
+  const handleShowCreateCoffeeModal = (shop: Shop) => {
+    setSelectedShop(shop);
 
-    setShowCreatePostModal(true);
+    setShowCreateCoffeeModal(true);
   };
 
-  const handleShowPostsModal = (pet: Pet) => {
-    setSelectedPet(pet);
+  const handleShowCoffeesModal = (shop: Shop) => {
+    setSelectedShop(shop);
 
-    setShowPostsModal(true);
+    setShowCoffeesModal(true);
   };
 
   return (
     <Container>
-      <h3 className="mt-4 fw-light">Your Pets</h3>
+      <h3 className="mt-4 fw-light">Your Shops</h3>
       <hr />
 
-      <section className="d-grid gap-4 pet-output">
-        {petData && !petData.getUserPets.length && <p>No pets have beed added yet.</p>}
+      {/* need to set shop output */}
+      <section className="d-grid gap-4 shop-output">
+        {shopData && !shopData.getUserShops.length && <p>No shops have beed added yet.</p>}
 
-        {petData && petData.getUserPets.map((pet: Pet) => (
-          <article key={pet._id} className="border p-4">
-            <h4>{pet.name}</h4>
-            <p>Type: {pet.type}</p>
-            <p>Age: {pet.age}</p>
+        {shopData && shopData.getUserShops.map((shop: Shop) => (
+          <article key={shop._id} className="border p-4">
+            <h4>{shop.name}</h4>
+            <p>Type: {shop.type}</p>
+            <p>Age: {shop.age}</p>
             <div className="d-flex button-wrap">
               <Button
                 variant="primary"
                 className="me-2"
-                onClick={() => handleShowCreatePostModal(pet)}>Create Post</Button>
+                onClick={() => handleShowCreateCoffeeModal(shop)}>Create Coffee</Button>
               <Button
                 variant="secondary"
                 className="me-2"
-                onClick={() => handleShowPostsModal(pet)}>View Posts</Button>
+                onClick={() => handleShowCoffeesModal(shop)}>View Coffee</Button>
             </div>
           </article>
         ))}
       </section>
 
-      <CreatePostModal 
-        selectedPet={selectedPet}
-        showCreatePostModal={showCreatePostModal}
-        setShowCreatePostModal={setShowCreatePostModal}
-         />
+      <CreateCoffeeModal
+        selectedShop={selectedShop}
+        showCreateCoffeeModal={showCreateCoffeeModal}
+        setShowCreateCoffeeModal={setShowCreateCoffeeModal}
+      />
 
-      <ViewPostModal
-        showPostsModal={showPostsModal}
-        setShowPostsModal={setShowPostsModal}
-        selectedPet={selectedPet}
-        />
-      
+      <ViewCoffeeModal
+        showCoffeesModal={showCoffeesModal}
+        setShowCoffeesModal={setShowCoffeesModal}
+        selectedShop={selectedShop}
+      />
+
     </Container>
   )
 }

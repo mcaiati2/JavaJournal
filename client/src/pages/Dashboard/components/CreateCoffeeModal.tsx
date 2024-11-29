@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Button, Form, Modal, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 
-import { CREATE_POST } from '../../../graphql/mutations';
-import { GET_POSTS_FOR_PET, GET_ALL_POSTS } from '../../../graphql/queries';
-import { Pet } from '../../../interfaces';
+import { CREATE_COFFEE } from '../../../graphql/mutations';
+import { GET_COFFEES_FOR_SHOP, GET_ALL_COFFEES } from '../../../graphql/queries';
+import { Shop } from '../../../interfaces';
 
 const initialFormData = {
   title: '',
@@ -13,29 +13,29 @@ const initialFormData = {
 };
 
 interface ModalProps {
-  selectedPet: Pet | null;
-  showCreatePostModal: boolean;
-  setShowCreatePostModal: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedShop: Shop | null;
+  showCreateCoffeeModal: boolean;
+  setShowCreateCoffeeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CreatePostModal({
-  selectedPet,
-  showCreatePostModal,
-  setShowCreatePostModal
+function CreateCoffeeModal({
+  selectedShop,
+  showCreateCoffeeModal,
+  setShowCreateCoffeeModal
 }: ModalProps) {
   const [formData, setFormData] = useState(initialFormData);
-  const [createPost] = useMutation(CREATE_POST, {
+  const [createCoffee] = useMutation(CREATE_COFFEE, {
     refetchQueries: [{
-      query: GET_POSTS_FOR_PET,
+      query: GET_COFFEES_FOR_SHOP,
       variables: {
-        petId: selectedPet?._id
+        shopId: selectedShop?._id
       }
-    }, { query: GET_ALL_POSTS }]
+    }, { query: GET_ALL_COFFEES }]
   });
 
   const handleModalClose = () => {
     setFormData({ ...initialFormData });
-    setShowCreatePostModal(false);
+    setShowCreateCoffeeModal(false);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +47,10 @@ function CreatePostModal({
 
   const handleSubmit = async () => {
     try {
-      await createPost({
+      await createCoffee({
         variables: {
           ...formData,
-          pet: selectedPet?._id
+          shop: selectedShop?._id
         }
       });
 
@@ -66,9 +66,9 @@ function CreatePostModal({
   }
 
   return (
-    <Modal show={showCreatePostModal} onHide={handleModalClose}>
+    <Modal show={showCreateCoffeeModal} onHide={handleModalClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Create post for {selectedPet?.name}</Modal.Title>
+        <Modal.Title>Create coffee for {selectedShop?.name}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -81,13 +81,13 @@ function CreatePostModal({
               name="title"
               value={formData.title}
               type="text"
-              placeholder="Enter the title of your post"
+              placeholder="Enter the title of your coffee"
               autoFocus
               onChange={handleInputChange}
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Enter the post details</Form.Label>
+            <Form.Label>Enter the coffee details</Form.Label>
             <Form.Control
               name="body"
               value={formData.body}
@@ -103,11 +103,11 @@ function CreatePostModal({
           Cancel
         </Button>
         <Button variant="primary" onClick={handleSubmit}>
-          Add Post
+          Add Coffee
         </Button>
       </Modal.Footer>
     </Modal>
   )
 }
 
-export default CreatePostModal;
+export default CreateCoffeeModal;

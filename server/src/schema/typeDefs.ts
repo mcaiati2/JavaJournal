@@ -1,27 +1,27 @@
 const gql = String.raw;
 
 const typeDefs = gql`
-  type Post {
+  type Coffee {
     _id: ID
     title: String
     body: String
-    pet: Pet
+    shop: Shop
   }
 
-  type Pet {
+  type Shop {
     _id: ID
     name: String
     type: String
     age: Int
     owner: User
-    posts: [Post]
+    coffees: [Coffee]
   }
 
   type User {
     _id: ID
     username: String
     email: String
-    pets: [Pet]
+    shops: [Shop]
   }
 
   type Response {
@@ -34,10 +34,10 @@ const typeDefs = gql`
     # Auth Queries
     getUser: Response
 
-    # Pet Queries
-    getAllPosts: [Post]
-    getUserPets: [Pet]
-    getPostsForPet(pet_id: ID): [Post]
+    # Shop Queries
+    getAllCoffeess: [Coffee]
+    getUserShops: [Shop]
+    getCoffeesForShop(shop_id: ID): [Coffee]
   }
 
   type Mutation {
@@ -46,9 +46,9 @@ const typeDefs = gql`
     loginUser(email: String, password: String): Response
     logoutUser: Response
 
-    # Pet Resolvers
-    createPet(name: String, type: String, age: Int): Response
-    createPost(title: String, body: String, pet: ID): Response
+    # Coffee/Shop Resolvers
+    createShop(name: String, type: String, age: Int): Response
+    createCoffee(title: String, body: String, shop: ID): Response
   }
 `;
 

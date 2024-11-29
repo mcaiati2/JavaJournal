@@ -1,15 +1,15 @@
-export interface Post {
+export interface Coffee {
   _id: string;
   title: string;
   body: string;
-  pet?: Pet;
+  shop?: Shop;
 }
 
 
-export interface Pet {
+export interface Shop {
   _id: string;
   name: string;
   type: string;
   age: number;
-  posts?: Post[];
+  coffees?: Shop[];
 }

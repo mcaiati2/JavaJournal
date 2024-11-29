@@ -2,7 +2,7 @@ import { useStore } from '../store';
 import { useLocation, Navigate } from 'react-router-dom';
 
 function ProtectRoute(props: any) {
-  const {state} = useStore()!;
+  const { state } = useStore()!;
   const location = useLocation();
 
   // If the user is logged in, keep them from visiting the auth form pages
@@ -11,7 +11,7 @@ function ProtectRoute(props: any) {
   }
 
   // If the user is not logged in and they try to visit a user related page, take them to the login page
-  if (!state.loading && !state.user && location.pathname.match(/(pet|post|dashboard)/gi)) {
+  if (!state.loading && !state.user && location.pathname.match(/(shop|coffee|dashboard)/gi)) {
     return <Navigate to="/login" />
   }
 

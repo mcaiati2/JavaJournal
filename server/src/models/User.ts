@@ -27,12 +27,12 @@ const userSchema = new Schema({
     minLength: [6, 'Your password must be at least 6 characters in length']
   },
   // The notes property is going to be an array of note ids
-  pets: [{
+  shops: [{
     type: Schema.Types.ObjectId,
-    ref: 'Pet'
+    ref: 'Shop'
   }]
 }, {
-  collection: 'pet_app_users',
+  collection: 'shop_app_users',
   toJSON: {
     transform(_, user) {
       delete user.password;

@@ -34,18 +34,18 @@ export const LOGOUT_USER = gql`
 `;
 
 
-// Pet Mutations
-export const CREATE_PET = gql`
-  mutation CreatePet($name: String, $type: String, $age: Int) {
-    createPet(name: $name, type: $type, age: $age) {
+// Shop Mutations
+export const CREATE_SHOP = gql`
+  mutation CreateShop($name: String, $type: String, $age: Int) {
+    createShop(name: $name, type: $type, age: $age) {
       message
     }
   }
 `;
 
-export const CREATE_POST = gql`
-  mutation CreatePost($title: String, $body: String, $pet: ID) {
-    createPost(title: $title, body: $body, pet: $pet) {
+export const CREATE_COFFEE = gql`
+  mutation CreateCoffee($title: String, $body: String, $shop: ID) {
+    createCoffee(title: $title, body: $body, shop: $shop) {
       message
     }
   }

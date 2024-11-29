@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useStore } from './store';
 
 import Header from './components/Header';
@@ -8,10 +8,10 @@ import ProtectRoute from './components/ProtectRoute';
 import AuthForm from './pages/AuthForm';
 import Dashboard from './pages/Dashboard/index';
 import Landing from './pages/Landing';
-import PetForm from './pages/PetForm';
+import ShopForm from './pages/ShopForm';
 
 function App() {
-  const {state} = useStore()!;
+  const { state } = useStore()!;
 
   return (
     <>
@@ -38,9 +38,9 @@ function App() {
             </ProtectRoute>
           )} />
 
-          <Route path="/pet" element={(
+          <Route path="/shop" element={(
             <ProtectRoute>
-              <PetForm />
+              <ShopForm />
             </ProtectRoute>
           )} />
 
