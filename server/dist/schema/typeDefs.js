@@ -1,6 +1,5 @@
 const gql = String.raw;
-
-const typeDefs = gql`
+const typeDefs = gql `
   type Coffee {
     _id: ID
     title: String
@@ -51,5 +50,4 @@ const typeDefs = gql`
     createCoffee(title: String, body: String, shop: ID): Response
   }
 `;
-
 export default typeDefs;
