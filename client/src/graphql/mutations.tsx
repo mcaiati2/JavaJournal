@@ -36,8 +36,8 @@ export const LOGOUT_USER = gql`
 
 // Shop Mutations
 export const CREATE_SHOP = gql`
-  mutation CreateShop($name: String, $type: String, $age: Int) {
-    createShop(name: $name, type: $type, age: $age) {
+  mutation CreateShop($name: String, $location: String, $rating: Int) {
+    createShop(name: $name, location: $location, rating: $rating) {
       message
     }
   }

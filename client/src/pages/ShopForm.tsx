@@ -8,8 +8,8 @@ import { GET_USER_SHOPS } from '../graphql/queries';
 
 const initialFormData = {
   name: '',
-  type: '',
-  age: 0,
+  location: '',
+  rating: '',
   errorMessage: ''
 };
 
@@ -34,7 +34,7 @@ function ShopForm() {
       await createShop({
         variables: {
           ...formData,
-          age: Number(formData.age)
+          rating: Number(formData.rating)
         }
       });
 
@@ -62,13 +62,13 @@ function ShopForm() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Type</Form.Label>
-          <Form.Control name="type" onChange={handleInputChange} value={formData.type} type="text" placeholder="Enter the shop's type" />
+          <Form.Label>Location</Form.Label>
+          <Form.Control name="location" onChange={handleInputChange} value={formData.location} type="text" placeholder="Enter the shop's location" />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Enter the Shop's Age</Form.Label>
-          <Form.Control name="age" onChange={handleInputChange} value={formData.age} type="number" />
+          <Form.Label>Enter the Shop's Rating</Form.Label>
+          <Form.Control name="rating" onChange={handleInputChange} value={formData.rating} type="number" />
         </Form.Group>
 
         <div className="d-grid gap-2">

@@ -11,8 +11,8 @@ const typeDefs = gql`
   type Shop {
     _id: ID
     name: String
-    type: String
-    age: Int
+    location: String
+    rating: Int
     owner: User
     coffees: [Coffee]
   }
@@ -47,7 +47,7 @@ const typeDefs = gql`
     logoutUser: Response
 
     # Coffee/Shop Resolvers
-    createShop(name: String, type: String, age: Int): Response
+    createShop(name: String, location: String, rating: Int): Response
     createCoffee(title: String, body: String, shop: ID): Response
   }
 `;

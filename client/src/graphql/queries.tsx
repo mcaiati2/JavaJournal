@@ -28,9 +28,9 @@ export const GET_USER_SHOPS = gql`
   query GetUserShops {
     getUserShops {
       _id
-      age
+      rating
       name
-      type
+      location
       coffees {
         _id
       }

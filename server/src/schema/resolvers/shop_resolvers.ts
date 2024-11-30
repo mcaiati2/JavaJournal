@@ -10,8 +10,8 @@ import { GraphQLError } from 'graphql';
 
 type ShopArguments = {
   name?: string;
-  type?: string;
-  age?: number;
+  location?: string;
+  rating?: number;
 }
 
 type CoffeeArguments = {

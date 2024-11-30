@@ -6,14 +6,14 @@ const shopSchema = new Schema({
         required: [true, 'You must provide the coffee\'s name'],
         minLength: [2, 'Your coffee name must be at least 2 characters in length']
     },
-    type: {
+    location: {
         type: String,
-        required: [true, 'You must provide the animal\'s type']
+        required: [true, 'You must provide the shop\'s location']
     },
-    age: {
+    rating: {
         type: Number,
-        min: [1, 'You must enter an age greater than zero'],
-        required: [true, 'You must provide the animal\'s age']
+        min: [1, 'You must enter an rating greater than zero'],
+        required: [true, 'You must provide the shop\'s rating']
     },
     owner: {
         type: Schema.Types.ObjectId,

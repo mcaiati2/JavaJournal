@@ -81,7 +81,7 @@ function CreateCoffeeModal({
               name="title"
               value={formData.title}
               type="text"
-              placeholder="Enter the title of your coffee"
+              placeholder="Enter the name of your coffee"
               autoFocus
               onChange={handleInputChange}
             />

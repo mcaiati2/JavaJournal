@@ -40,8 +40,8 @@ function Dashboard() {
         {shopData && shopData.getUserShops.map((shop: Shop) => (
           <article key={shop._id} className="border p-4">
             <h4>{shop.name}</h4>
-            <p>Type: {shop.type}</p>
-            <p>Age: {shop.age}</p>
+            <p>Location: {shop.location}</p>
+            <p>Rating: {shop.rating}</p>
             <div className="d-flex button-wrap">
               <Button
                 variant="primary"

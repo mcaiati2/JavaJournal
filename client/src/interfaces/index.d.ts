@@ -9,7 +9,7 @@ export interface Coffee {
 export interface Shop {
   _id: string;
   name: string;
-  type: string;
-  age: number;
+  location: string;
+  rating: number;
   coffees?: Shop[];
 }
