@@ -1,5 +1,29 @@
 # Project 3 To-Do List:
 
+
+
+
+
+  
+  **Shop = Pet**
+  **Coffee = Post**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # App Names:
   * JavaJournal
   * Cool Beans
@@ -11,8 +35,8 @@
   * Coffee (Name, Type & Comments)
   * ? Rating  (coffee model)
   * ? Photo Upload (coffee model)
-  **Shop = Pet**
-  **Coffee = Post**
+
+
 
 * Change placeholder name:
   - package.json (top level)
