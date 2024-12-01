@@ -51,6 +51,16 @@ nav a:hover:not(.navbar-brand) {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* Thumbnail image for starbucks result */
+.coffee-thumbnail {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
 @media (max-width: 980px) {
   .shop-output {
     grid-template-columns: repeat(2, 1fr);
