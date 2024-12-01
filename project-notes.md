@@ -1,5 +1,9 @@
 # Project 3 Info:
 
+## Commands
+  * npm run build (at top level) to rebuild client/server and start dev server
+  * dep 'insert commit message here' origin HEAD:main
+
 ## App Names:
   * JavaJournal
   * Cool Beans
