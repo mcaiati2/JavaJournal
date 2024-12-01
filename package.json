@@ -17,7 +17,7 @@
     "render:install": "cd ./server && npm i",
     "install": "cd ./server && npm i && cd ../client && npm i",
     "cypress:test": "cd ./client && npm run cypress:run",
-    "test": "start-server-and-test start http://localhost:10000 cypress:test",
+    "test": "start-server-and-test start http://localhost:3333 cypress:test",
     "prep": "npm run client:build && npm run server:build"
   },
   "keywords": [],
