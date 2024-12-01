@@ -39,8 +39,8 @@ function Header() {
             <>
               <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
+              <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
               <NavDropdown title="Profile Menu">
-            <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
                 <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
               </NavDropdown>

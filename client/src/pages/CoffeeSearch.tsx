@@ -1,12 +1,26 @@
 import { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 
+// Define separate interface when new object is received
+interface Instruction {
+  name: number;
+  text: string;
+  image: string;
+}
+
 interface Coffee {
   _id: string;
   name: string;
   image: string;
   description: string;
+  recipeYield: string;
+  datePublished: string;
+  prepTime: string;
+  totalTime: string;
+  recipeIngredient: string[];
+  recipeInstructions: Instruction[];
 }
+
 
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
@@ -62,8 +76,30 @@ function CoffeeSearch() {
         {coffees.map((coffee) => (
           <li key={coffee._id}>
             <h2>{coffee.name}</h2>
-            <p>{coffee.description}</p>
+            <br />
             <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
+
+            <p>Description: {coffee.description}</p>
+            <p>Yield: {coffee.recipeYield}</p>
+            <p>Recipe Added: {coffee.datePublished}</p>
+            <h4>Ingredients:</h4>
+            <ul>
+              {coffee.recipeIngredient.map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
+            </ul>
+            <br />
+
+            <h4>Instructions:</h4>
+            <ol>
+              {coffee.recipeInstructions.map((instruction, index) => (
+                <li key={index}>
+                  {instruction.text}
+                </li>
+              ))}
+            </ol>
+            <br />
+            <br />
           </li>
         ))}
       </ul>
@@ -72,3 +108,5 @@ function CoffeeSearch() {
 }
 
 export default CoffeeSearch;
+
+
