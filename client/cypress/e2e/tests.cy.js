@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-const username = faker.person.firstName() + faker.person.lastName();
-const shopName = faker.random.word();
+const username = faker.person.userName();
+const shopName = faker.company.companyName();
 
 function loginUser(cy) {
   cy.visit('/login');
@@ -29,15 +29,16 @@ describe('Site Tests', () => {
   });
 
   it('Should register a new user', () => {
+    const uniqueUsername = faker.internet.userName();
 
     // Visit the register page
     cy.visit('/register');
 
     // Select the username input and type a fake name
-    cy.get('input[name="username"]').type(username);
+    cy.get('input[name="username"]').type(uniqueUsername);
 
     // Select the email input and type the fake name@test.com
-    cy.get('input[name="email"]').type(username + '@test.com');
+    cy.get('input[name="email"]').type(uniqueUsername + '@test.com');
 
     // Select password input and type 'password123'
     cy.get('input[name="password"]').type('password123');
@@ -69,12 +70,13 @@ describe('Site Tests', () => {
   });
 
   it('Should be able to create a shop for the logged in user', () => {
+    const uniqueShopName = faker.company.companyName();
 
     loginUser(cy);
 
     cy.get('nav a[href="/shop"]').click();
 
-    cy.get('input[name="name"]').type(shopName);
+    cy.get('input[name="name"]').type(uniqueShopName);
 
     cy.get('input[name="location"]').type('USA');
 
@@ -83,7 +85,7 @@ describe('Site Tests', () => {
     cy.get('form button').click();
 
     // Check that the shop shows up on the dashboard
-    cy.get('.shop-output').contains(shopName);
+    cy.get('.shop-output').contains(uniqueShopName);
   });
 
   // Adds a coffee for a shop
