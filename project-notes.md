@@ -23,6 +23,7 @@
   * Retype password for validation creation
   * Prevent duplicate shops
   * Auto capitalize inputs for consistency
+  !['brewing info/find your roast'](image.png)
 
 # Data We're Capturing
   * User Model

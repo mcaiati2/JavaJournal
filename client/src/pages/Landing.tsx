@@ -30,7 +30,7 @@ function Landing() {
             <Col lg="12" key={coffee._id} className="my-2 landing-post">
               <h3 className="fw-light">{coffee.title}</h3>
               <p className="text-secondary">{coffee.body}</p>
-              <p className="text-secondary">Added By: {coffee.shop?.name}</p>
+              <p className="text-secondary">{coffee.shop?.name}</p>
             </Col>
           ))}
         </Row>
