@@ -32,7 +32,7 @@ const userSchema = new Schema({
     ref: 'Shop'
   }]
 }, {
-  collection: 'shop_app_users',
+  collection: 'users',
   toJSON: {
     transform(_, user) {
       delete user.password;

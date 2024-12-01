@@ -4,6 +4,7 @@ const typeDefs = gql `
     _id: ID
     title: String
     body: String
+    flavor: String
     shop: Shop
   }
 
@@ -47,7 +48,7 @@ const typeDefs = gql `
 
     # Coffee/Shop Resolvers
     createShop(name: String, location: String, rating: Int): Response
-    createCoffee(title: String, body: String, shop: ID): Response
+    createCoffee(title: String, body: String, flavor: String, shop: ID): Response
   }
 `;
 export default typeDefs;

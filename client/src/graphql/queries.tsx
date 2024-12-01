@@ -17,6 +17,7 @@ export const GET_ALL_COFFEES = gql`
       _id
       body
       title
+      flavor
       shop {
         name
       }
@@ -44,6 +45,9 @@ export const GET_COFFEES_FOR_SHOP = gql`
       _id
       body
       title
+      flavor
     }
   }
 `;
+
+// TODO - line 48 correct ?

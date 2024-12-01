@@ -15,6 +15,7 @@
   * Finish data conversion for all models
   * Adjust testing files
   * Rating conversion to float
+  * Match optional with not optional in the typedefs/resolvers/queries/mutations/etc
 
 ## Features Ideas/Backlog
   * Drop-down selection for flavor notes
@@ -23,7 +24,10 @@
   * Retype password for validation creation
   * Prevent duplicate shops
   * Auto capitalize inputs for consistency
+  * Option to add logo for shop
+  * ? Shop Image Logo (also add to Modal) - Coffee Object / Shop Object ?
   !['brewing info/find your roast'](image.png)
+
 
 # Data We're Capturing
   * User Model

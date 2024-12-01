@@ -9,7 +9,11 @@ const coffeeSchema = new Schema({
     body: {
         type: String,
         required: [true, 'You must provide a coffee message'],
-        minLength: [3, 'Your coffee body must be at least 3 characters in length']
+        minLength: [3, 'Your coffee comments must be at least 3 characters in length']
+    },
+    flavor: {
+        type: String,
+        required: [true, 'You must provide flavor notes for the coffee']
     },
     shop: {
         type: Schema.Types.ObjectId,
@@ -17,7 +21,7 @@ const coffeeSchema = new Schema({
         ref: 'Shop'
     }
 }, {
-    collection: 'shop_app_coffees'
+    collection: 'coffees'
 });
 const Coffee = model('Coffee', coffeeSchema);
 export default Coffee;

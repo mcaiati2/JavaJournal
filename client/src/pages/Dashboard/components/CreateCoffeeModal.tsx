@@ -9,6 +9,7 @@ import { Shop } from '../../../interfaces';
 const initialFormData = {
   title: '',
   body: '',
+  flavor: '',
   errorMessage: ''
 };
 
@@ -87,7 +88,7 @@ function CreateCoffeeModal({
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Enter the coffee details</Form.Label>
+            <Form.Label>Enter your comments for the coffee</Form.Label>
             <Form.Control
               name="body"
               value={formData.body}
@@ -95,6 +96,16 @@ function CreateCoffeeModal({
               as="textarea"
               rows={3}
               placeholder="Type your details" />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Flavor</Form.Label>
+            <Form.Control
+              name="flavor"
+              value={formData.flavor}
+              type="text"
+              placeholder="Enter the flavor of your coffee"
+              onChange={handleInputChange}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>

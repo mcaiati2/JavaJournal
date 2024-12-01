@@ -17,6 +17,7 @@ type ShopArguments = {
 type CoffeeArguments = {
   title: string;
   body: string;
+  flavor: string;
   shop: Types.ObjectId;
 }
 
