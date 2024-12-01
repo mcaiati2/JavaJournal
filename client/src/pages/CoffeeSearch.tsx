@@ -36,7 +36,7 @@ function CoffeeSearch() {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'x-rapidapi-ua': 'RapidAPI-Playground',
-          'x-rapidapi-key': '110e9351a0msh7b3e8441780311ep1213ccjsn8688a123eb0c',
+          'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
           'x-rapidapi-host': 'starbucks-coffee-db2.p.rapidapi.com'
         }
       });
