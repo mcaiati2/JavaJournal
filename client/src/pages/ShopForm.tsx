@@ -68,7 +68,7 @@ function ShopForm() {
 
         <Form.Group className="mb-3">
           <Form.Label>Enter the Shop's Rating</Form.Label>
-          <Form.Control name="rating" onChange={handleInputChange} value={formData.rating} type="number" />
+          <Form.Control name="rating" onChange={handleInputChange} value={formData.rating} type="number" placeholder="Enter your rating for the shop" />
         </Form.Group>
 
         <div className="d-grid gap-2">

@@ -12,17 +12,17 @@
   **Type = Location**
 
 ## To-Do
-  * Finish data conversion for models
-  * Install:all script
+  * Finish data conversion for all models
   * Adjust testing files
   * Rating conversion to float
-  * Prevent duplicate shops
 
 ## Features Ideas/Backlog
   * Drop-down selection for flavor notes
   * Star rating instead of field (coffee cup empty vs full)
   * Google API Location Field
   * Retype password for validation creation
+  * Prevent duplicate shops
+  * Auto capitalize inputs for consistency
 
 # Data We're Capturing
   * User Model
