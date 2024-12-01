@@ -5,7 +5,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 interface Instruction {
   name: number;
   text: string;
-  image: string;
+  // image: string; // included in API response, looks empty
 }
 
 interface Coffee {
@@ -78,12 +78,25 @@ function CoffeeSearch() {
           <li key={coffee._id}>
             <h2>{coffee.name}</h2>
             <br />
+            <br />
             <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
 
-            <p>Description: {coffee.description}</p>
-            <p>Yield: {coffee.recipeYield}</p>
-            <p>Recipe Added: {coffee.datePublished}</p>
-            <p>Category: {coffee.category}</p>
+            <h4>Description:</h4>
+            {coffee.description}
+            <br />
+            <br />
+
+
+            <h4>Yield:</h4>
+            {coffee.recipeYield}
+            <br />
+            <br />
+
+            <h4>Category: </h4>
+            {coffee.category}
+            <br />
+            <br />
+
             <h4>Ingredients:</h4>
             <ul>
               {coffee.recipeIngredient.map((ingredient, index) => (
@@ -100,6 +113,12 @@ function CoffeeSearch() {
                 </li>
               ))}
             </ol>
+            <br />
+            <br />
+
+            <h4>Recipe Creation Date:</h4>
+            {coffee.datePublished}
+            <br />
             <br />
             <br />
           </li>

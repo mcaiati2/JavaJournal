@@ -80,6 +80,7 @@ datePublished
 prepTime ?
 totalTime ?
 recipeIngredient
+category
 
 
   {
