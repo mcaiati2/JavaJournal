@@ -46,7 +46,7 @@ function Dashboard() {
               <Button
                 variant="primary"
                 className="me-2"
-                onClick={() => handleShowCreateCoffeeModal(shop)}>Create Coffee</Button>
+                onClick={() => handleShowCreateCoffeeModal(shop)}>Add Coffee</Button>
               <Button
                 variant="secondary"
                 className="me-2"

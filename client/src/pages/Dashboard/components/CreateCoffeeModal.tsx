@@ -69,7 +69,7 @@ function CreateCoffeeModal({
   return (
     <Modal show={showCreateCoffeeModal} onHide={handleModalClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Create coffee for {selectedShop?.name}</Modal.Title>
+        <Modal.Title>New Coffee:</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>

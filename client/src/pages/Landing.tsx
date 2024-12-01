@@ -18,11 +18,11 @@ function Landing() {
       </Row>
 
       <Container>
-        <h3 className="fw-light mt-5">Drink it, okay!</h3>
+        <h3 className="fw-light mt-5">Drink it, okay?</h3>
         <hr />
 
         {coffeeData && !coffeeData.getAllCoffees.length && (
-          <p>No coffees have been added yet. Log in to create a coffee for your shop!</p>
+          <p>No coffee has been added yet. Log in to start roasting!</p>
         )}
 
         <Row className="my-3">

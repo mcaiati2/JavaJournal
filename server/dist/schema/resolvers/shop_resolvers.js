@@ -68,7 +68,7 @@ const shop_resolvers = {
                     }
                 });
                 return {
-                    message: 'Coffee created successfully!'
+                    message: 'Coffee added successfully!'
                 };
             }
             catch (error) {
