@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-const username = faker.person.userName();
+const username = faker.internet.userName();
 const shopName = faker.company.companyName();
 
 function loginUser(cy) {
