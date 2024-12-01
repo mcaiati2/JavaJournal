@@ -12,7 +12,6 @@
   **Type = Location**
 
 ## To-Do
-  * Finish data conversion for all models
   * Adjust testing files
   * Rating conversion to float
   * Match optional with not optional in the typedefs/resolvers/queries/mutations/etc
