@@ -19,6 +19,7 @@ interface Coffee {
   totalTime: string;
   recipeIngredient: string[];
   recipeInstructions: Instruction[];
+  category: string;
 }
 
 
@@ -82,6 +83,7 @@ function CoffeeSearch() {
             <p>Description: {coffee.description}</p>
             <p>Yield: {coffee.recipeYield}</p>
             <p>Recipe Added: {coffee.datePublished}</p>
+            <p>Category: {coffee.category}</p>
             <h4>Ingredients:</h4>
             <ul>
               {coffee.recipeIngredient.map((ingredient, index) => (
