@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
 const username = faker.internet.userName();
-const shopName = faker.company.companyName();
+const shopName = faker.company.name();
 
 function loginUser(cy) {
   cy.visit('/login');
@@ -70,7 +70,7 @@ describe('Site Tests', () => {
   });
 
   it('Should be able to create a shop for the logged in user', () => {
-    const uniqueShopName = faker.company.companyName();
+    const uniqueShopName = faker.company.name();
 
     loginUser(cy);
 
