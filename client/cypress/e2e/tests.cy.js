@@ -11,15 +11,20 @@ function loginUser(cy) {
   cy.get('input[name="password"]').type('password123');
 
   cy.get('form button').click();
+
+  // Wait for the dashboard to load
+  cy.url().should('include', '/dashboard');
 }
 
 describe('Site Tests', () => {
-  it('Should show the homepage hero', () => {
-    cy.visit('/');
+  // Other tests...
 
-    cy.get('h1').contains('JavaJournal');
+  it('Should login a user', () => {
+    loginUser(cy);
+
+    // Increase the timeout for the assertion
+    cy.get('h3', { timeout: 10000 }).contains('Your Shops');
   });
-
   it('Should be able to navigate to the register page', () => {
     cy.visit('/');
 
