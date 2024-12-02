@@ -59,3 +59,14 @@ export const UPDATE_SHOP_RATING = gql`
     }
   }
 `;
+
+export const SAVE_RECIPE = gql`
+mutation SAVE_RECIPE($recipeId: ID!, $title: String!, $ingredients: [String!]!, $instructions: [String!]!) {
+  saveRecipe(recipeId: $recipeId, title: $title, ingredients: $ingredients, instructions: $instructions) {
+    id
+    title
+    ingredients
+    instructions
+  }
+}
+`;

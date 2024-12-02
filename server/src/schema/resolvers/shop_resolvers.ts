@@ -3,6 +3,7 @@ import { Types } from 'mongoose';
 import Shop from '../../models/Shop.js';
 import Coffee from '../../models/Coffee.js';
 import Context from '../../interfaces/Context.js';
+import Recipe from '../../models/Recipe.js';
 
 import { errorHandler } from '../helpers/index.js';
 import { GraphQLError } from 'graphql';
@@ -132,7 +133,30 @@ const shop_resolvers = {
         throw new GraphQLError(errorMessage);
       }
     },
+
+    async saveRecipe(_: any, args: { recipeId: string, title: string, ingredients: string[], instructions: string[] }, context: Context) {
+      if (!context.req.user) {
+        throw new GraphQLError('You are not authorized to perform this action');
+      }
+
+      try {
+        const recipe = await Recipe.create({
+          title: args.title,
+          ingredients: args.ingredients,
+          instructions: args.instructions,
+          user: context.req.user._id
+        });
+
+        console.log('Recipe saved:', recipe); // Log the saved recipe
+        return recipe;
+      } catch (error: any) {
+        console.error('Error saving recipe:', error); // Log the error
+        throw new GraphQLError(error.message);
+      }
+    }
   }
-}
+};
+
+
 
 export default shop_resolvers;

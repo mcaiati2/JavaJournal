@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
+import { useMutation } from '@apollo/client';
+import { SAVE_RECIPE } from '../graphql/mutations';
 
-// Define separate interface when new object is received
 interface Instruction {
   name: number;
   text: string;
-  // image: string; // included in API response, looks empty
 }
 
 interface Coffee {
@@ -22,11 +22,11 @@ interface Coffee {
   category: string;
 }
 
-
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState<string>('');
+  const [saveRecipe] = useMutation(SAVE_RECIPE);
 
   const fetchCoffees = async (query: string) => {
     try {
@@ -55,6 +55,22 @@ function CoffeeSearch() {
     fetchCoffees(query);
   };
 
+  const handleSaveRecipe = async (recipe: Coffee) => {
+    try {
+      await saveRecipe({
+        variables: {
+          recipeId: recipe._id,
+          title: recipe.name,
+          ingredients: recipe.recipeIngredient,
+          instructions: recipe.recipeInstructions.map(instruction => instruction.text)
+        }
+      });
+      alert('Recipe saved successfully!');
+    } catch (error) {
+      console.error('Error saving recipe:', error);
+    }
+  };
+
   return (
     <Container>
       <h1>Search Coffees</h1>
@@ -77,34 +93,19 @@ function CoffeeSearch() {
         {coffees.map((coffee) => (
           <li key={coffee._id}>
             <h2>{coffee.name}</h2>
-            <br />
-            <br />
             <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
-
             <h4>Description:</h4>
             {coffee.description}
-            <br />
-            <br />
-
-
             <h4>Yield:</h4>
             {coffee.recipeYield}
-            <br />
-            <br />
-
             <h4>Category: </h4>
             {coffee.category}
-            <br />
-            <br />
-
             <h4>Ingredients:</h4>
             <ul>
               {coffee.recipeIngredient.map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
-            <br />
-
             <h4>Instructions:</h4>
             <ol>
               {coffee.recipeInstructions.map((instruction, index) => (
@@ -113,14 +114,10 @@ function CoffeeSearch() {
                 </li>
               ))}
             </ol>
-            <br />
-            <br />
+        
 
-            <h4>Recipe Creation Date:</h4>
-            {coffee.datePublished}
-            <br />
-            <br />
-            <br />
+
+            <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
           </li>
         ))}
       </ul>
@@ -129,5 +126,3 @@ function CoffeeSearch() {
 }
 
 export default CoffeeSearch;
-
-

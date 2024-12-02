@@ -24,6 +24,14 @@ const typeDefs = gql `
     shops: [Shop]
   }
 
+  type Recipe {
+  id: ID!
+  title: String!
+  ingredients: [String!]!
+  instructions: [String!]!
+  user: ID!
+}
+
   type Response {
     user: User
     message: String
@@ -38,6 +46,8 @@ const typeDefs = gql `
     getAllCoffees: [Coffee]
     getUserShops: [Shop]
     getCoffeesForShop(shop_id: ID): [Coffee]
+    recipes: [Recipe]
+    savedRecipes: [Recipe]
   }
 
   type Mutation {
@@ -50,6 +60,7 @@ const typeDefs = gql `
     createShop(name: String, location: String, rating: Int): Response
     createCoffee(title: String, body: String, flavor: String, shop: ID): Response
     updateShopRating(shopId: ID!, rating: Int!): Shop
+    saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
   }
 `;
 export default typeDefs;
