@@ -9,12 +9,12 @@ function Landing() {
 
   return (
     <Container fluid={true}>
-      <Section className="center-content">
-        <div className="landing-hero-image">
+      <Row className="center-content">
+        <Col className="landing-hero-image">
           <h1 className="text-center">JavaJournal</h1>
           <h3 className="text-center fw-light">Coffee good!</h3>
-        </div>
-      </Section>
+        </Col>
+      </Row>
 
       <Container>
         <h3 className="fw-light mt-5">Drink it, okay?</h3>
