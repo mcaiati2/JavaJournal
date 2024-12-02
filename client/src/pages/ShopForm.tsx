@@ -2,6 +2,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
+import ReactStars from 'react-rating-stars-component';
 
 import { CREATE_SHOP } from '../graphql/mutations';
 import { GET_USER_SHOPS } from '../graphql/queries';
@@ -9,7 +10,7 @@ import { GET_USER_SHOPS } from '../graphql/queries';
 const initialFormData = {
   name: '',
   location: '',
-  rating: '',
+  rating: 0,
   errorMessage: ''
 };
 
@@ -25,6 +26,13 @@ function ShopForm() {
       ...formData,
       [event.target.name]: event.target.value
     })
+  }
+
+  const handleRatingChange = (newRating: number) => {
+    setFormData({
+      ...formData,
+      rating: newRating
+    });
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,8 +75,14 @@ function ShopForm() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Enter the Shop's Rating</Form.Label>
-          <Form.Control name="rating" onChange={handleInputChange} value={formData.rating} type="number" placeholder="Enter your rating for the shop" />
+          <Form.Label>Rating</Form.Label>
+          <ReactStars
+            count={5}
+            value={formData.rating}
+            onChange={handleRatingChange}
+            size={24}
+            activeColor="#FFD700"
+          />
         </Form.Group>
 
         <div className="d-grid gap-2">

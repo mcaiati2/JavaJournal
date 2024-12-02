@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
+import ReactStars from 'react-rating-stars-component';
+
 
 import { GET_USER_SHOPS } from '../../graphql/queries';
 import { Shop } from '../../interfaces';
@@ -41,7 +43,14 @@ function Dashboard() {
           <article key={shop._id} className="border p-4">
             <h4>{shop.name}</h4>
             <p>Location: {shop.location}</p>
-            <p>Rating: {shop.rating}</p>
+            <ReactStars
+              count={5}
+              value={shop.rating}
+              // onChange={handleRatingChange}
+              size={24}
+              activeColor="#FFD700"
+            />
+
             <div className="d-flex button-wrap">
               <Button
                 variant="primary"
