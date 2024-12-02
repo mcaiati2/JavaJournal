@@ -18,7 +18,7 @@ function App() {
     <>
       {state.loading && (
         <div className="loading-overlay d-flex justify-content-center align-items-center">
-          <h2 className="fw-light">Loading...</h2>
+          <img src="/images/coffeecup2.gif" alt="" />
         </div>
       )}
 

@@ -13,7 +13,7 @@ body,
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background: #eee;
+  background: #eeeeee;
 }
 
 nav a.active:not(.navbar-brand),
