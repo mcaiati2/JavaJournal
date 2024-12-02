@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+
 const { Schema, model } = mongoose;
 const { hash, compare } = bcrypt;
 
@@ -30,8 +31,18 @@ const userSchema = new Schema({
   shops: [{
     type: Schema.Types.ObjectId,
     ref: 'Shop'
+  }],
+  recipes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Recipe'
+  }],
+  coffees: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Coffee'
   }]
-}, {
+},
+
+{
   collection: 'users',
   toJSON: {
     transform(_, user) {

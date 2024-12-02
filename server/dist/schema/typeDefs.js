@@ -22,6 +22,8 @@ const typeDefs = gql `
     username: String
     email: String
     shops: [Shop]
+    recipes: [Recipe]
+    coffees: [Coffee]
   }
 
   type Recipe {
