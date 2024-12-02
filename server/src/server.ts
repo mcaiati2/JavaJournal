@@ -13,6 +13,9 @@ import resolvers from './schema/resolvers.js';
 
 dotenv.config();
 
+const rapidApiKey = process.env.VITE_RAPIDAPI_KEY;
+console.log('RapidAPI Key: ', rapidApiKey)
+
 const app = express();
 const PORT = Number(process.env.PORT) || 3333;
 
@@ -35,6 +38,11 @@ connection.once('open', async () => {
       context: authenticate
     }),
   );
+
+    // Endpoint to serve the API key
+    app.get('/api/get-api-key', (_, res) => {
+      res.json({ apiKey: process.env.VITE_RAPIDAPI_KEY });
+    });
 
   if (process.env.PORT) {
     const __dirname = path.dirname(new URL(import.meta.url).pathname);

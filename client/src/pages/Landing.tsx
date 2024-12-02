@@ -9,9 +9,8 @@ function Landing() {
 
   return (
     <Container fluid={true}>
-      <Row>
-        <Col className="landing-hero-image" xs="12" md="6"></Col>
-        <Col className="d-flex flex-column justify-content-center hero-text" xs="12" md="6">
+      <Row className="center-content">
+        <Col className="landing-hero-image">
           <h1 className="text-center">JavaJournal</h1>
           <h3 className="text-center fw-light">Coffee good!</h3>
         </Col>

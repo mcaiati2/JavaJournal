@@ -1,9 +1,11 @@
-/* CSS comment */
+/* CSS rules */
 
 html,
 body,
 #root {
   height: 100%;
+  background-color: #1b1b1b;
+  color: #e8e8e8;
 }
 
 .loading-overlay {
@@ -15,6 +17,9 @@ body,
   z-index: 100;
   background: #eeeeee;
 }
+
+
+/* --------- NAV BAR ----------- */
 
 nav a.active:not(.navbar-brand),
 nav a:hover:not(.navbar-brand) {
@@ -29,10 +34,28 @@ nav a:hover:not(.navbar-brand) {
   word-wrap: break-word !important;
 }
 
+
+/* ---------- UNIVERSAL CLASSES ------------- */
+
+.white-text {
+  color: rgb(236, 236, 236);
+}
+
+
+/* ----------- LANDING ------------ */
+
 .landing-hero-image {
   background-image: url(/images/landing_bg.jpg);
   background-size: cover;
   min-height: 600px;
+}
+
+.landing-hero-image h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  padding-top: 10%;
 }
 
 .landing-post {
@@ -53,7 +76,9 @@ nav a:hover:not(.navbar-brand) {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Thumbnail image for starbucks result */
+
+/* ----------- Thumbnail image for starbucks result ------------- */
+
 .coffee-thumbnail {
   width: 100%;
   max-width: 300px;
@@ -62,6 +87,19 @@ nav a:hover:not(.navbar-brand) {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
+
+
+/* --------- MEDIA QUERIES ---------- */
+
+@media (min-width: 1920px) {
+  .landing-hero-image {
+    max-width: 1920px;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+
 
 @media (max-width: 980px) {
   .shop-output {
@@ -74,11 +112,15 @@ nav a:hover:not(.navbar-brand) {
   }
 }
 
+
+
 @media (max-width: 768px) {
   .hero-text {
     margin-top: 25px !important;
   }
 }
+
+
 
 @media (max-width: 490px) {
   .nav-wrap {

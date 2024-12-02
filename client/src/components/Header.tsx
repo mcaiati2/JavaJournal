@@ -29,7 +29,7 @@ function Header() {
   }
 
   return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar bg="dark" data-bs-theme="dark">
       <Container className="nav-wrap">
         <Navbar.Brand as={NavLink} to="/">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
@@ -42,6 +42,7 @@ function Header() {
               <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
               <NavDropdown title="Profile Menu">
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
+                <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
               </NavDropdown>
             </>

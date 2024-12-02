@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import { GraphQLError } from 'graphql';
 dotenv.config();
 import User from '../../models/User.js';
@@ -68,6 +69,24 @@ const auth_resolvers = {
             });
             return {
                 user: user
+            };
+        },
+        async changePassword(_, args, context) {
+            if (!context.req.user) {
+                throw new GraphQLError('You are not authorized to perform this action');
+            }
+            const user = await User.findById(context.req.user._id);
+            if (!user) {
+                throw new GraphQLError('User not found');
+            }
+            const valid_pass = await bcrypt.compare(args.currentPassword, user.password);
+            if (!valid_pass) {
+                throw new GraphQLError('Current password is incorrect');
+            }
+            user.password = await bcrypt.hash(args.newPassword, 10);
+            await user.save();
+            return {
+                message: 'Password changed successfully!'
             };
         },
         // Log out user

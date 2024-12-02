@@ -1,7 +1,11 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { SAVE_RECIPE } from '../graphql/mutations';
+
+
+//  --------- INTERFACES 
 
 interface Instruction {
   name: number;
@@ -22,11 +26,25 @@ interface Coffee {
   category: string;
 }
 
+
+// --------- COFFEE SEARCH FUNCTION
+
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
+  const [apiKey, setApiKey] = useState<string>('');
+
+  const fetchApiKey = async () => {
+    const response = await fetch('/api/get-api-key');
+    const data = await response.json();
+    setApiKey(data.apiKey);
+  };
+
+  useEffect(() => {
+    fetchApiKey();
+  }, []);
 
   const fetchCoffees = async (query: string) => {
     try {
@@ -36,7 +54,7 @@ function CoffeeSearch() {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'x-rapidapi-ua': 'RapidAPI-Playground',
-          'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
+          'x-rapidapi-key': apiKey,
           'x-rapidapi-host': 'starbucks-coffee-db2.p.rapidapi.com'
         }
       });
@@ -71,11 +89,16 @@ function CoffeeSearch() {
     }
   };
 
+
+  // ---------- RETURN THE SEARCH RESULTS AND PRINT TO PAGE 
   return (
+    
+    //  -------- Search form --------
+
     <Container>
-      <h1>Search Coffees</h1>
+      <h1 className="mt-5 mb-5">Search Coffees</h1>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mt-5 mb-5">
           <Form.Label>Enter coffee type (e.g., mocha)</Form.Label>
           <Form.Control
             type="text"
@@ -84,14 +107,17 @@ function CoffeeSearch() {
             placeholder="Enter coffee type"
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mb-5">
           Search
         </Button>
       </Form>
+
+      {/* -------- Coffee results -------- */}
+
       {error && <div>Error: {error}</div>}
       <ul>
         {coffees.map((coffee) => (
-          <li key={coffee._id}>
+          <ul key={coffee._id} className="mt-3">
             <h2>{coffee.name}</h2>
             <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
             <h4>Description:</h4>
@@ -114,15 +140,15 @@ function CoffeeSearch() {
                 </li>
               ))}
             </ol>
-        
-
-
             <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
-          </li>
+          </ul>
         ))}
       </ul>
     </Container>
   );
 }
+
+
+// --------- EXPORT THE COFFEE SEARCH FUNCTION
 
 export default CoffeeSearch;

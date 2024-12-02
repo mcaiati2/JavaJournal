@@ -10,7 +10,7 @@
     "server:install": "cd ./server && npm i",
     "server:dev": "cd ./server && npm run dev",
     "server:build": "cd ./server && npm run build",
-    "build": "cd ./server && npm run build && cd ../client && npm run build & npm run dev",
+    "build": "npm run server:build && npm run client:build",
     "dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\"",
     "seed": "cd ./server && npm run seed",
     "start": "node ./server/dist/server.js",
