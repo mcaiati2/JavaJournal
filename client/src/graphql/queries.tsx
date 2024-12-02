@@ -50,4 +50,14 @@ export const GET_COFFEES_FOR_SHOP = gql`
   }
 `;
 
-// TODO - line 48 correct ?
+export const GET_SHOP_RATINGS = gql`
+  query GET_SHOP_RATINGS($shopId: ID!) {
+    shop(id: $shopId) {
+      id
+      name
+      coffees {
+        rating
+      }
+    }
+  }
+`;

@@ -10,6 +10,7 @@
     "server:install": "cd ./server && npm i",
     "server:dev": "cd ./server && npm run dev",
     "server:build": "cd ./server && npm run build",
+    "build": "cd ./server && npm run build && cd ../client && npm run build & npm run dev",
     "dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\"",
     "seed": "cd ./server && npm run seed",
     "start": "node ./server/dist/server.js",
@@ -23,11 +24,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "concurrently": "^9.1.0",
+    "cypress": "^13.16.0",
     "start-server-and-test": "^2.0.8",
     "wait-on": "^8.0.1"
   },
   "dependencies": {
-    "python": "^0.0.4"
+    "dotenv": "^16.4.5",
+    "python": "^0.0.4",
+    "react-rating-stars-component": "^2.2.0"
   }
 }

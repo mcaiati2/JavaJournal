@@ -22,7 +22,17 @@ const typeDefs = gql `
     username: String
     email: String
     shops: [Shop]
+    recipes: [Recipe]
+    coffees: [Coffee]
   }
+
+  type Recipe {
+  id: ID!
+  title: String!
+  ingredients: [String!]!
+  instructions: [String!]!
+  user: ID!
+}
 
   type Response {
     user: User
@@ -38,6 +48,8 @@ const typeDefs = gql `
     getAllCoffees: [Coffee]
     getUserShops: [Shop]
     getCoffeesForShop(shop_id: ID): [Coffee]
+    recipes: [Recipe]
+    savedRecipes: [Recipe]
   }
 
   type Mutation {
@@ -49,6 +61,8 @@ const typeDefs = gql `
     # Coffee/Shop Resolvers
     createShop(name: String, location: String, rating: Int): Response
     createCoffee(title: String, body: String, flavor: String, shop: ID): Response
+    updateShopRating(shopId: ID!, rating: Int!): Shop
+    saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
   }
 `;
 export default typeDefs;

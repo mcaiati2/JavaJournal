@@ -28,6 +28,14 @@ const userSchema = new Schema({
     shops: [{
             type: Schema.Types.ObjectId,
             ref: 'Shop'
+        }],
+    recipes: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Recipe'
+        }],
+    coffees: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Coffee'
         }]
 }, {
     collection: 'users',

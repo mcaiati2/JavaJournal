@@ -9,6 +9,7 @@ import AuthForm from './pages/AuthForm';
 import Dashboard from './pages/Dashboard/index';
 import Landing from './pages/Landing';
 import ShopForm from './pages/ShopForm';
+import CoffeeSearch from './pages/CoffeeSearch.tsx';
 
 function App() {
   const { state } = useStore()!;
@@ -49,6 +50,13 @@ function App() {
               <Dashboard />
             </ProtectRoute>
           )} />
+
+          <Route path="/coffee-info" element={(
+            <ProtectRoute>
+              <CoffeeSearch />
+            </ProtectRoute>
+          )} />
+
         </Routes>
       </main>
 
@@ -57,4 +65,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
