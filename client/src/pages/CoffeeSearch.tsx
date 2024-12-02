@@ -4,6 +4,9 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { SAVE_RECIPE } from '../graphql/mutations';
 
+
+//  --------- INTERFACES 
+
 interface Instruction {
   name: number;
   text: string;
@@ -22,6 +25,9 @@ interface Coffee {
   recipeInstructions: Instruction[];
   category: string;
 }
+
+
+// --------- COFFEE SEARCH FUNCTION
 
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
@@ -83,11 +89,16 @@ function CoffeeSearch() {
     }
   };
 
+
+  // ---------- RETURN THE SEARCH RESULTS AND PRINT TO PAGE 
   return (
+    
+    //  -------- Search form --------
+
     <Container>
-      <h1>Search Coffees</h1>
+      <h1 className="mt-5 mb-5">Search Coffees</h1>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mt-5 mb-5">
           <Form.Label>Enter coffee type (e.g., mocha)</Form.Label>
           <Form.Control
             type="text"
@@ -96,14 +107,17 @@ function CoffeeSearch() {
             placeholder="Enter coffee type"
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className="mb-5">
           Search
         </Button>
       </Form>
+
+      {/* -------- Coffee results -------- */}
+
       {error && <div>Error: {error}</div>}
       <ul>
         {coffees.map((coffee) => (
-          <li key={coffee._id}>
+          <ul key={coffee._id} className="mt-3">
             <h2>{coffee.name}</h2>
             <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
             <h4>Description:</h4>
@@ -127,11 +141,14 @@ function CoffeeSearch() {
               ))}
             </ol>
             <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
-          </li>
+          </ul>
         ))}
       </ul>
     </Container>
   );
 }
+
+
+// --------- EXPORT THE COFFEE SEARCH FUNCTION
 
 export default CoffeeSearch;
