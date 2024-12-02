@@ -40,6 +40,9 @@ const typeDefs = gql`
     message: String
     errors: [String]
   }
+  type MessageResponse {
+    message: String
+}
 
   type Query {
     # Auth Queries
@@ -64,6 +67,8 @@ const typeDefs = gql`
     createCoffee(title: String, body: String, flavor: String, shop: ID): Response
     updateShopRating(shopId: ID!, rating: Int!): Shop
     saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
+    changePassword(currentPassword: String!, newPassword: String!): MessageResponse!
+
   }
 `;
 

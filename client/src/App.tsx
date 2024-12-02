@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard/index';
 import Landing from './pages/Landing';
 import ShopForm from './pages/ShopForm';
 import CoffeeSearch from './pages/CoffeeSearch.tsx';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   const { state } = useStore()!;
@@ -56,6 +57,10 @@ function App() {
               <CoffeeSearch />
             </ProtectRoute>
           )} />
+
+          <Route path="/settings" element={<ProtectRoute>
+            <ChangePassword />
+            </ProtectRoute>} />
 
         </Routes>
       </main>
