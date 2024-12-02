@@ -29,7 +29,7 @@ function Header() {
   }
 
   return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar bg="dark" data-bs-theme="dark">
       <Container className="nav-wrap">
         <Navbar.Brand as={NavLink} to="/">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">

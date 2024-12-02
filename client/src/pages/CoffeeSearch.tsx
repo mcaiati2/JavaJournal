@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { SAVE_RECIPE } from '../graphql/mutations';
@@ -27,6 +28,17 @@ function CoffeeSearch() {
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
+  const [apiKey, setApiKey] = useState<string>('');
+
+  const fetchApiKey = async () => {
+    const response = await fetch('/api/get-api-key');
+    const data = await response.json();
+    setApiKey(data.apiKey);
+  };
+
+  useEffect(() => {
+    fetchApiKey();
+  }, []);
 
   const fetchCoffees = async (query: string) => {
     try {
@@ -36,7 +48,7 @@ function CoffeeSearch() {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'x-rapidapi-ua': 'RapidAPI-Playground',
-          'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
+          'x-rapidapi-key': apiKey,
           'x-rapidapi-host': 'starbucks-coffee-db2.p.rapidapi.com'
         }
       });
@@ -114,9 +126,6 @@ function CoffeeSearch() {
                 </li>
               ))}
             </ol>
-        
-
-
             <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
           </li>
         ))}

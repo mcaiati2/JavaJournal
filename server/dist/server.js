@@ -9,6 +9,8 @@ import { authenticate } from './services/auth.js';
 import typeDefs from './schema/typeDefs.js';
 import resolvers from './schema/resolvers.js';
 dotenv.config();
+const rapidApiKey = process.env.VITE_RAPIDAPI_KEY;
+console.log('RapidAPI Key: ', rapidApiKey);
 const app = express();
 const PORT = Number(process.env.PORT) || 3333;
 const server = new ApolloServer({
@@ -24,6 +26,10 @@ connection.once('open', async () => {
         // Attach the context object for all resolvers by referencing a function that returns an object with req and res, and if they have a valid cookie/jwt, req.user will be their user object
         context: authenticate
     }));
+    // Endpoint to serve the API key
+    app.get('/api/get-api-key', (_, res) => {
+        res.json({ apiKey: process.env.VITE_RAPIDAPI_KEY });
+    });
     if (process.env.PORT) {
         const __dirname = path.dirname(new URL(import.meta.url).pathname);
         // Share all files in the client/dist folder with the client-side

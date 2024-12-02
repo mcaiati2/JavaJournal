@@ -12,7 +12,10 @@ export default defineConfig({
     proxy: {
       '/graphql': {
         target: 'http://localhost:3333'
-      }
+      },
+        '/api': {
+        target: 'http://localhost:3333'
     }
   }
-})
+}})
+
