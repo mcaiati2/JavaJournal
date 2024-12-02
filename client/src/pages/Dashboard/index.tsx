@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import ReactStars from 'react-rating-stars-component';
 
 
 import { GET_USER_SHOPS } from '../../graphql/queries';
 import { Shop } from '../../interfaces';
+import { UPDATE_SHOP_RATING } from '../../graphql/mutations';
 
 import CreateCoffeeModal from './components/CreateCoffeeModal';
 import ViewCoffeeModal from './components/ViewCoffeeModal';
 
 function Dashboard() {
   const { data: shopData } = useQuery(GET_USER_SHOPS);
-
+  const [updateShopRating] = useMutation(UPDATE_SHOP_RATING);
   const [selectedShop, setSelectedShop] = useState<null | Shop>(null);
   const [showCreateCoffeeModal, setShowCreateCoffeeModal] = useState(false);
   const [showCoffeesModal, setShowCoffeesModal] = useState(false);
@@ -20,14 +21,26 @@ function Dashboard() {
 
   const handleShowCreateCoffeeModal = (shop: Shop) => {
     setSelectedShop(shop);
-
     setShowCreateCoffeeModal(true);
   };
 
   const handleShowCoffeesModal = (shop: Shop) => {
     setSelectedShop(shop);
-
     setShowCoffeesModal(true);
+  };
+
+  const handleRatingChange = async (newRating: number, shopId: string) => {
+    try {
+      await updateShopRating({
+        variables: {
+          shopId,
+          rating: newRating
+        },
+        refetchQueries: [{ query: GET_USER_SHOPS }]
+      });
+    } catch (error) {
+      console.error('Error updating rating:', error);
+    }
   };
 
   return (
@@ -46,9 +59,10 @@ function Dashboard() {
             <ReactStars
               count={5}
               value={shop.rating}
-              // onChange={handleRatingChange}
+              onChange={(newRating: any) => handleRatingChange(newRating, shop._id)} // TODO 
               size={24}
               activeColor="#FFD700"
+              edit={true}
             />
 
             <div className="d-flex button-wrap">

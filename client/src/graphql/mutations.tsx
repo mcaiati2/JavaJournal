@@ -50,3 +50,12 @@ export const CREATE_COFFEE = gql`
     }
   }
 `;
+
+export const UPDATE_SHOP_RATING = gql`
+  mutation UpdateShopRating($shopId: ID!, $rating: Int!) {
+    updateShopRating(shopId: $shopId, rating: $rating) {
+      _id
+      rating
+    }
+  }
+`;

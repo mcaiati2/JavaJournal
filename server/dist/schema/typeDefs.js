@@ -49,6 +49,7 @@ const typeDefs = gql `
     # Coffee/Shop Resolvers
     createShop(name: String, location: String, rating: Int): Response
     createCoffee(title: String, body: String, flavor: String, shop: ID): Response
+    updateShopRating(shopId: ID!, rating: Int!): Shop
   }
 `;
 export default typeDefs;

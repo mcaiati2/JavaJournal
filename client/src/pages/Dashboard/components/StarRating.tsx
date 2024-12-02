@@ -19,7 +19,7 @@ const ShopRating: React.FC<ShopProps> = ({ shopId }) => {
       <ReactStars
         count={5}
         value={averageRating}
-        edit={false}
+        edit={true}
         size={24}
         activeColor="#FFD700"
       />

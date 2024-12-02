@@ -75,7 +75,25 @@ const shop_resolvers = {
                 const errorMessage = errorHandler(error);
                 throw new GraphQLError(errorMessage);
             }
-        }
+        },
+        async updateShopRating(_, { shopId, rating }, context) {
+            if (!context.req.user) {
+                throw new GraphQLError('You are not authorized to perform this action');
+            }
+            try {
+                const shop = await Shop.findById(shopId);
+                if (!shop) {
+                    throw new GraphQLError('Shop not found');
+                }
+                shop.rating = rating;
+                await shop.save();
+                return shop; // Return the shop object
+            }
+            catch (error) {
+                const errorMessage = errorHandler(error);
+                throw new GraphQLError(errorMessage);
+            }
+        },
     }
 };
 export default shop_resolvers;
