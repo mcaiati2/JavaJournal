@@ -61,3 +61,14 @@ export const GET_SHOP_RATINGS = gql`
     }
   }
 `;
+
+export const GET_SAVED_RECIPES = gql`
+  query GET_SAVED_RECIPES {
+    savedRecipes {
+      id
+      title
+      ingredients
+      instructions
+    }
+  }
+`;
