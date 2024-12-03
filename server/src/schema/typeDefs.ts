@@ -32,7 +32,7 @@ const typeDefs = gql`
   title: String!
   ingredients: [String!]!
   instructions: [String!]!
-  user: ID!
+  user: User!
 }
 
   type Response {
