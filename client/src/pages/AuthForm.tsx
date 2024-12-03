@@ -6,48 +6,51 @@ import { useState, useEffect } from 'react';
 import { useStore } from '../store';
 
 import { REGISTER_USER, LOGIN_USER } from '../graphql/mutations';
-// import { GET_USER } from '../graphql/queries';
 
 const initialFormData = {
   username: '',
   email: '',
   password: '',
+  confirmPassword: '', // Add confirmPassword field
   errorMessage: ''
 };
 
-function AuthForm({isLogin}: {isLogin: boolean}) {
-
- // const { loading, data, error} = useQuery(GET_USER)
-
+function AuthForm({ isLogin }: { isLogin: boolean }) {
   const [formData, setFormData] = useState(initialFormData);
   const [registerUser] = useMutation(REGISTER_USER);
   const [loginUser] = useMutation(LOGIN_USER);
-  const {setState} = useStore()!;
+  const { setState } = useStore()!;
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    setFormData({...initialFormData});
+    setFormData({ ...initialFormData });
   }, [isLogin]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!isLogin && formData.password !== formData.confirmPassword) {
+      setFormData({
+        ...formData,
+        errorMessage: 'Passwords must match'
+      });
+      return;
+    }
 
     const mutation = isLogin ? loginUser : registerUser;
     const prop = isLogin ? 'loginUser' : 'registerUser';
 
     try {
       const res = await mutation({
-        variables: formData 
+        variables: formData
       });
-      console.log("Response: ", res);
-      console.log("REsult: ", res.data);
 
       setState((oldState) => ({
         ...oldState,
@@ -61,11 +64,11 @@ function AuthForm({isLogin}: {isLogin: boolean}) {
         errorMessage: error.message
       });
     }
-  }
+  };
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit} style={{width: '500px'}} className="mx-auto mt-5">
+      <Form onSubmit={handleSubmit} style={{ width: '500px' }} className="mx-auto mt-5">
         <h2 className="text-center mt-3">{isLogin ? 'Log In' : 'Register'}</h2>
 
         {formData.errorMessage && (
@@ -79,7 +82,7 @@ function AuthForm({isLogin}: {isLogin: boolean}) {
           </Form.Group>
         )}
 
-        <Form.Group  className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control name="email" onChange={handleInputChange} value={formData.email} type="email" placeholder="Enter email" />
           <Form.Text className="text-muted">
@@ -92,11 +95,18 @@ function AuthForm({isLogin}: {isLogin: boolean}) {
           <Form.Control name="password" onChange={handleInputChange} value={formData.password} autoComplete="current-password" type="password" placeholder="Password" />
         </Form.Group>
 
+        {!isLogin && (
+          <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control name="confirmPassword" onChange={handleInputChange} value={formData.confirmPassword} type="password" placeholder="Confirm Password" />
+          </Form.Group>
+        )}
+
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           {isLogin ? (
-            <Nav.Link className="text-center text-primary" as={NavLink} to="/register" >Don't have an account? Click Here!</Nav.Link>
+            <Nav.Link className="text-center text-primary" as={NavLink} to="/register">Don't have an account? Click Here!</Nav.Link>
           ) : (
-            <Nav.Link className="text-center text-primary" as={NavLink} to="/login" >Have an account already? Click Here!</Nav.Link>
+            <Nav.Link className="text-center text-primary" as={NavLink} to="/login">Have an account already? Click Here!</Nav.Link>
           )}
         </Form.Group>
 
@@ -107,8 +117,7 @@ function AuthForm({isLogin}: {isLogin: boolean}) {
         </div>
       </Form>
     </Container>
-  )
+  );
 }
 
 export default AuthForm;
-
