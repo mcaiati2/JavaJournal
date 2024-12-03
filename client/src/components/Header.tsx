@@ -40,6 +40,7 @@ function Header() {
               <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
               <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
+              <NavLink className="nav-link" to="/contact">Contact</NavLink>
               <NavDropdown title="Profile Menu">
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
                 <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
