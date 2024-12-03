@@ -22,10 +22,10 @@ function Landing() {
         <div className='landing-section'>
           <div className="side-flex">
             <div className="search-recipes">
-            </div>
             <button className="landing-btn">
-              <a href="/coffee-info" className="white-text">SEARCH RECIPES</a>
+              <a href="/coffee-info" className="white-text"><h4>SEARCH RECIPES</h4></a>
             </button>
+            </div>
             {/* <h3>GET BREWING</h3>
             <a href="/" className="white-text landing-link">SEARCH RECIPES</a> */}
             {/* <button className="search-btn">SEARCH RECIPES</button> */}
@@ -39,7 +39,7 @@ function Landing() {
         <Col className="landing-section">
           <div className="about-img">
             <button className="landing-btn">
-              <a href="/about" className="white-text">ABOUT US</a>
+              <a href="/about" className="white-text"><h4>ABOUT US</h4></a>
             </button>
           </div>
         </Col>

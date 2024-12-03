@@ -139,7 +139,9 @@ nav a:hover:not(.navbar-brand) {
 }
 
 .about-img .landing-btn {
+  background-color: #171717c7;
   margin: 0;
+  padding: 25px 40px;
   position: absolute;
   top: 55%;
   right: 50%;
@@ -147,11 +149,12 @@ nav a:hover:not(.navbar-brand) {
   transform: translateX(50%);
 }
 
-.landing-btn  {
+.landing-btn {
   a {
     text-decoration: none !important;
   }
-  padding: 10px 20px;
+
+  padding: 25px 40px;
   border: 1px solid #eee;
   border-radius: 10px;
   background-color: #171717;
@@ -167,6 +170,16 @@ nav a:hover:not(.navbar-brand) {
   background-size: cover;
   background-position: center;
   min-height: 600px;
+  position: relative;
+}
+
+.search-recipes .landing-btn {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
 }
 
 .landing-section {
@@ -242,18 +255,30 @@ nav a:hover:not(.navbar-brand) {
 }
 
 
-@media (min-width: 1350px) {
+@media (min-width: 1150px) {
   .side-flex {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
+
   .search-recipes {
     background-image: url(/images/grinder_1.jpg);
-    background-position: center;
-    height: 300px;
-    width: 100px;
+    background-position: top;
+    height: auto;
+    width: 1200px;
     padding: 0 auto 0 auto;
+    margin: 55px 0 85px 0;
+    position: relative;
+  }
+
+  .search-recipes .landing-btn {
+    margin: 0;
+    position: absolute;
+    top: 5%;
+    right: 50%;
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
   }
 }
 
