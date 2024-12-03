@@ -68,7 +68,15 @@ mutation SAVE_RECIPE($recipeId: ID!, $title: String!, $ingredients: [String!]!, 
     ingredients
     instructions
   }
-}
+}`;
+
+export const DELETE_RECIPE = gql`
+    mutation DeleteRecipe($id: ID) {
+      DeleteRecipe(id: $id) {
+        message
+      
+      }
+    }
 `;
 
 export const CHANGE_PASSWORD = gql`

@@ -32,17 +32,18 @@ function Header() {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container className="nav-wrap">
-        <Navbar.Brand as={NavLink} to="/">JavaJournal</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" className="crete-round-font">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/">Home</Nav.Link>
           <Nav.Link as={NavLink} to="/about">About</Nav.Link>
+          <NavLink className="nav-link" to="/contact">Contact</NavLink>
 
           {state.user ? (
             <>
               <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
               <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
-              <NavLink className="nav-link" to="/contact">Contact</NavLink>
+              
               <NavDropdown title="Profile Menu">
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
                 <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
