@@ -11,6 +11,21 @@ const shop_resolvers = {
             const coffee = await Coffee.find().populate('shop');
             return coffee;
         },
+        async savedRecipes(_, __, context) {
+            if (!context.req.user) {
+                throw new GraphQLError('You are not authorized to perform this action');
+            }
+            try {
+                const user = await User.findById(context.req.user._id).populate('recipes');
+                if (!user) {
+                    throw new GraphQLError('User not found');
+                }
+                return user.recipes;
+            }
+            catch (error) {
+                throw new GraphQLError('Error fetching saved recipes');
+            }
+        },
         // Get user shops
         async getUserShops(_, __, context) {
             if (!context.req.user) {
@@ -29,7 +44,7 @@ const shop_resolvers = {
                 shop: args.shop_id
             });
             return coffee;
-        }
+        },
     },
     Mutation: {
         // Create a shop
