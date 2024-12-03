@@ -91,7 +91,7 @@ function ContactForm() {
                     ></textarea>
                 </div>
                 {error && <div className="alert alert-danger" role="alert">{error}</div>}
-                <button type="submit" className="btn btn-success">Send Message</button>
+                <button type="submit" className="btn btn-primary">Send Message</button>
                 <div>{result}</div>
             </form>
         </div>

@@ -15,14 +15,34 @@ function Landing() {
           {/* <h3 className="text-center">Get Pouring</h3> */}
         </Col>
       </Row>
+
+
+
       <Row className="center-content">
         <div className='landing-section'>
-            <h3>GET BREWING</h3>
-            <a href="/" className="white-text landing-link">SEARCH RECIPES</a>
+          <div className="side-flex">
+            <div className="search-recipes">
+            </div>
+            <button className="landing-btn">
+              <a href="/coffee-info" className="white-text">SEARCH RECIPES</a>
+            </button>
+            {/* <h3>GET BREWING</h3>
+            <a href="/" className="white-text landing-link">SEARCH RECIPES</a> */}
             {/* <button className="search-btn">SEARCH RECIPES</button> */}
-          <div className="search-recipes">
           </div>
         </div>
+      </Row>
+
+
+
+      <Row className="center-content">
+        <Col className="landing-section">
+          <div className="about-img">
+            <button className="landing-btn">
+              <a href="/about" className="white-text">ABOUT US</a>
+            </button>
+          </div>
+        </Col>
       </Row>
 
 
