@@ -35,6 +35,7 @@ function CoffeeSearch() {
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
   const [apiKey, setApiKey] = useState<string>('');
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchApiKey = async () => {
     const response = await fetch('/api/get-api-key');
@@ -92,11 +93,13 @@ function CoffeeSearch() {
 
   // ---------- RETURN THE SEARCH RESULTS AND PRINT TO PAGE 
   return (
-    
+
     //  -------- Search form --------
 
     <Container>
-      <h1 className="mt-5 mb-5">Search Coffees</h1>
+      <div className="mt-5">
+        <h1>Search Coffees</h1>
+      </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mt-5 mb-5">
           <Form.Label>Enter coffee type (e.g., mocha)</Form.Label>
@@ -107,43 +110,54 @@ function CoffeeSearch() {
             placeholder="Enter coffee type"
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="mb-5">
+        <Button variant="primary" type="submit" className="mb-3">
           Search
         </Button>
       </Form>
 
+      {/* {isLoading ? (
+        <div className="text-center">
+          <img src="/images/coffeecup_inverted.gif" alt="loading" />
+        </div>
+      ):()} */}
+
       {/* -------- Coffee results -------- */}
 
       {error && <div>Error: {error}</div>}
-      <ul>
+      <div className="m-5">
         {coffees.map((coffee) => (
-          <ul key={coffee._id} className="mt-3">
-            <h2>{coffee.name}</h2>
-            <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
-            <h4>Description:</h4>
-            {coffee.description}
-            <h4>Yield:</h4>
-            {coffee.recipeYield}
-            <h4>Category: </h4>
-            {coffee.category}
-            <h4>Ingredients:</h4>
-            <ul>
-              {coffee.recipeIngredient.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-            <h4>Instructions:</h4>
-            <ol>
-              {coffee.recipeInstructions.map((instruction, index) => (
-                <li key={index}>
-                  {instruction.text}
-                </li>
-              ))}
-            </ol>
-            <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
-          </ul>
+          <section>
+            <div key={coffee._id} className="thin-rounded-outline">
+              <div className="m-5">
+                <h1 className="mb-4">{coffee.name}</h1>
+                <img className="coffee-thumbnail mb-5" src={coffee.image} alt={coffee.name} />
+                <h4 className="mb-2">Description:</h4>
+                {coffee.description}
+                <h4 className="mt-4 mb-2">Yield:</h4>
+                {coffee.recipeYield}
+                <h4 className="mt-4 mb-2">Category: </h4>
+                {coffee.category}
+                <h4 className="mt-4 mb-2">Ingredients:</h4>
+                <ul>
+                  {coffee.recipeIngredient.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+                <h4 className="mt-4 mb-2">Instructions:</h4>
+                <ol>
+                  {coffee.recipeInstructions.map((instruction, index) => (
+                    <li key={index}>
+                      {instruction.text}
+                    </li>
+                  ))}
+                </ol>
+                <Button className="mt-5" variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
+              </div>
+            </div>
+            <div className="spacer"></div>
+          </section>
         ))}
-      </ul>
+      </div>
     </Container>
   );
 }

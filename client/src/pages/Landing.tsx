@@ -12,15 +12,20 @@ function Landing() {
       <Row className="center-content">
         <Col className="landing-hero-image">
           <h1 className="text-center">JavaJournal</h1>
-          <h3 className="text-center fw-light">Coffee good!</h3>
+          {/* <h3 className="text-center">Get Pouring</h3> */}
         </Col>
       </Row>
+      <Row className="center-content">
+        <div className='landing-section'>
+            <h3>GET BREWING</h3>
+            <a href="/" className="white-text landing-link">SEARCH RECIPES</a>
+            {/* <button className="search-btn">SEARCH RECIPES</button> */}
+          <div className="learn-more-img">
+          </div>
+        </div>
+      </Row>
 
-      <Container>
-        <h3 className="fw-light mt-5">Drink it, okay?</h3>
-        <hr />
 
-      </Container>
     </Container>
   )
 }

@@ -6,6 +6,9 @@ body,
   height: 100%;
   background-color: #1b1b1b;
   color: #e8e8e8;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .loading-overlay {
@@ -41,24 +44,79 @@ nav a:hover:not(.navbar-brand) {
   color: rgb(236, 236, 236);
 }
 
+.thin-rounded-outline {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  /* padding: 10px; */
+  background-color: #252020;
+}
+
+.spacer {
+  height: 70px;
+}
+
+
+
+
+
 
 /* ----------- LANDING ------------ */
 
 .landing-hero-image {
-  background-image: url(/images/landing_bg.jpg);
+  background-image: url(/images/misty_coffee.jpg);
   background-size: cover;
+  background-position: center;
   min-height: 600px;
 }
 
 .landing-hero-image h1 {
   font-size: 3.5rem;
   font-weight: 700;
-  color: white;
+  color: #000000;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 250px;
 }
 
-.landing-post {
+.landing-hero-image h3 {
+  color: #000000;
+  font-weight: 400;
+}
+
+.learn-more-img {
+  background-image: url(/images/grinder_1.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+}
+
+.landing-section {
+  background-color: black;
+  padding: 100px 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-section h3 {
+  text-align: center;
+}
+
+.landing-link {
+  text-decoration: none;
+  text-align: center;
+
+}
+
+/* .search-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #a46e4c45;
+  color: #bebebe;
+  font-style: italic;
+} */
+
+
+/* .landing-post {
   position: relative;
 }
 
@@ -74,19 +132,28 @@ nav a:hover:not(.navbar-brand) {
 
 .shop-output {
   grid-template-columns: repeat(3, 1fr);
-}
+} */
 
 
-/* ----------- Thumbnail image for starbucks result ------------- */
+/* ----------- COFFEE SEARCH ------------- */
 
 .coffee-thumbnail {
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
+
+/* .coffee-search-bg {
+  padding: 0;
+  margin: 0;
+  background-image: url(/images/beans_1.jpg);
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+} */
 
 
 /* --------- MEDIA QUERIES ---------- */

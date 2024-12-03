@@ -32,7 +32,6 @@ AuthForm.tsx
   * Retype password for validation creation
   * Prevent duplicate shops
   * Auto capitalize inputs for consistency
-  * Option to add logo for shop
   * ? Shop Image Logo (also add to Modal) - Coffee Object / Shop Object ?
   !['brewing info/find your roast'](image.png)
   * Brew methods (click into a picture to see info) ![example](image-97.png)
