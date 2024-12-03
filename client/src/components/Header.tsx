@@ -34,6 +34,7 @@ function Header() {
         <Navbar.Brand as={NavLink} to="/">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+          <Nav.Link as={NavLink} to="/about">About</Nav.Link>
 
           {state.user ? (
             <>
