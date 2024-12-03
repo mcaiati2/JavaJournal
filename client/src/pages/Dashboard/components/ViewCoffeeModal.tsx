@@ -37,6 +37,11 @@ function ViewCoffeeModal({
           <article key={coffee._id} className="mb-4">
             <h5>{coffee.title}</h5>
             <p>{coffee.body}</p>
+            {coffee.image ? (
+              <img src={coffee.image} alt={coffee.title} style={{ width: '100%', height: 'auto' }} onError={(e) => { e.currentTarget.src = '/path/to/default-image.jpg'; }} />
+            ) : (
+              <p>No image available</p>
+            )}
           </article>
         ))}
       </Modal.Body>

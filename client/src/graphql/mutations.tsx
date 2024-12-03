@@ -44,8 +44,8 @@ export const CREATE_SHOP = gql`
 `;
 
 export const CREATE_COFFEE = gql`
-  mutation CreateCoffee($title: String, $body: String, $flavor: String, $shop: ID) {
-    createCoffee(title: $title, body: $body, flavor: $flavor, shop: $shop) {
+  mutation CreateCoffee($title: String, $body: String, $flavor: String, $shop: ID, $image: String) {
+    createCoffee(title: $title, body: $body, flavor: $flavor, shop: $shop, image: $image) {
       message
     }
   }

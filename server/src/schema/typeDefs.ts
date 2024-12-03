@@ -7,6 +7,7 @@ const typeDefs = gql`
     body: String
     flavor: String
     shop: Shop
+    image: String
   }
 
   type Shop {
@@ -64,7 +65,7 @@ const typeDefs = gql`
 
     # Coffee/Shop Resolvers
     createShop(name: String, location: String, rating: Int): Response
-    createCoffee(title: String, body: String, flavor: String, shop: ID): Response
+    createCoffee(title: String, body: String, flavor: String, shop: ID, image: String): Response
     updateShopRating(shopId: ID!, rating: Int!): Shop
     saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
     changePassword(currentPassword: String!, newPassword: String!): MessageResponse!

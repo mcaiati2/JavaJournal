@@ -64,6 +64,7 @@ const shop_resolvers = {
             }
             try {
                 const coffee = await Coffee.create(args);
+                await coffee.save();
                 await Shop.findByIdAndUpdate(args.shop, {
                     $push: {
                         coffees: coffee._id

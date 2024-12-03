@@ -17,6 +17,9 @@ const coffeeSchema = new Schema({
     type: String,
     required: [true, 'You must provide flavor notes for the coffee']
   },
+  image: {
+    type: String,
+  },
   shop: {
     type: Schema.Types.ObjectId,
     required: [true, 'You must attach the shop _id to the coffee'],

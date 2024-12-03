@@ -79,7 +79,11 @@ nav a:hover:not(.navbar-brand) {
 /* ---------- UNIVERSAL CLASSES ------------- */
 
 .white-text {
-  color: rgb(236, 236, 236);
+  color: rgb(236, 236, 236) !important;
+}
+
+.light-link-text {
+  color: #ff9393 !important;
 }
 
 .thin-rounded-outline {
@@ -93,6 +97,9 @@ nav a:hover:not(.navbar-brand) {
   height: 70px;
 }
 
+.italic {
+  font-style: italic;
+}
 
 
 
@@ -119,6 +126,42 @@ nav a:hover:not(.navbar-brand) {
   font-weight: 400;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  background-image: url('images/coffee_pour_2.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+  position: relative;
+}
+
+.about-img .landing-btn {
+  margin: 0;
+  position: absolute;
+  top: 55%;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.landing-btn  {
+  a {
+    text-decoration: none !important;
+  }
+  padding: 10px 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #171717;
+  color: #bebebe;
+  font-style: italic;
+}
+
 .search-recipes {
   /* -------------------------------------------- */
   /* MAKE THIS STOP GETTING BIGGER AT 1350PX WIDE */
@@ -143,36 +186,9 @@ nav a:hover:not(.navbar-brand) {
 .landing-link {
   text-decoration: none;
   text-align: center;
-
 }
 
-/* .search-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #a46e4c45;
-  color: #bebebe;
-  font-style: italic;
-} */
 
-
-/* .landing-post {
-  position: relative;
-}
-
-.landing-post:before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 0;
-  background: #D2E887;
-  width: 7px;
-  height: 100%;
-}
-
-.shop-output {
-  grid-template-columns: repeat(3, 1fr);
-} */
 
 
 /* ----------- COFFEE SEARCH ------------- */
@@ -186,35 +202,34 @@ nav a:hover:not(.navbar-brand) {
   margin-bottom: 20px;
 }
 
-/* .coffee-search-bg {
-  padding: 0;
-  margin: 0;
-  background-image: url(/images/beans_1.jpg);
-  height: 200px;
-  width: 100%;
+
+
+/* ABOUT  */
+
+.about-landing {
+  background-image: url(/public/images/equipment_centered.jpg);
   background-size: cover;
-} */
-
-
-
-/* ----------- LANDING ------------ */ 
-
-.flex-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
+  background-position: center;
+  min-height: 400px;
 }
 
-.about-img {
-  background-image: url("/client/public/images/coffee_pour_2.jpg");
-  width: 400px;
-  height: 400px;
+
+
+/* REGISTER AND LOGIN */
+
+.login-reg-bg {
+  background-image: url(/public/images/cups_1.jpg) !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 150px 0;
+  height: 100vh;
 }
 
-/* hello */
-
-
+.black-bg {
+  background-color: #000000de;
+  padding: 20px 0 100px 0;
+}
 
 
 
@@ -226,6 +241,22 @@ nav a:hover:not(.navbar-brand) {
     max-width: 1920px;
     display: flex;
     justify-content: space-around;
+  }
+}
+
+
+@media (min-width: 1350px) {
+  .side-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .search-recipes {
+    background-image: url(/images/grinder_1.jpg);
+    background-position: center;
+    height: 300px;
+    width: 100px;
+    padding: 0 auto 0 auto;
   }
 }
 

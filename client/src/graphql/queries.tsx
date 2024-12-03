@@ -21,6 +21,7 @@ export const GET_ALL_COFFEES = gql`
       shop {
         name
       }
+      image
     }
   }
 `;
@@ -46,6 +47,7 @@ export const GET_COFFEES_FOR_SHOP = gql`
       body
       title
       flavor
+      image
     }
   }
 `;
