@@ -1,11 +1,11 @@
 function About() {
     return (
         <section>
-            <div className="row">
+            <div>
                 <div className="about-landing"></div>
             </div>
             <div className="flex-container">
-                <div className="ms-auto col-md-6 about-text white-text">
+                <div className="about-text white-text">
                     <h1 className="caudex-font mt-5 mb-3">About Us</h1>
                     <p className="">JavaJournal is the ultimate app for coffee lovers who want to track, review, and explore their favorite coffee experiences. With a simple user account setup, you can add your go-to coffee shops, log the drinks you've tried, and rate them based on your personal preferences. Our easy-to-use interface helps you organize and reflect on your coffee journey, making it easier than ever to discover new drinks and revisit old favorites.</p>
 
