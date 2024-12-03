@@ -141,20 +141,20 @@ nav a:hover:not(.navbar-brand) {
 .about-img .landing-btn {
   background-color: #171717c7;
   margin: 0;
-  padding: 25px 40px;
+  padding: 25px 40px 18px 40px;
   position: absolute;
-  top: 55%;
+  top: 35%;
   right: 50%;
   -ms-transform: translateX(50%);
   transform: translateX(50%);
 }
 
 .landing-btn {
-  a {
-    text-decoration: none !important;
-  }
+    a {
+      text-decoration: none !important;
+    }
 
-  padding: 25px 40px;
+  padding: 15px 30px 10px 30px;
   border: 1px solid #eee;
   border-radius: 10px;
   background-color: #171717;
@@ -221,6 +221,10 @@ nav a:hover:not(.navbar-brand) {
   background-size: cover;
   background-position: center;
   min-height: 400px;
+}
+
+.about-text {
+  
 }
 
 

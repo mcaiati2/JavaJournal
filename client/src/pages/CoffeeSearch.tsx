@@ -1,11 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_SAVED_RECIPES } from '../graphql/queries';
 import { SAVE_RECIPE } from '../graphql/mutations';
-
-
-//  --------- INTERFACES 
 
 interface Instruction {
   name: number;
@@ -26,8 +23,12 @@ interface Coffee {
   category: string;
 }
 
-
-// --------- COFFEE SEARCH FUNCTION
+interface Recipe {
+  id: string;
+  title: string;
+  ingredients: string[];
+  instructions: string[];
+}
 
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
@@ -35,12 +36,18 @@ function CoffeeSearch() {
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
   const [apiKey, setApiKey] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes } = useQuery(GET_SAVED_RECIPES);
 
   const fetchApiKey = async () => {
-    const response = await fetch('/api/get-api-key');
-    const data = await response.json();
-    setApiKey(data.apiKey);
+    try {
+      const response = await fetch('/api/get-api-key');
+      const data = await response.json();
+      setApiKey(data.apiKey);
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+      setError('Failed to fetch API key');
+    }
   };
 
   useEffect(() => {
@@ -65,6 +72,7 @@ function CoffeeSearch() {
       const data = await response.json();
       setCoffees(data);
     } catch (error: any) {
+      console.error('Error fetching coffees:', error);
       setError(error.message);
     }
   };
@@ -90,12 +98,7 @@ function CoffeeSearch() {
     }
   };
 
-
-  // ---------- RETURN THE SEARCH RESULTS AND PRINT TO PAGE 
   return (
-
-    //  -------- Search form --------
-
     <Container>
       <div className="mt-5">
         <h1>Search Coffees</h1>
@@ -115,19 +118,12 @@ function CoffeeSearch() {
         </Button>
       </Form>
 
-      {/* {isLoading ? (
-        <div className="text-center">
-          <img src="/images/coffeecup_inverted.gif" alt="loading" />
-        </div>
-      ):()} */}
-
-      {/* -------- Coffee results -------- */}
-
       {error && <div>Error: {error}</div>}
+
       <div className="m-5">
         {coffees.map((coffee) => (
-          <section>
-            <div key={coffee._id} className="thin-rounded-outline">
+          <section key={coffee._id}>
+            <div className="thin-rounded-outline">
               <div className="m-5">
                 <h1 className="mb-4">{coffee.name}</h1>
                 <img className="coffee-thumbnail mb-5" src={coffee.image} alt={coffee.name} />
@@ -158,11 +154,39 @@ function CoffeeSearch() {
           </section>
         ))}
       </div>
+
+      <div className="mt-5">
+        <h2>Saved Recipes</h2>
+        {loadingSavedRecipes && <p>Loading saved recipes...</p>}
+        {errorSavedRecipes && <p>Error loading saved recipes: {errorSavedRecipes.message}</p>}
+        {savedRecipesData && savedRecipesData.savedRecipes && savedRecipesData.savedRecipes.map((recipe: Recipe) => (
+          <section key={recipe.id}>
+            <div className="thin-rounded-outline">
+              <div className="m-5">
+                <h1 className="mb-4">{recipe.title}</h1>
+                <h4 className="mt-4 mb-2">Ingredients:</h4>
+                <ul>
+                  {recipe.ingredients.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+                <h4 className="mt-4 mb-2">Instructions:</h4>
+                <ol>
+                  {recipe.instructions.map((instruction, index) => (
+                    <li key={index}>
+                      {instruction}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <div className="spacer"></div>
+          </section>
+        ))}
+      </div>
+      
     </Container>
   );
 }
-
-
-// --------- EXPORT THE COFFEE SEARCH FUNCTION
 
 export default CoffeeSearch;
