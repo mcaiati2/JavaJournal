@@ -1,3 +1,37 @@
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Concert+One&family=Crete+Round:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yusei+Magic&display=swap');
+
+
+/* ---------- */
+/* LOGO FONT: */
+/* ---------- */
+.crete-round-font {
+  font-family: 'Crete Round', serif;
+}
+
+/* ----------- */
+/* HEADER FONT */
+/* ----------- */
+.caudex-font {
+  font-family: 'Caudex', serif;
+}
+
+
+/* OTHER FONTS */
+.figtree-font {
+  font-family: 'Figtree', sans-serif;
+}
+
+.eb-garamond-font {
+  font-family: 'EB Garamond', serif;
+}
+
+
+
+
+
+
 /* CSS rules */
 
 html,
@@ -9,6 +43,7 @@ body,
   width: 100%;
   padding: 0;
   margin: 0;
+  font-family: eb garamond, sans-serif;
 }
 
 .loading-overlay {
@@ -59,7 +94,6 @@ nav a:hover:not(.navbar-brand) {
 
 
 
-
 /* ----------- LANDING ------------ */
 
 .landing-hero-image {
@@ -82,7 +116,10 @@ nav a:hover:not(.navbar-brand) {
   font-weight: 400;
 }
 
-.learn-more-img {
+.search-recipes {
+  /* -------------------------------------------- */
+  /* MAKE THIS STOP GETTING BIGGER AT 1350PX WIDE */
+  /* -------------------------------------------- */
   background-image: url(/images/grinder_1.jpg);
   background-size: cover;
   background-position: center;
@@ -154,6 +191,29 @@ nav a:hover:not(.navbar-brand) {
   width: 100%;
   background-size: cover;
 } */
+
+
+
+/* ----------- LANDING ------------ */ 
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  background-image: url("/client/public/images/coffee_pour_2.jpg");
+  width: 400px;
+  height: 400px;
+}
+
+/* hello */
+
+
+
+
 
 
 /* --------- MEDIA QUERIES ---------- */

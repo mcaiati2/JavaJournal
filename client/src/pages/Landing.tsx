@@ -1,11 +1,11 @@
 import { Row, Col, Container } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 
-import { GET_ALL_COFFEES } from '../graphql/queries';
-import { Coffee } from '../interfaces';
+// import { GET_ALL_COFFEES } from '../graphql/queries';
+// import { Coffee } from '../interfaces';
 
 function Landing() {
-  const { data: coffeeData } = useQuery(GET_ALL_COFFEES);
+  // const { data: coffeeData } = useQuery(GET_ALL_COFFEES);
 
   return (
     <Container fluid={true}>
@@ -20,7 +20,7 @@ function Landing() {
             <h3>GET BREWING</h3>
             <a href="/" className="white-text landing-link">SEARCH RECIPES</a>
             {/* <button className="search-btn">SEARCH RECIPES</button> */}
-          <div className="learn-more-img">
+          <div className="search-recipes">
           </div>
         </div>
       </Row>
