@@ -1,5 +1,9 @@
 # Project 3 Info:
 
+## Updated:
+AuthForm.tsx
+![alt text](image.png)
+
 ## Commands
   * npm run build (at top level) to rebuild client/server and start dev server
   * dep 'insert commit message here' origin HEAD:main
@@ -31,6 +35,8 @@
   * Option to add logo for shop
   * ? Shop Image Logo (also add to Modal) - Coffee Object / Shop Object ?
   !['brewing info/find your roast'](image.png)
+  * Brew methods (click into a picture to see info) ![example](image-97.png)
+  * French press calculator (api?)
 
 
 # Data We're Capturing

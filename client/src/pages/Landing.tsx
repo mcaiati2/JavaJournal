@@ -20,19 +20,6 @@ function Landing() {
         <h3 className="fw-light mt-5">Drink it, okay?</h3>
         <hr />
 
-        {coffeeData && !coffeeData.getAllCoffees.length && (
-          <p>No coffee has been added yet. Log in to start roasting!</p>
-        )}
-
-        <Row className="my-3">
-          {coffeeData && coffeeData.getAllCoffees.map((coffee: Coffee) => (
-            <Col lg="12" key={coffee._id} className="my-2 landing-post">
-              <h3 className="fw-light">{coffee.title}</h3>
-              <p className="text-secondary">{coffee.body}</p>
-              <p className="text-secondary">{coffee.shop?.name}</p>
-            </Col>
-          ))}
-        </Row>
       </Container>
     </Container>
   )

@@ -11,7 +11,7 @@ const initialFormData = {
   username: '',
   email: '',
   password: '',
-  confirmPassword: '', // Add confirmPassword field
+  confirmPassword: '', // Added confirmPassword field
   errorMessage: ''
 };
 
