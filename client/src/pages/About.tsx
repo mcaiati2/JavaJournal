@@ -2,7 +2,7 @@ function About() {
     return (
         <section>
             <div className="row">
-                <div className="ms-auto col-md-6 about-text white-text">
+                <div className="ms-auto col-md-6 about-text white-text" style={{ color: 'white' }}>
                     <h1>About Us</h1>
                     <p>JavaJournal is the ultimate app for coffee lovers who want to track, review, and explore their favorite coffee experiences. With a simple user account setup, you can add your go-to coffee shops, log the drinks you've tried, and rate them based on your personal preferences. Our easy-to-use interface helps you organize and reflect on your coffee journey, making it easier than ever to discover new drinks and revisit old favorites.</p>
 
