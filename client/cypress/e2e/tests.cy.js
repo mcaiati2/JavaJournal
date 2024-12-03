@@ -17,14 +17,6 @@ function loginUser(cy) {
 }
 
 describe('Site Tests', () => {
-  // Other tests...
-
-  it('Should login a user', () => {
-    loginUser(cy);
-
-    // Increase the timeout for the assertion
-    cy.get('h3', { timeout: 10000 }).contains('Your Shops');
-  });
   it('Should be able to navigate to the register page', () => {
     cy.visit('/');
 

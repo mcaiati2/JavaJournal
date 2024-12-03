@@ -21,16 +21,14 @@ jobs:
         run: npm install
       - name: Run builds
         run: npm run client:build && npm run server:build
-      - name: Run tests
-        run: npm test
+      - name: Run Cypress tests
+        run: npm run cypress:test
   merge:
     runs-on: ubuntu-latest
     needs: tests
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Merge pull request
         uses: actions/github-script@v6
         with:
