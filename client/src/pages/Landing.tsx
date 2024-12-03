@@ -17,10 +17,17 @@ function Landing() {
       </Row>
       <Row className="center-content">
         <div className='landing-section'>
+<<<<<<< HEAD
           <h3>GET BREWING</h3>
           <a href="/" className="white-text landing-link">SEARCH RECIPES</a>
           {/* <button className="search-btn">SEARCH RECIPES</button> */}
           <div className="learn-more-img">
+=======
+            <h3>GET BREWING</h3>
+            <a href="/" className="white-text landing-link">SEARCH RECIPES</a>
+            {/* <button className="search-btn">SEARCH RECIPES</button> */}
+          <div className="search-recipes">
+>>>>>>> a1fd1fbbeea1253c3c4491137d393b7e7ac3dde9
           </div>
         </div>
       </Row>

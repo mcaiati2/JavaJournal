@@ -31,7 +31,7 @@ function Header() {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container className="nav-wrap">
-        <Navbar.Brand as={NavLink} to="/">JavaJournal</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" className="crete-round-font">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/">Home</Nav.Link>
           <Nav.Link as={NavLink} to="/about">About</Nav.Link>
