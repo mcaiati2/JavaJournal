@@ -93,6 +93,7 @@ describe('Site Tests', () => {
 
   it('Should add a coffee for a shop', () => {
     const coffeeTitle = 'Coffee for ' + shopName;
+    const coffeeFlavor = 'Bold and delicious'
 
     loginUser(cy);
 
@@ -103,14 +104,16 @@ describe('Site Tests', () => {
       .click();
 
     cy.get('input[name="title"]').type(coffeeTitle);
-    cy.get('textarea[name="body"]').type('test');
+    cy.get('textarea[name="body"]').type('Pike Place Dark Roast');
+    cy.get('input[name="flavor"]').type(coffeeFlavor);
+
 
     cy.get('.modal-footer button').last().click();
 
     cy.get('article')
       .contains(shopName)
       .get('button')
-      .contains('View Coffees')
+      .contains('View Coffee')
       .click();
 
     cy.get('.modal-body').contains(coffeeTitle);
