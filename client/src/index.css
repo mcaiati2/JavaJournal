@@ -46,6 +46,12 @@ body,
   font-family: eb garamond, sans-serif;
 }
 
+article h4 {
+  white-space: wrap !important;
+  max-width: 100%;
+  word-break: break-word;
+}
+
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -54,22 +60,6 @@ body,
   height: 100vh;
   z-index: 100;
   background: #eeeeee;
-}
-
-
-/* --------- NAV BAR ----------- */
-
-nav a.active:not(.navbar-brand),
-nav a:hover:not(.navbar-brand) {
-  text-decoration: underline;
-}
-
-.dropdown-menu.show {
-  max-width: 70px !important;
-}
-
-.dropdown-menu[data-bs-popper] .dropdown-item-text {
-  word-wrap: break-word !important;
 }
 
 
@@ -90,6 +80,14 @@ nav a:hover:not(.navbar-brand) {
   background-color: #252020;
 }
 
+.modal-content {
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  /* padding: 10px; */
+  background-color: #252020 !important;
+  color: #eee !important;
+}
+
 .spacer {
   height: 70px;
 }
@@ -98,6 +96,37 @@ nav a:hover:not(.navbar-brand) {
   font-style: italic;
 }
 
+.flex-horizontal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+
+/* --------- NAV BAR ----------- */
+
+nav a.active:not(.navbar-brand),
+nav a:hover:not(.navbar-brand) {
+  text-decoration: underline;
+}
+
+.dropdown-menu.show {
+  max-width: 70px !important;
+}
+
+.dropdown-menu[data-bs-popper] .dropdown-item-text {
+  word-wrap: break-word !important;
+}
+
+
+/* ----------- LOGIN, REGISTER, CHANGE PASSWORD ----- */
+
+.auth-form {
+  min-width: 400px;
+  max-width: 1000px;
+  padding: 0 7%;
+}
 
 
 
@@ -131,11 +160,17 @@ nav a:hover:not(.navbar-brand) {
 }
 
 .about-img {
-  background-image: url('images/coffee_pour_2.jpg');
+  background-image: url('images/coffee_pour_3.jpg');
   background-size: cover;
-  background-position: center;
-  min-height: 600px;
+  background-position: top;
+  min-height: 900px;
   position: relative;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.about-img.show {
+  opacity: 1;
 }
 
 .about-img .landing-btn {
@@ -143,17 +178,25 @@ nav a:hover:not(.navbar-brand) {
   margin: 0;
   padding: 25px 40px 18px 40px;
   position: absolute;
-  top: 35%;
+  top: 65%;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.about-img .landing-btn:hover {
+  background-color: #270505dc;
+  transition: background-color .5s;
+  margin: 0;
+  padding: 25px 40px 18px 40px;
+  position: absolute;
+  top: 65%;
   right: 50%;
   -ms-transform: translateX(50%);
   transform: translateX(50%);
 }
 
 .landing-btn {
-    a {
-      text-decoration: none !important;
-    }
-
   padding: 15px 30px 10px 30px;
   border: 1px solid #eee;
   border-radius: 10px;
@@ -162,10 +205,21 @@ nav a:hover:not(.navbar-brand) {
   font-style: italic;
 }
 
+.landing-btn a {
+  text-decoration: none !important;
+}
+
+.landing-btn:hover {
+  padding: 15px 30px 10px 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #270505dc;
+  transition: background-color .5s;
+  color: #bebebe;
+  font-style: italic;
+}
+
 .search-recipes {
-  /* -------------------------------------------- */
-  /* MAKE THIS STOP GETTING BIGGER AT 1350PX WIDE */
-  /* -------------------------------------------- */
   background-image: url(/images/grinder_1.jpg);
   background-size: cover;
   background-position: center;
@@ -184,7 +238,7 @@ nav a:hover:not(.navbar-brand) {
 
 .landing-section {
   background-color: black;
-  padding: 100px 0 0 0;
+  padding: 140px 0 0 0 !important;
   display: flex;
   flex-direction: column;
 }
@@ -196,6 +250,69 @@ nav a:hover:not(.navbar-brand) {
 .landing-link {
   text-decoration: none;
   text-align: center;
+}
+
+/* -------------- FAVORTIES -------------- */
+
+/* .shop-card {
+  
+  margin: 30px 20px;
+} */
+
+.fav-section {
+  background-color: #ffebe717;
+  margin: 75px 0 150px 0;
+  padding: 40px 0 60px 0;
+}
+
+.shop-output {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px 75px;
+}
+
+.add-btn {
+  padding: 10px !important;
+  margin-top: 10px;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #163d25 !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+.view-coffee-btn {
+  padding: 10px !important;
+  margin-top: 10px;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #270f0fc1 !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+.add-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #187a3e !important;
+  color: #ffffff !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+.view-coffee-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #673c19c1 !important;
+  color: #ffffff !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
 }
 
 
@@ -214,7 +331,7 @@ nav a:hover:not(.navbar-brand) {
 
 
 
-/* ABOUT  */
+/* ---------------- ABOUT ----------------  */
 
 .about-landing {
   background-image: url(/public/images/equipment_centered.jpg);
@@ -229,8 +346,16 @@ nav a:hover:not(.navbar-brand) {
 }
 
 
+/* ----------- CONTACT ----------- */
 
-/* REGISTER AND LOGIN */
+.contact-header {
+  text-align: center;
+  padding: 75px 0 50px 0;
+}
+
+
+
+/* ------------- REGISTER AND LOGIN ------------- */
 
 .login-reg-bg {
   background-image: url(/public/images/cups_1.jpg) !important;
@@ -246,10 +371,21 @@ nav a:hover:not(.navbar-brand) {
   padding: 20px 0 100px 0;
 }
 
+.login-reg-forms {
+  min-width: 400px;
+  max-width: 1000px;
+  padding: 0 3%;
+}
 
 
 
+
+
+
+
+/* ---------------------------------- */
 /* --------- MEDIA QUERIES ---------- */
+/* ---------------------------------- */
 
 @media (min-width: 1920px) {
   .landing-hero-image {
@@ -302,6 +438,7 @@ nav a:hover:not(.navbar-brand) {
 
 
 
+
 @media (max-width: 768px) {
   .hero-text {
     margin-top: 25px !important;
@@ -310,7 +447,7 @@ nav a:hover:not(.navbar-brand) {
 
 
 
-@media (max-width: 490px) {
+@media (max-width: 510px) {
   .nav-wrap {
     flex-direction: column !important;
   }
@@ -324,6 +461,10 @@ nav a:hover:not(.navbar-brand) {
   }
 
   .shop-output {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  .shop-output .shop-card {
+    width: 100% !important;
   }
 }
