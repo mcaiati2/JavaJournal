@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 
 let uniqueUsername;
 const password = 'password123';
+let shopName;
 
 function loginUser(cy) {
   cy.visit('/login');
@@ -74,20 +75,20 @@ describe('Site Tests', () => {
   });
 
   it('Should be able to create a shop for the logged in user', () => {
-    const uniqueShopName = faker.company.name();
+    shopName = faker.company.name();
 
     loginUser(cy);
 
     cy.get('nav a[href="/shop"]').click();
 
-    cy.get('input[name="name"]').type(uniqueShopName);
+    cy.get('input[name="name"]').type(shopName);
     cy.get('input[name="location"]').type('USA');
-    cy.get('input[name="rating"]').type(5);
+    cy.get('.react-stars > :nth-child(5)').click(); // Adjust the selector as needed
 
     cy.get('form button').click();
 
     // Check that the shop shows up on the dashboard
-    cy.get('.shop-output').contains(uniqueShopName);
+    cy.get('.shop-output').contains(shopName);
   });
 
   it('Should add a coffee for a shop', () => {
@@ -102,7 +103,7 @@ describe('Site Tests', () => {
       .click();
 
     cy.get('input[name="title"]').type(coffeeTitle);
-    cy.get('textarea[name="body"]').type('Oh happy day, I gets a tweat');
+    cy.get('textarea[name="body"]').type('test');
 
     cy.get('.modal-footer button').last().click();
 
