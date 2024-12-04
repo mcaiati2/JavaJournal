@@ -14,3 +14,10 @@ export interface Shop {
   rating: number;
   coffees?: Shop[];
 }
+
+interface Recipe {
+  id: string;
+  title: string;
+  ingredients: string[];
+  instructions: string[];
+}
