@@ -235,4 +235,3 @@ const handleDeleteRecipe = async (recipeId: string) => {
 export default CoffeeSearch;
 
 
-// Add this button inside the saved recipes map function
