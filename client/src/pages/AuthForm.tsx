@@ -1,4 +1,4 @@
-import { Button, Container, Form, Nav } from 'react-bootstrap';
+import { Button, Form, Nav } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useState, useEffect } from 'react';
@@ -6,48 +6,51 @@ import { useState, useEffect } from 'react';
 import { useStore } from '../store';
 
 import { REGISTER_USER, LOGIN_USER } from '../graphql/mutations';
-// import { GET_USER } from '../graphql/queries';
 
 const initialFormData = {
   username: '',
   email: '',
   password: '',
+  confirmPassword: '', // Added confirmPassword field
   errorMessage: ''
 };
 
-function AuthForm({isLogin}: {isLogin: boolean}) {
-
- // const { loading, data, error} = useQuery(GET_USER)
-
+function AuthForm({ isLogin }: { isLogin: boolean }) {
   const [formData, setFormData] = useState(initialFormData);
   const [registerUser] = useMutation(REGISTER_USER);
   const [loginUser] = useMutation(LOGIN_USER);
-  const {setState} = useStore()!;
+  const { setState } = useStore()!;
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    setFormData({...initialFormData});
+    setFormData({ ...initialFormData });
   }, [isLogin]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!isLogin && formData.password !== formData.confirmPassword) {
+      setFormData({
+        ...formData,
+        errorMessage: 'Passwords must match'
+      });
+      return;
+    }
 
     const mutation = isLogin ? loginUser : registerUser;
     const prop = isLogin ? 'loginUser' : 'registerUser';
 
     try {
       const res = await mutation({
-        variables: formData 
+        variables: formData
       });
-      console.log("Response: ", res);
-      console.log("REsult: ", res.data);
 
       setState((oldState) => ({
         ...oldState,
@@ -61,54 +64,68 @@ function AuthForm({isLogin}: {isLogin: boolean}) {
         errorMessage: error.message
       });
     }
-  }
+  };
+
+
+
+
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit} style={{width: '500px'}} className="mx-auto mt-5">
-        <h2 className="text-center mt-3">{isLogin ? 'Log In' : 'Register'}</h2>
+    <section>
+      <div className="login-reg-bg">
+        <div className="black-bg">
+          <Form onSubmit={handleSubmit} style={{ width: '500px' }} className="mx-auto mt-5">
+            <h2 className="text-center mt-3">{isLogin ? 'Log In' : 'Register'}</h2>
 
-        {formData.errorMessage && (
-          <p className="text-center text-danger">{formData.errorMessage}</p>
-        )}
+            {formData.errorMessage && (
+              <p className="text-center text-danger">{formData.errorMessage}</p>
+            )}
 
-        {!isLogin && (
-          <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control name="username" onChange={handleInputChange} value={formData.username} autoComplete="username" type="text" placeholder="Enter username" />
-          </Form.Group>
-        )}
+            {!isLogin && (
+              <Form.Group className="mb-4" controlId="formBasicUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control name="username" onChange={handleInputChange} value={formData.username} autoComplete="username" type="text" placeholder="Enter username" />
+              </Form.Group>
+            )}
 
-        <Form.Group  className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control name="email" onChange={handleInputChange} value={formData.email} type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-4" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control name="email" onChange={handleInputChange} value={formData.email} type="email" placeholder="Enter email" />
+              <Form.Text className="white-text italic">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control name="password" onChange={handleInputChange} value={formData.password} autoComplete="current-password" type="password" placeholder="Password" />
-        </Form.Group>
+            <Form.Group className="mb-4" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" onChange={handleInputChange} value={formData.password} autoComplete="current-password" type="password" placeholder="Password" />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          {isLogin ? (
-            <Nav.Link className="text-center text-primary" as={NavLink} to="/register" >Don't have an account? Click Here!</Nav.Link>
-          ) : (
-            <Nav.Link className="text-center text-primary" as={NavLink} to="/login" >Have an account already? Click Here!</Nav.Link>
-          )}
-        </Form.Group>
+            {!isLogin && (
+              <Form.Group className="mb-4" controlId="formBasicConfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control name="confirmPassword" onChange={handleInputChange} value={formData.confirmPassword} type="password" placeholder="Confirm Password" />
+              </Form.Group>
+            )}
 
-        <div className="d-grid gap-2">
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+            <Form.Group className="mb-4 light-link-text" controlId="formBasicCheckbox">
+              {isLogin ? (
+                <Nav.Link className="text-center" as={NavLink} to="/register">Don't have an account? Click Here!</Nav.Link>
+              ) : (
+                <Nav.Link className="text-center" as={NavLink} to="/login">Have an account already? Click Here!</Nav.Link>
+              )}
+            </Form.Group>
+
+            <div className="d-grid gap-2">
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </div>
+          </Form>
         </div>
-      </Form>
-    </Container>
-  )
+      </div>
+    </section>
+  );
 }
 
 export default AuthForm;
-

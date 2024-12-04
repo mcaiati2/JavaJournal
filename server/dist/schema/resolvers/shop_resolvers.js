@@ -11,6 +11,21 @@ const shop_resolvers = {
             const coffee = await Coffee.find().populate('shop');
             return coffee;
         },
+        async savedRecipes(_, __, context) {
+            if (!context.req.user) {
+                throw new GraphQLError('You are not authorized to perform this action');
+            }
+            try {
+                const user = await User.findById(context.req.user._id).populate('recipes');
+                if (!user) {
+                    throw new GraphQLError('User not found');
+                }
+                return user.recipes;
+            }
+            catch (error) {
+                throw new GraphQLError('Error fetching saved recipes');
+            }
+        },
         // Get user shops
         async getUserShops(_, __, context) {
             if (!context.req.user) {
@@ -29,7 +44,7 @@ const shop_resolvers = {
                 shop: args.shop_id
             });
             return coffee;
-        }
+        },
     },
     Mutation: {
         // Create a shop
@@ -114,10 +129,35 @@ const shop_resolvers = {
                 console.error('Error saving recipe:', error); // Log the error
                 throw new GraphQLError(error.message);
             }
+        },
+        async deleteSavedRecipe(_, { recipeId }, context) {
+            if (!context.req.user) {
+                throw new GraphQLError('You are not authorized to perform this action');
+            }
+            try {
+                const recipe = await Recipe.findById(recipeId);
+                if (!recipe) {
+                    throw new GraphQLError('Recipe not found');
+                }
+                if (recipe.user.toString() !== context.req.user._id.toString()) {
+                    throw new GraphQLError('You are not authorized to delete this recipe');
+                }
+                await Recipe.findByIdAndDelete(recipeId);
+                await User.findByIdAndUpdate(context.req.user._id, {
+                    $pull: { recipes: recipeId }
+                });
+                return {
+                    success: true,
+                    message: 'Recipe deleted successfully!'
+                };
+            }
+            catch (error) {
+                console.error('Error deleting recipe:', error); // Log the error
+                throw new GraphQLError(error.message);
+            }
         }
     }
 };
-export default shop_resolvers;
 shop_resolvers.Mutation.saveRecipe = async function (_, args, context) {
     if (!context.req.user) {
         throw new GraphQLError('You are not authorized to perform this action');
@@ -140,6 +180,30 @@ shop_resolvers.Mutation.saveRecipe = async function (_, args, context) {
         throw new GraphQLError(error.message);
     }
 };
+// shop_resolvers.Mutation.deleteSavedRecipe = async function(_: any, { recipeId }: { recipeId: string }, context: Context) {
+//   if (!context.req.user) {
+//     throw new GraphQLError('You are not authorized to perform this action');
+//   }
+//   try {
+//     const recipe = await Recipe.findById(recipeId);
+//     if (!recipe) {
+//       throw new GraphQLError('Recipe not found');
+//     }
+//     if (recipe.user.toString() !== context.req.user._id.toString()) {
+//       throw new GraphQLError('You are not authorized to delete this recipe');
+//     }
+//     await Recipe.findByIdAndDelete(recipeId);
+//     await User.findByIdAndUpdate(context.req.user._id, {
+//       $pull: { recipes: recipeId }
+//     });
+//     return {
+//       message: 'Recipe deleted successfully!'
+//     };
+//   } catch (error: any) {
+//     console.error('Error deleting recipe:', error); // Log the error
+//     throw new GraphQLError(error.message);
+//   }
+// }
 shop_resolvers.Mutation.createCoffee = async function (_, args, context) {
     if (!context.req.user) {
         return {
@@ -165,3 +229,4 @@ shop_resolvers.Mutation.createCoffee = async function (_, args, context) {
         throw new GraphQLError(errorMessage);
     }
 };
+export default shop_resolvers;

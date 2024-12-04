@@ -8,9 +8,10 @@ interface RecipeCardProps {
     ingredients: string[];
     instructions: string[];
   };
+  onDelete: (id: string) => void;
 }
 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onDelete }) => {
   return (
     <Card className="mb-3">
       <Card.Body>
@@ -32,7 +33,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
           </ol>
         </Card.Text>
         <Button variant="primary">Edit</Button>
-        <Button variant="danger" className="ml-2">Delete</Button>
+        <Button variant="danger" className="ml-2" onClick={() => onDelete(recipe.id)}>Delete</Button>
       </Card.Body>
     </Card>
   );

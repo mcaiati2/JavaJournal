@@ -1,11 +1,8 @@
-
 import { useState, useEffect } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Modal } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
 import { SAVE_RECIPE } from '../graphql/mutations';
-
-
-//  --------- INTERFACES 
 
 interface Instruction {
   name: number;
@@ -26,20 +23,24 @@ interface Coffee {
   category: string;
 }
 
-
-// --------- COFFEE SEARCH FUNCTION
-
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
   const [apiKey, setApiKey] = useState<string>('');
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const fetchApiKey = async () => {
-    const response = await fetch('/api/get-api-key');
-    const data = await response.json();
-    setApiKey(data.apiKey);
+    try {
+      const response = await fetch('/api/get-api-key');
+      const data = await response.json();
+      setApiKey(data.apiKey);
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+      setError('Failed to fetch API key');
+    }
   };
 
   useEffect(() => {
@@ -64,6 +65,7 @@ function CoffeeSearch() {
       const data = await response.json();
       setCoffees(data);
     } catch (error: any) {
+      console.error('Error fetching coffees:', error);
       setError(error.message);
     }
   };
@@ -83,20 +85,24 @@ function CoffeeSearch() {
           instructions: recipe.recipeInstructions.map(instruction => instruction.text)
         }
       });
-      alert('Recipe saved successfully!');
+      setShowModal(true);
     } catch (error) {
       console.error('Error saving recipe:', error);
     }
   };
 
+  const handleCloseModal = () => setShowModal(false);
 
-  // ---------- RETURN THE SEARCH RESULTS AND PRINT TO PAGE 
+  const handleViewJournal = () => {
+    setShowModal(false);
+    navigate('/dashboard');
+  };
+
   return (
-    
-    //  -------- Search form --------
-
     <Container>
-      <h1 className="mt-5 mb-5">Search Coffees</h1>
+      <div className="mt-5">
+        <h1>Search Coffees</h1>
+      </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mt-5 mb-5">
           <Form.Label>Enter coffee type (e.g., mocha)</Form.Label>
@@ -107,48 +113,66 @@ function CoffeeSearch() {
             placeholder="Enter coffee type"
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="mb-5">
+        <Button variant="primary" type="submit" className="mb-3">
           Search
         </Button>
       </Form>
 
-      {/* -------- Coffee results -------- */}
-
       {error && <div>Error: {error}</div>}
-      <ul>
+
+      <div className="m-5">
         {coffees.map((coffee) => (
-          <ul key={coffee._id} className="mt-3">
-            <h2>{coffee.name}</h2>
-            <img className="coffee-thumbnail" src={coffee.image} alt={coffee.name} />
-            <h4>Description:</h4>
-            {coffee.description}
-            <h4>Yield:</h4>
-            {coffee.recipeYield}
-            <h4>Category: </h4>
-            {coffee.category}
-            <h4>Ingredients:</h4>
-            <ul>
-              {coffee.recipeIngredient.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-            <h4>Instructions:</h4>
-            <ol>
-              {coffee.recipeInstructions.map((instruction, index) => (
-                <li key={index}>
-                  {instruction.text}
-                </li>
-              ))}
-            </ol>
-            <Button variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
-          </ul>
+          <section key={coffee._id}>
+            <div className="thin-rounded-outline">
+              <div className="m-5">
+                <h1 className="mb-4">{coffee.name}</h1>
+                <img className="coffee-thumbnail mb-5" src={coffee.image} alt={coffee.name} />
+                <h4 className="mb-2">Description:</h4>
+                {coffee.description}
+                <h4 className="mt-4 mb-2">Yield:</h4>
+                {coffee.recipeYield}
+                <h4 className="mt-4 mb-2">Category: </h4>
+                {coffee.category}
+                <h4 className="mt-4 mb-2">Ingredients:</h4>
+                <ul>
+                  {coffee.recipeIngredient.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+                <h4 className="mt-4 mb-2">Instructions:</h4>
+                <ol>
+                  {coffee.recipeInstructions.map((instruction, index) => (
+                    <li key={index}>
+                      {instruction.text}
+                    </li>
+                  ))}
+                </ol>
+                <Button className="mt-5" variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
+              </div>
+            </div>
+            <div className="spacer"></div>
+          </section>
         ))}
-      </ul>
+      </div>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Recipe Saved</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Recipe saved. Do you want to save more recipes or view your journal?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Save More Recipes
+          </Button>
+          <Button variant="primary" onClick={handleViewJournal}>
+            View Your Journal
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
-
-
-// --------- EXPORT THE COFFEE SEARCH FUNCTION
 
 export default CoffeeSearch;

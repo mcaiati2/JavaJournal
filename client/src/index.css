@@ -1,3 +1,37 @@
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Concert+One&family=Crete+Round:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Yusei+Magic&display=swap');
+
+
+/* ---------- */
+/* LOGO FONT: */
+/* ---------- */
+.crete-round-font {
+  font-family: 'Crete Round', serif;
+}
+
+/* ----------- */
+/* HEADER FONT */
+/* ----------- */
+.caudex-font {
+  font-family: 'Caudex', serif;
+}
+
+
+/* OTHER FONTS */
+.figtree-font {
+  font-family: 'Figtree', sans-serif;
+}
+
+.eb-garamond-font {
+  font-family: 'EB Garamond', serif;
+}
+
+
+
+
+
+
 /* CSS rules */
 
 html,
@@ -6,6 +40,10 @@ body,
   height: 100%;
   background-color: #1b1b1b;
   color: #e8e8e8;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: eb garamond, sans-serif;
 }
 
 .loading-overlay {
@@ -38,55 +76,177 @@ nav a:hover:not(.navbar-brand) {
 /* ---------- UNIVERSAL CLASSES ------------- */
 
 .white-text {
-  color: rgb(236, 236, 236);
+  color: rgb(236, 236, 236) !important;
 }
+
+.light-link-text {
+  color: #ff9393 !important;
+}
+
+.thin-rounded-outline {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  /* padding: 10px; */
+  background-color: #252020;
+}
+
+.spacer {
+  height: 70px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+
 
 
 /* ----------- LANDING ------------ */
 
 .landing-hero-image {
-  background-image: url(/images/landing_bg.jpg);
+  background-image: url(/images/misty_coffee.jpg);
   background-size: cover;
+  background-position: center;
   min-height: 600px;
 }
 
 .landing-hero-image h1 {
   font-size: 3.5rem;
   font-weight: 700;
-  color: white;
+  color: #000000;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 250px;
 }
 
-.landing-post {
+.landing-hero-image h3 {
+  color: #000000;
+  font-weight: 400;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  background-image: url('images/coffee_pour_2.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
   position: relative;
 }
 
-.landing-post:before {
-  content: '';
+.about-img .landing-btn {
+  background-color: #171717c7;
+  margin: 0;
+  padding: 25px 40px 18px 40px;
   position: absolute;
-  left: -10px;
+  top: 35%;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+.landing-btn {
+    a {
+      text-decoration: none !important;
+    }
+
+  padding: 15px 30px 10px 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #171717;
+  color: #bebebe;
+  font-style: italic;
+}
+
+.search-recipes {
+  /* -------------------------------------------- */
+  /* MAKE THIS STOP GETTING BIGGER AT 1350PX WIDE */
+  /* -------------------------------------------- */
+  background-image: url(/images/grinder_1.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+  position: relative;
+}
+
+.search-recipes .landing-btn {
+  margin: 0;
+  position: absolute;
   top: 0;
-  background: #D2E887;
-  width: 7px;
-  height: 100%;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
 }
 
-.shop-output {
-  grid-template-columns: repeat(3, 1fr);
+.landing-section {
+  background-color: black;
+  padding: 100px 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-section h3 {
+  text-align: center;
+}
+
+.landing-link {
+  text-decoration: none;
+  text-align: center;
 }
 
 
-/* ----------- Thumbnail image for starbucks result ------------- */
+
+
+/* ----------- COFFEE SEARCH ------------- */
 
 .coffee-thumbnail {
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
+
+
+
+/* ABOUT  */
+
+.about-landing {
+  background-image: url(/public/images/equipment_centered.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+}
+
+.about-text {
+  text-align: center;
+  padding: 0 20%;
+}
+
+
+
+/* REGISTER AND LOGIN */
+
+.login-reg-bg {
+  background-image: url(/public/images/cups_1.jpg) !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 150px 0;
+  height: 100vh;
+}
+
+.black-bg {
+  background-color: #000000de;
+  padding: 20px 0 100px 0;
+}
+
+
 
 
 /* --------- MEDIA QUERIES ---------- */
@@ -96,6 +256,34 @@ nav a:hover:not(.navbar-brand) {
     max-width: 1920px;
     display: flex;
     justify-content: space-around;
+  }
+}
+
+
+@media (min-width: 1150px) {
+  .side-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .search-recipes {
+    background-image: url(/images/grinder_1.jpg);
+    background-position: top;
+    height: auto;
+    width: 1200px;
+    padding: 0 auto 0 auto;
+    margin: 55px 0 85px 0;
+    position: relative;
+  }
+
+  .search-recipes .landing-btn {
+    margin: 0;
+    position: absolute;
+    top: 5%;
+    right: 50%;
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
   }
 }
 

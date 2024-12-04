@@ -11,6 +11,8 @@ import Landing from './pages/Landing';
 import ShopForm from './pages/ShopForm';
 import CoffeeSearch from './pages/CoffeeSearch.tsx';
 import ChangePassword from './pages/ChangePassword';
+import About from './pages/About.tsx';
+import ContactForm from './pages/ContactForm.tsx';
 
 function App() {
   const { state } = useStore()!;
@@ -28,6 +30,8 @@ function App() {
       <main className="flex-fill">
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+
 
           <Route path="/register" element={(
             <ProtectRoute>
@@ -60,6 +64,10 @@ function App() {
 
           <Route path="/settings" element={<ProtectRoute>
             <ChangePassword />
+            </ProtectRoute>} />
+
+            <Route path="/contact" element={<ProtectRoute>
+            <ContactForm />
             </ProtectRoute>} />
 
         </Routes>
