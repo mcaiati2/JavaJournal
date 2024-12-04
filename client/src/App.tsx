@@ -12,6 +12,7 @@ import ShopForm from './pages/ShopForm';
 import CoffeeSearch from './pages/CoffeeSearch.tsx';
 import ChangePassword from './pages/ChangePassword';
 import About from './pages/About.tsx';
+import ContactForm from './pages/ContactForm.tsx';
 
 function App() {
   const { state } = useStore()!;
@@ -63,6 +64,10 @@ function App() {
 
           <Route path="/settings" element={<ProtectRoute>
             <ChangePassword />
+            </ProtectRoute>} />
+
+            <Route path="/contact" element={<ProtectRoute>
+            <ContactForm />
             </ProtectRoute>} />
 
         </Routes>
