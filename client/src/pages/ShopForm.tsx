@@ -56,8 +56,8 @@ function ShopForm() {
   }
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit} style={{ width: '500px' }} className="mx-auto mt-5">
+    <div>
+      <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
         <h2 className="text-center mt-3">Create Shop</h2>
 
         {formData.errorMessage && (
@@ -91,7 +91,7 @@ function ShopForm() {
           </Button>
         </div>
       </Form>
-    </Container>
+    </div>
   )
 }
 

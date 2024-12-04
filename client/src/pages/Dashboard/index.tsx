@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Button, Container, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import ReactStars from 'react-rating-stars-component';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 import { GET_USER_SHOPS, GET_SAVED_RECIPES } from '../../graphql/queries';
 import { Shop, Recipe } from '../../interfaces';
@@ -79,40 +82,47 @@ function Dashboard() {
     setShowDeleteModal(false);
     setRecipeToDelete(null);
   };
-
+  // ------------------------------------------------------------------------------------------------
   return (
-    <Container>
-      <h3 className="mt-4 fw-light">Your Shops</h3>
+    <div>
+      <h2 className="mt-5 mx-5 fw-light"><FontAwesomeIcon icon={faCoffee} /> Your Favorites</h2>
       <hr />
 
-      <section className="d-grid gap-4 shop-output">
-        {shopData && !shopData.getUserShops.length && <p>No shops have been added yet.</p>}
+      <div className="fav-section">
+        <div className="fav-header mx-5 mb-5">
+          <h3>Shops</h3>
+          
+          <p>Click on a shop to add a coffee or view existing coffees.</p>
+          <hr />
+        </div>
+        <section className="shop-output mt-4 mx-5">
+          {shopData && !shopData.getUserShops.length && <p>No favorites have been added yet.</p>}
 
-        {shopData && shopData.getUserShops.map((shop: Shop) => (
-          <article key={shop._id} className="border p-4">
-            <h4>{shop.name}</h4>
-            <p>Location: {shop.location}</p>
-            <ReactStars
-              count={5}
-              value={shop.rating}
-              onChange={(newRating: any) => handleRatingChange(newRating, shop._id)}
-              size={24}
-              activeColor="#FFD700"
-              edit={true}
-            />
-            <div className="d-flex button-wrap">
-              <Button
-                variant="primary"
-                className="me-2"
-                onClick={() => handleShowCreateCoffeeModal(shop)}>Add Coffee</Button>
-              <Button
-                variant="secondary"
-                className="me-2"
-                onClick={() => handleShowCoffeesModal(shop)}>View Coffee</Button>
-            </div>
-          </article>
-        ))}
-      </section>
+          {shopData && shopData.getUserShops.map((shop: Shop) => (
+            <article key={shop._id} className="thin-rounded-outline shop-card p-4  mb-4">
+              <h4>{shop.name}</h4>
+              <p>Location: {shop.location}</p>
+              <ReactStars
+                count={5}
+                value={shop.rating}
+                onChange={(newRating: any) => handleRatingChange(newRating, shop._id)}
+                size={24}
+                activeColor="#FFD700"
+                edit={true}
+              />
+              <div className="d-flex button-wrap">
+                <Button
+                  className="me-2 add-btn"
+                  onClick={() => handleShowCreateCoffeeModal(shop)}>Add Coffee</Button>
+                <Button
+                  className="me-2 view-coffee-btn"
+                  onClick={() => handleShowCoffeesModal(shop)}>View Coffee</Button>
+              </div>
+            </article>
+          ))}
+        </section>
+      </div>
+
 
       <CreateCoffeeModal
         selectedShop={selectedShop}
@@ -127,13 +137,18 @@ function Dashboard() {
       />
 
       {savedRecipesData && savedRecipesData.savedRecipes && savedRecipesData.savedRecipes.length > 0 && (
-        <div className="mt-5">
-          <h2>Saved Recipes</h2>
+        <div className="fav-section">
+          <div className="fav-header mx-5 mb-5">
+            <h3>Coffees</h3>
+            <p>Click on a shop to add a coffee or view existing coffees.</p>
+            
+            <hr />
+          </div>
           {loadingSavedRecipes && <p>Loading saved recipes...</p>}
           {errorSavedRecipes && <p>Error loading saved recipes: {errorSavedRecipes.message}</p>}
           {savedRecipesData.savedRecipes.map((recipe: Recipe) => (
             <section key={recipe.id}>
-              <div className="thin-rounded-outline">
+              <div className="thin-rounded-outline mx-5">
                 <div className="m-5">
                   <h1 className="mb-4">{recipe.title}</h1>
                   <h4 className="mt-4 mb-2">Ingredients:</h4>
@@ -173,7 +188,7 @@ function Dashboard() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </div>
   )
 }
 
