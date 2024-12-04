@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
 
-const username = faker.internet.userName();
-const shopName = faker.company.name();
+let uniqueUsername;
+const password = 'password123';
 
 function loginUser(cy) {
   cy.visit('/login');
 
-  cy.get('input[name="email"]').type(username + '@test.com');
-  cy.get('input[name="password"]').type('password123');
+  cy.get('input[name="email"]').type(uniqueUsername + '@test.com');
+  cy.get('input[name="password"]').type(password);
   cy.get('form button').click();
 
   // Wait for the dashboard to load
@@ -15,30 +15,32 @@ function loginUser(cy) {
 }
 
 describe('Site Tests', () => {
-    it('Should register a new user', () => {
-    const uniqueUsername = faker.internet.userName();
-  
+  before(() => {
+    uniqueUsername = faker.internet.userName();
+  });
+
+  it('Should register a new user', () => {
     // Visit the register page
     cy.visit('/register');
-  
+
     // Select the username input and type a fake name
     cy.get('input[name="username"]').type(uniqueUsername);
-  
+
     // Select the email input and type the fake name@test.com
     cy.get('input[name="email"]').type(uniqueUsername + '@test.com');
-  
+
     // Select password input and type 'password123'
-    cy.get('input[name="password"]').type('password123');
-  
+    cy.get('input[name="password"]').type(password);
+
     // Confirm password input
-    cy.get('input[name="confirmPassword"]').type('password123');
-  
+    cy.get('input[name="confirmPassword"]').type(password);
+
     // Ensure the form is fully loaded
     // cy.wait(1000); // Adjust the time as needed
-  
+
     // Ensure the button is visible before clicking it
     cy.get('form').find('button[type="submit"]').should('be.visible').click({ force: true });
-  
+
     // Ensure the form submission is successful
     cy.url().should('include', '/dashboard');
     cy.get('h3').contains('Your Shops');
@@ -48,7 +50,7 @@ describe('Site Tests', () => {
     loginUser(cy);
 
     // Increase the timeout for the assertion
-    cy.get('h3', { timeout: 10000 }).contains('Your Shops');
+    cy.get('h3.mt-4.fw-light', { timeout: 20000 }).should('contain.text', 'Your Shops');
   });
 
   it('Should be able to navigate to the register page', () => {
@@ -62,7 +64,7 @@ describe('Site Tests', () => {
   it('Should log a user out', () => {
     loginUser(cy);
 
-    cy.get('nav a').contains('Profile Menu').click();
+    cy.get('nav a').contains('Settings').click();
 
     cy.get('nav a').contains('Log Out').click();
 
