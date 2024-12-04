@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Container, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import ReactStars from 'react-rating-stars-component';
@@ -11,29 +11,21 @@ import CreateCoffeeModal from './components/CreateCoffeeModal';
 import ViewCoffeeModal from './components/ViewCoffeeModal';
 
 function Dashboard() {
-  const { data: shopData } = useQuery(GET_USER_SHOPS);
+  const { data: shopData, refetch: refetchShops } = useQuery(GET_USER_SHOPS);
+  const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes, refetch: refetchRecipes } = useQuery(GET_SAVED_RECIPES);
   const [updateShopRating] = useMutation(UPDATE_SHOP_RATING);
   const [deleteRecipe] = useMutation(DELETE_RECIPE);
+  const [deleteShop] = useMutation(DELETE_SHOP);
   const [selectedShop, setSelectedShop] = useState<null | Shop>(null);
   const [showCreateCoffeeModal, setShowCreateCoffeeModal] = useState(false);
   const [showCoffeesModal, setShowCoffeesModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [recipeToDelete, setRecipeToDelete] = useState<string | null>(null);
 
-  const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes } = useQuery(GET_SAVED_RECIPES);
-  const [deleteShop] = useMutation(DELETE_SHOP, {
-    update: (cache, { data: { deleteShop } }) => {
-      const existingShops: any = cache.readQuery({ query: GET_USER_SHOPS });
-      if (existingShops) {
-        const newShops = existingShops.getUserShops.filter((shop: Shop) => shop._id !== deleteShop._id);
-        cache.writeQuery({
-          query: GET_USER_SHOPS,
-          data: { getUserShops: newShops },
-        });
-      }
-    }
-  });
-
+  useEffect(() => {
+    refetchShops();
+    refetchRecipes();
+  }, []);
 
   const handleShowCreateCoffeeModal = (shop: Shop) => {
     setSelectedShop(shop);
