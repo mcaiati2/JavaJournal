@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_SAVED_RECIPES } from '../graphql/queries';
-import { SAVE_RECIPE, DELETE_RECIPE } from '../graphql/mutations';
-
+import { useMutation } from '@apollo/client';
+import { SAVE_RECIPE } from '../graphql/mutations';
 
 interface Instruction {
   name: number;
@@ -24,21 +22,12 @@ interface Coffee {
   category: string;
 }
 
-interface Recipe {
-  id: string;
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-}
-
 function CoffeeSearch() {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
   const [apiKey, setApiKey] = useState<string>('');
-
-  const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes } = useQuery(GET_SAVED_RECIPES);
 
   const fetchApiKey = async () => {
     try {
@@ -93,41 +82,10 @@ function CoffeeSearch() {
           instructions: recipe.recipeInstructions.map(instruction => instruction.text)
         }
       });
-      
     } catch (error) {
       console.error('Error saving recipe:', error);
     }
   };
-
-
-
-const [deleteRecipe] = useMutation(DELETE_RECIPE);
-
-const handleDeleteRecipe = async (recipeId: string) => {
-  const confirmDelete = window.confirm('Are you sure you want to delete this recipe?');
-  if (!confirmDelete) {
-    return;
-  }
-
-  try {
-    await deleteRecipe({
-      variables: { recipeId },
-      update: (cache) => {
-        const existingRecipes: any = cache.readQuery({ query: GET_SAVED_RECIPES });
-        if (existingRecipes) {
-          const newRecipes = existingRecipes.savedRecipes.filter((recipe: Recipe) => recipe.id !== recipeId);
-          cache.writeQuery({
-            query: GET_SAVED_RECIPES,
-            data: { savedRecipes: newRecipes },
-          });
-        }
-      },
-    });
-    
-  } catch (error) {
-    console.error('Error deleting recipe:', error);
-  }
-};
 
   return (
     <Container>
@@ -185,54 +143,8 @@ const handleDeleteRecipe = async (recipeId: string) => {
           </section>
         ))}
       </div>
-
-      {/* <div className="mt-5">
-        <h2>Saved Recipes</h2>
-        {loadingSavedRecipes && <p>Loading saved recipes...</p>}
-        {errorSavedRecipes && <p>Error loading saved recipes: {errorSavedRecipes.message}</p>}
-        {savedRecipesData && savedRecipesData.savedRecipes && savedRecipesData.savedRecipes.map((recipe: Recipe) => (
-          
-        ))}
-      </div> */}
-
-      {savedRecipesData && savedRecipesData.savedRecipes && savedRecipesData.savedRecipes.length > 0 && (
-        <div className="mt-5">
-          <h2>Saved Recipes</h2>
-          {loadingSavedRecipes && <p>Loading saved recipes...</p>}
-          {errorSavedRecipes && <p>Error loading saved recipes: {errorSavedRecipes.message}</p>}
-          {savedRecipesData.savedRecipes.map((recipe: Recipe) => (
-        <section key={recipe.id}>
-          <div className="thin-rounded-outline">
-            <div className="m-5">
-          
-          <h1 className="mb-4">{recipe.title}</h1>
-          <h4 className="mt-4 mb-2">Ingredients:</h4>
-          <ul>
-            {recipe.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
-          <h4 className="mt-4 mb-2">Instructions:</h4>
-          <ol>
-            {recipe.instructions.map((instruction, index) => (
-              <li key={index}>
-            {instruction}
-              </li>
-            ))}
-          </ol>
-          <Button className="mt-3" variant="danger" onClick={() => handleDeleteRecipe(recipe.id)}>Delete Recipe</Button>
-            </div>
-          </div>
-          <div className="spacer"></div>
-        </section>
-          ))}
-        </div>
-      )}
-      
     </Container>
   );
 }
 
 export default CoffeeSearch;
-
-
