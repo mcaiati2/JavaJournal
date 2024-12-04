@@ -38,7 +38,7 @@ connection.once('open', async () => {
       context: authenticate
     }),
   );
-  
+
 
     // Endpoint to serve the API key
     app.get('/api/get-api-key', (_, res) => {
