@@ -21,7 +21,6 @@
     "prep": "npm run client:build && npm run server:build",
     "cypress:open": "cd ./client && npx cypress open",
     "dev:test": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\" \"wait-on http://localhost:5173 && npm run cypress:open\""
-
   },
   "keywords": [],
   "author": "",
