@@ -178,6 +178,17 @@ nav a:hover:not(.navbar-brand) {
   transform: translateX(50%);
 }
 
+.about-img .landing-btn:hover {
+  background-color: #1e0909;
+  margin: 0;
+  padding: 25px 40px 18px 40px;
+  position: absolute;
+  top: 35%;
+  right: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
 .landing-btn {
   padding: 15px 30px 10px 30px;
   border: 1px solid #eee;
@@ -189,6 +200,15 @@ nav a:hover:not(.navbar-brand) {
 
 .landing-btn a {
   text-decoration: none !important;
+}
+
+.landing-btn:hover {
+  padding: 15px 30px 10px 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #1e0909;
+  color: #bebebe;
+  font-style: italic;
 }
 
 .search-recipes {
