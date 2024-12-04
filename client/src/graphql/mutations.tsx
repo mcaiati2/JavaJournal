@@ -78,3 +78,12 @@ export const CHANGE_PASSWORD = gql`
     }
   }
 `;
+
+export const DELETE_RECIPE = gql`
+  mutation DeleteRecipe($recipeId: ID!) {
+    deleteSavedRecipe(recipeId: $recipeId) {
+      success
+      message
+    }
+  }
+`;

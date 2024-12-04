@@ -27,20 +27,25 @@ const typeDefs = gql `
   }
 
   type Recipe {
-  id: ID!
-  title: String!
-  ingredients: [String!]!
-  instructions: [String!]!
-  user: User!
-}
+    id: ID!
+    title: String!
+    ingredients: [String!]!
+    instructions: [String!]!
+    user: User!
+  }
 
   type Response {
     user: User
     message: String
     errors: [String]
   }
+
   type MessageResponse {
     message: String
+  }
+  type DeleteRecipeResponse {
+  success: Boolean!
+  message: String
 }
 
   type Query {
@@ -67,7 +72,7 @@ const typeDefs = gql `
     updateShopRating(shopId: ID!, rating: Int!): Shop
     saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
     changePassword(currentPassword: String!, newPassword: String!): MessageResponse!
-
+    deleteSavedRecipe(recipeId: ID!): DeleteRecipeResponse!
   }
 `;
 export default typeDefs;
