@@ -204,7 +204,7 @@ const handleDeleteRecipe = async (recipeId: string) => {
         <section key={recipe.id}>
           <div className="thin-rounded-outline">
             <div className="m-5">
-          <Button className="mt-3" variant="danger" onClick={() => handleDeleteRecipe(recipe.id)}>Delete Recipe</Button>
+          
           <h1 className="mb-4">{recipe.title}</h1>
           <h4 className="mt-4 mb-2">Ingredients:</h4>
           <ul>
@@ -220,6 +220,7 @@ const handleDeleteRecipe = async (recipeId: string) => {
               </li>
             ))}
           </ol>
+          <Button className="mt-3" variant="danger" onClick={() => handleDeleteRecipe(recipe.id)}>Delete Recipe</Button>
             </div>
           </div>
           <div className="spacer"></div>
