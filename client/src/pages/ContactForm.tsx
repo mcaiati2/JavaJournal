@@ -40,59 +40,59 @@ function ContactForm() {
             
         }}>
             <form onSubmit={onSubmit} className="bg-white p-4 rounded shadow" style={{ width: '600px', backgroundColor: 'rgba(0, 0, 0, 0.5)', }}>
-                <div className="mb-3">
-                    <label htmlFor="firstName" className="form-label fw-bold">First Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="firstName"
-                        name="firstName"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="lastName" className="form-label fw-bold">Last Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="lastName"
-                        name="lastName"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label fw-bold">Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        name="email"
-                        aria-describedby="emailHelp"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <div id="emailHelp" className="form-text">Your email is safe with us! </div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleFormControlTextarea1" className="form-label fw-bold">What's brewing?!</label>
-                    <textarea
-                        className="form-control"
-                        id="exampleFormControlTextarea1"
-                        name="message"
-                        rows={3}
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                    ></textarea>
-                </div>
-                {error && <div className="alert alert-danger" role="alert">{error}</div>}
-                <button type="submit" className="btn btn-primary">Send Message</button>
-                <div>{result}</div>
+            <div className="mb-3">
+                <label htmlFor="firstName" className="form-label fw-bold" style={{ color: '#000' }}>First Name</label>
+                <input
+                type="text"
+                className="form-control"
+                id="firstName"
+                name="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                />
+            </div>
+            <div className="mb-3">
+                <label htmlFor="lastName" className="form-label fw-bold" style={{ color: '#000' }}>Last Name</label>
+                <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                name="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                />
+            </div>
+            <div className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="form-label fw-bold" style={{ color: '#000' }}>Email address</label>
+                <input
+                type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                name="email"
+                aria-describedby="emailHelp"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                />
+                <div id="emailHelp" className="form-text">Your email is safe with us! </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="exampleFormControlTextarea1" className="form-label fw-bold" style={{ color: '#000' }}>What's brewing?!</label>
+                <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                name="message"
+                rows={3}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                ></textarea>
+            </div>
+            {error && <div className="alert alert-danger" role="alert">{error}</div>}
+            <button type="submit" className="btn btn-primary">Send Message</button>
+            <div>{result}</div>
             </form>
         </div>
     );

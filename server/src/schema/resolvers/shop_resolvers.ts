@@ -10,6 +10,7 @@ import { GraphQLError } from 'graphql';
 import User from '../../models/User.js';
 
 
+
 type ShopArguments = {
   name?: string;
   location?: string;
@@ -174,13 +175,45 @@ const shop_resolvers = {
         console.error('Error saving recipe:', error); // Log the error
         throw new GraphQLError(error.message);
       }
+    },
+
+    async deleteSavedRecipe(_: any, { recipeId }: { recipeId: string }, context: Context) {
+      if (!context.req.user) {
+        throw new GraphQLError('You are not authorized to perform this action');
+      }
+
+      try {
+        const recipe = await Recipe.findById(recipeId);
+        if (!recipe) {
+          throw new GraphQLError('Recipe not found');
+        }
+
+        if (recipe.user.toString() !== context.req.user._id.toString()) {
+          throw new GraphQLError('You are not authorized to delete this recipe');
+        }
+
+        await Recipe.findByIdAndDelete(recipeId);
+
+        await User.findByIdAndUpdate(context.req.user._id, {
+          $pull: { recipes: recipeId }
+        });
+
+        return {
+          success: true,
+          message: 'Recipe deleted successfully!'
+        };
+      } catch (error: any) {
+        console.error('Error deleting recipe:', error); // Log the error
+        throw new GraphQLError(error.message);
+      }
     }
   }
 };
 
 
 
-export default shop_resolvers;
+
+
 shop_resolvers.Mutation.saveRecipe = async function(_: any, args: { recipeId: string, title: string, ingredients: string[], instructions: string[] }, context: Context) {
   if (!context.req.user) {
     throw new GraphQLError('You are not authorized to perform this action');
@@ -205,6 +238,37 @@ shop_resolvers.Mutation.saveRecipe = async function(_: any, args: { recipeId: st
     throw new GraphQLError(error.message);
   }
 };
+
+// shop_resolvers.Mutation.deleteSavedRecipe = async function(_: any, { recipeId }: { recipeId: string }, context: Context) {
+//   if (!context.req.user) {
+//     throw new GraphQLError('You are not authorized to perform this action');
+//   }
+
+//   try {
+//     const recipe = await Recipe.findById(recipeId);
+//     if (!recipe) {
+//       throw new GraphQLError('Recipe not found');
+//     }
+
+//     if (recipe.user.toString() !== context.req.user._id.toString()) {
+//       throw new GraphQLError('You are not authorized to delete this recipe');
+//     }
+
+//     await Recipe.findByIdAndDelete(recipeId);
+
+//     await User.findByIdAndUpdate(context.req.user._id, {
+//       $pull: { recipes: recipeId }
+//     });
+
+//     return {
+//       message: 'Recipe deleted successfully!'
+//     };
+//   } catch (error: any) {
+//     console.error('Error deleting recipe:', error); // Log the error
+//     throw new GraphQLError(error.message);
+//   }
+// }
+
 shop_resolvers.Mutation.createCoffee = async function(_: any, args: CoffeeArguments, context: Context) {
   if (!context.req.user) {
     return {
@@ -234,3 +298,5 @@ shop_resolvers.Mutation.createCoffee = async function(_: any, args: CoffeeArgume
     throw new GraphQLError(errorMessage);
   }
 };
+
+export default shop_resolvers;

@@ -34,7 +34,7 @@ function Header() {
         <Navbar.Brand as={NavLink} to="/" className="crete-round-font">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={NavLink} to="/about">About</Nav.Link>
-          <NavLink className="nav-link" to="/contact">Contact</NavLink>
+          
 
           {state.user ? (
             <>
@@ -45,6 +45,7 @@ function Header() {
               <NavDropdown title="Settings">
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
                 <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to="/contact">Contact</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
               </NavDropdown>
             </>
