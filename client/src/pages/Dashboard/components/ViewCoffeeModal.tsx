@@ -36,6 +36,10 @@ function ViewCoffeeModal({
         {coffeeData && coffeeData.getCoffeesForShop.map((coffee: Coffee) => (
           <article key={coffee._id} className="mb-4">
             <h5>{coffee.title}</h5>
+            <br />
+            <h6>Flavor Notes:</h6>
+            <p>{coffee.flavor}</p>
+            <h6>Comments:</h6>
             <p>{coffee.body}</p>
           </article>
         ))}
