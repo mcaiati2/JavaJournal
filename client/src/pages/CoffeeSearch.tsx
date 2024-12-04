@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Modal } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
 import { SAVE_RECIPE } from '../graphql/mutations';
 
 interface Instruction {
@@ -28,6 +29,8 @@ function CoffeeSearch() {
   const [query, setQuery] = useState<string>('');
   const [saveRecipe] = useMutation(SAVE_RECIPE);
   const [apiKey, setApiKey] = useState<string>('');
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const fetchApiKey = async () => {
     try {
@@ -82,9 +85,17 @@ function CoffeeSearch() {
           instructions: recipe.recipeInstructions.map(instruction => instruction.text)
         }
       });
+      setShowModal(true);
     } catch (error) {
       console.error('Error saving recipe:', error);
     }
+  };
+
+  const handleCloseModal = () => setShowModal(false);
+
+  const handleViewJournal = () => {
+    setShowModal(false);
+    navigate('/dashboard');
   };
 
   return (
@@ -143,6 +154,23 @@ function CoffeeSearch() {
           </section>
         ))}
       </div>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Recipe Saved</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Recipe saved. Do you want to save more recipes or view your journal?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Save More Recipes
+          </Button>
+          <Button variant="primary" onClick={handleViewJournal}>
+            View Your Journal
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
