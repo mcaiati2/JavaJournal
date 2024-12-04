@@ -57,6 +57,7 @@ AuthForm.tsx
     * Comments
     * Photo Upload
 
+
 ## Log
 11/26
 App working
