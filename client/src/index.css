@@ -160,11 +160,17 @@ nav a:hover:not(.navbar-brand) {
 }
 
 .about-img {
-  background-image: url('images/coffee_pour_2.jpg');
+  background-image: url('images/coffee_pour_3.jpg');
   background-size: cover;
-  background-position: center;
-  min-height: 600px;
+  background-position: top;
+  min-height: 900px;
   position: relative;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.about-img.show {
+  opacity: 1;
 }
 
 .about-img .landing-btn {
@@ -172,18 +178,19 @@ nav a:hover:not(.navbar-brand) {
   margin: 0;
   padding: 25px 40px 18px 40px;
   position: absolute;
-  top: 35%;
+  top: 65%;
   right: 50%;
   -ms-transform: translateX(50%);
   transform: translateX(50%);
 }
 
 .about-img .landing-btn:hover {
-  background-color: #1e0909;
+  background-color: #270505dc;
+  transition: background-color .5s;
   margin: 0;
   padding: 25px 40px 18px 40px;
   position: absolute;
-  top: 35%;
+  top: 65%;
   right: 50%;
   -ms-transform: translateX(50%);
   transform: translateX(50%);
@@ -206,15 +213,13 @@ nav a:hover:not(.navbar-brand) {
   padding: 15px 30px 10px 30px;
   border: 1px solid #eee;
   border-radius: 10px;
-  background-color: #1e0909;
+  background-color: #270505dc;
+  transition: background-color .5s;
   color: #bebebe;
   font-style: italic;
 }
 
 .search-recipes {
-  /* -------------------------------------------- */
-  /* MAKE THIS STOP GETTING BIGGER AT 1350PX WIDE */
-  /* -------------------------------------------- */
   background-image: url(/images/grinder_1.jpg);
   background-size: cover;
   background-position: center;
@@ -233,7 +238,7 @@ nav a:hover:not(.navbar-brand) {
 
 .landing-section {
   background-color: black;
-  padding: 100px 0 0 0;
+  padding: 140px 0 0 0 !important;
   display: flex;
   flex-direction: column;
 }
