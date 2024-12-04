@@ -44,10 +44,17 @@ const typeDefs = gql`
   type MessageResponse {
     message: String
   }
+
   type DeleteRecipeResponse {
   success: Boolean!
   message: String
 }
+
+type DeleteShopResponse {
+  success: Boolean!
+  message: String
+}
+
 
   type Query {
     # Auth Queries
@@ -74,7 +81,9 @@ const typeDefs = gql`
     saveRecipe(recipeId: ID!, title: String!, ingredients: [String!]!, instructions: [String!]!): Recipe
     changePassword(currentPassword: String!, newPassword: String!): MessageResponse!
     deleteSavedRecipe(recipeId: ID!): DeleteRecipeResponse!
+    deleteShop(shopId: ID!): DeleteShopResponse!
   }
 `;
+
 
 export default typeDefs;

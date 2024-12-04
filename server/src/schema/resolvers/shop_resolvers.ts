@@ -149,7 +149,7 @@ const shop_resolvers = {
         }
         shop.rating = rating;
         await shop.save();
-        return shop; // Return the shop object
+        return shop; // 
       } catch (error) {
         const errorMessage = errorHandler(error);
         throw new GraphQLError(errorMessage);
@@ -169,10 +169,10 @@ const shop_resolvers = {
           user: context.req.user._id
         });
 
-        console.log('Recipe saved:', recipe); // Log the saved recipe
+        console.log('Recipe saved:', recipe); 
         return recipe;
       } catch (error: any) {
-        console.error('Error saving recipe:', error); // Log the error
+        console.error('Error saving recipe:', error); 
         throw new GraphQLError(error.message);
       }
     },
@@ -203,7 +203,47 @@ const shop_resolvers = {
           message: 'Recipe deleted successfully!'
         };
       } catch (error: any) {
-        console.error('Error deleting recipe:', error); // Log the error
+        console.error('Error deleting recipe:', error); 
+        throw new GraphQLError(error.message);
+      }
+    },
+
+    async deleteShop(_: any, { shopId }: { shopId: string }, context: Context) {
+      if (!context.req.user) {
+        throw new GraphQLError('You are not authorized to perform this action');
+      }
+
+      try {
+        console.log(`Attempting to delete shop with ID: ${shopId}`);
+
+        const shop = await Shop.findById(shopId);
+        if (!shop) {
+          throw new GraphQLError('Shop not found');
+        }
+
+        if (shop.owner.toString() !== context.req.user._id.toString()) {
+          throw new GraphQLError('You are not authorized to delete this shop');
+        }
+
+        const coffees = await Coffee.find({ shop: shopId });
+        const coffeeIds = coffees.map(coffee => coffee._id);
+
+        await Coffee.deleteMany({ shop: shopId });
+
+        await Shop.findByIdAndDelete(shopId);
+        console.log(`Shop with ID: ${shopId} deleted successfully`);
+
+        await User.findByIdAndUpdate(context.req.user._id, {
+          $pull: { shops: shopId, coffees: { $in: coffeeIds } }
+        });
+        console.log(`Shop ID: ${shopId} and associated coffees removed from user profile`);
+
+        return {
+          success: true,
+          message: 'Shop and associated coffees deleted successfully!'
+        };
+      } catch (error: any) {
+        console.error('Error deleting shop:', error);
         throw new GraphQLError(error.message);
       }
     }

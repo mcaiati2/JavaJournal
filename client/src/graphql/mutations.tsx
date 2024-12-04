@@ -88,3 +88,12 @@ export const DELETE_RECIPE = gql`
   }
 `;
 
+export const DELETE_SHOP = gql`
+  mutation DeleteShop($shopId: ID!) {
+    deleteShop(shopId: $shopId) {
+      success
+      message
+    }
+  }
+`;
+

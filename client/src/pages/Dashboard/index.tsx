@@ -5,7 +5,7 @@ import ReactStars from 'react-rating-stars-component';
 
 import { GET_USER_SHOPS, GET_SAVED_RECIPES } from '../../graphql/queries';
 import { Shop, Recipe } from '../../interfaces';
-import { UPDATE_SHOP_RATING, DELETE_RECIPE } from '../../graphql/mutations';
+import { UPDATE_SHOP_RATING, DELETE_RECIPE, DELETE_SHOP } from '../../graphql/mutations';
 
 import CreateCoffeeModal from './components/CreateCoffeeModal';
 import ViewCoffeeModal from './components/ViewCoffeeModal';
@@ -21,6 +21,19 @@ function Dashboard() {
   const [recipeToDelete, setRecipeToDelete] = useState<string | null>(null);
 
   const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes } = useQuery(GET_SAVED_RECIPES);
+  const [deleteShop] = useMutation(DELETE_SHOP, {
+    update: (cache, { data: { deleteShop } }) => {
+      const existingShops: any = cache.readQuery({ query: GET_USER_SHOPS });
+      if (existingShops) {
+        const newShops = existingShops.getUserShops.filter((shop: Shop) => shop._id !== deleteShop._id);
+        cache.writeQuery({
+          query: GET_USER_SHOPS,
+          data: { getUserShops: newShops },
+        });
+      }
+    }
+  });
+
 
   const handleShowCreateCoffeeModal = (shop: Shop) => {
     setSelectedShop(shop);
@@ -80,6 +93,17 @@ function Dashboard() {
     setRecipeToDelete(null);
   };
 
+  const handleDeleteShop = async (shopId: string) => {
+    try {
+      await deleteShop({
+        variables: { shopId },
+        refetchQueries: [{ query: GET_USER_SHOPS }]
+      });
+    } catch (error) {
+      console.error('Error deleting shop:', error);
+    }
+  };
+
   return (
     <Container>
       <h3 className="mt-4 fw-light">Your Shops</h3>
@@ -109,6 +133,13 @@ function Dashboard() {
                 variant="secondary"
                 className="me-2"
                 onClick={() => handleShowCoffeesModal(shop)}>View Coffee</Button>
+                <Button
+                variant="danger"
+                onClick={() => handleDeleteShop(shop._id)}
+              >
+                Delete Shop
+              </Button>
+
             </div>
           </article>
         ))}
