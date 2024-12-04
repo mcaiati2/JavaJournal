@@ -16,9 +16,12 @@
     "start": "node ./server/dist/server.js",
     "render:install": "cd ./server && npm i",
     "install": "cd ./server && npm i && cd ../client && npm i",
-    "cypress:test": "cd ./client && npm run cypress:run",
+    "cypress:test": "wait-on http://localhost:3000 && cd ./client && npm run cypress:run",
     "test": "start-server-and-test start http://localhost:10000 cypress:test",
-    "prep": "npm run client:build && npm run server:build"
+    "prep": "npm run client:build && npm run server:build",
+    "cypress:open": "cd ./client && npx cypress open",
+    "dev:test": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\" \"wait-on http://localhost:5173 && npm run cypress:open\""
+
   },
   "keywords": [],
   "author": "",
