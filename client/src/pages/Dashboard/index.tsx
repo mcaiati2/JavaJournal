@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import ReactStars from 'react-rating-stars-component';
 
@@ -17,6 +17,8 @@ function Dashboard() {
   const [selectedShop, setSelectedShop] = useState<null | Shop>(null);
   const [showCreateCoffeeModal, setShowCreateCoffeeModal] = useState(false);
   const [showCoffeesModal, setShowCoffeesModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [recipeToDelete, setRecipeToDelete] = useState<string | null>(null);
 
   const { data: savedRecipesData, loading: loadingSavedRecipes, error: errorSavedRecipes } = useQuery(GET_SAVED_RECIPES);
 
@@ -44,19 +46,21 @@ function Dashboard() {
     }
   };
 
-  const handleDeleteRecipe = async (recipeId: string) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this recipe?');
-    if (!confirmDelete) {
-      return;
-    }
+  const handleDeleteRecipe = (recipeId: string) => {
+    setRecipeToDelete(recipeId);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteRecipe = async () => {
+    if (!recipeToDelete) return;
 
     try {
       await deleteRecipe({
-        variables: { recipeId },
+        variables: { recipeId: recipeToDelete },
         update: (cache) => {
           const existingRecipes: any = cache.readQuery({ query: GET_SAVED_RECIPES });
           if (existingRecipes) {
-            const newRecipes = existingRecipes.savedRecipes.filter((recipe: Recipe) => recipe.id !== recipeId);
+            const newRecipes = existingRecipes.savedRecipes.filter((recipe: Recipe) => recipe.id !== recipeToDelete);
             cache.writeQuery({
               query: GET_SAVED_RECIPES,
               data: { savedRecipes: newRecipes },
@@ -64,9 +68,16 @@ function Dashboard() {
           }
         },
       });
+      setShowDeleteModal(false);
+      setRecipeToDelete(null);
     } catch (error) {
       console.error('Error deleting recipe:', error);
     }
+  };
+
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+    setRecipeToDelete(null);
   };
 
   return (
@@ -145,6 +156,23 @@ function Dashboard() {
           ))}
         </div>
       )}
+
+      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this recipe?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDeleteModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={confirmDeleteRecipe}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   )
 }

@@ -10,7 +10,7 @@ function Footer() {
 
         <h1><br></br>JavaJournal</h1>
 
-        <p>DEV & DESIGN BY: <br></br>Mike Caiati <br></br>Francesca Figueroa <br></br>Izzy Figueroa <br></br>Nina DeLucia</p>
+        <p>DEV & DESIGN BY: <br></br>Mike Caiati <br></br>Izzy Figueroa <br></br>Nina DeLucia </p>
       </Container>
     </footer>
   )
