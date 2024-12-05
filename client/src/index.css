@@ -243,11 +243,13 @@ nav a:hover:not(.navbar-brand) {
 }
 
 .recipe-search-page-image {
-  background-image: url(/images/recipe-search-page.jpg);
+  background-image: url(/images/french_press_dark.jpg);
   background-size: cover;
-  background-position: center;
-  min-height: 600px;
+  background-position: top;
+  height: 100% !important;
   position: relative;
+  padding: 0 !important;
+  margin: 0 !important
 }
 
 .search-recipes .landing-btn {
@@ -283,7 +285,7 @@ nav a:hover:not(.navbar-brand) {
 } */
 
 .journal-bg-img {
-  background-image: url(/images/french_press_dark.jpg) !important;
+  background-image: url(/images/recipe-search-page.jpg) !important;
   background-size: cover !important;
   background-position: bottom !important;
   background-attachment: fixed !important;

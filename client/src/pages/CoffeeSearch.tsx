@@ -100,8 +100,8 @@ function CoffeeSearch() {
 
   return (
 
-    <Container className="recipe-search-page-image">
-      <div>
+    <div className="recipe-search-page-image">
+      <div >
         <h2 className="text-center mt-5">Find Coffee Recipe</h2>
       </div>
       <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
@@ -175,7 +175,7 @@ function CoffeeSearch() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </div>
   );
 }
 
