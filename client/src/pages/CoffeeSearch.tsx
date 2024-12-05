@@ -99,11 +99,12 @@ function CoffeeSearch() {
   };
 
   return (
-    <Container>
-      <div >
+
+    <Container className="recipe-search-page-image">
+      <div>
         <h2 className="text-center mt-5">Find Coffee Recipe</h2>
       </div>
-      <Form onSubmit={handleSubmit}className="auth-form mx-auto mt-5">
+      <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
         <Form.Group className="mt-5 mb-3">
           <Form.Label>Enter coffee type</Form.Label>
           <Form.Control

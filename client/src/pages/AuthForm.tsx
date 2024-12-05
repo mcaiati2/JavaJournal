@@ -57,7 +57,7 @@ function AuthForm({ isLogin }: { isLogin: boolean }) {
         user: res.data[prop].user
       }));
 
-      navigate('/dashboard');
+      navigate('/');
     } catch (error: any) {
       setFormData({
         ...formData,
