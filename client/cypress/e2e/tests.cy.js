@@ -109,6 +109,8 @@ describe('Site Tests', () => {
 
 
     cy.get('.modal-footer button').last().click();
+    cy.get('.modal-footer button').first().click();
+
 
     cy.get('article')
       .contains(shopName)
