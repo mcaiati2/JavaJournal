@@ -56,7 +56,7 @@ function ShopForm() {
   }
 
   return (
-    <div>
+    <div className="add-shop-image">
       <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
         <h2 className="text-center mt-3">Create Shop</h2>
 

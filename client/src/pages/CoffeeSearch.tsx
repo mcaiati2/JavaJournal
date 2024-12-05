@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { SAVE_RECIPE } from '../graphql/mutations';
@@ -101,9 +101,9 @@ function CoffeeSearch() {
   return (
 
     <div className="recipe-search-page-image">
-      <div >
-        <h2 className="text-center mt-5">Find Coffee Recipe</h2>
-      </div>
+      
+        <h2 className="text-center pt-5">Find Coffee Recipe</h2>
+    
       <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
         <Form.Group className="mt-5 mb-3">
           <Form.Label>Enter coffee type</Form.Label>

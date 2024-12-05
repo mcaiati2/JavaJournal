@@ -1,23 +1,24 @@
-import { useEffect, useRef } from 'react';
+// import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 
 
 function Landing() {
   
 
-  const aboutDiv = useRef<HTMLDivElement>(null);
+  // const aboutDiv = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (aboutDiv.current) {
-        const aboutDivTop = aboutDiv.current.getBoundingClientRect().top;
-        if (aboutDivTop < window.innerHeight) {
-          aboutDiv.current.style.opacity = '1';
-          aboutDiv.current.style.transform = 'translateX(0)';
-        }
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', () => {
+  //     if (aboutDiv.current) {
+  //       const aboutDivTop = aboutDiv.current.getBoundingClientRect().top;
+  //       if (aboutDivTop < window.innerHeight) {
+  //         aboutDiv.current.style.opacity = '1';
+  //         aboutDiv.current.style.transform = 'translateX(0)';
+  //       }
+  //     }
+  //   });
+  // }, []);
 
   return (
     <Container fluid={true}>
@@ -49,7 +50,8 @@ function Landing() {
 
       <Row className="center-content">
         <Col className="landing-section">
-          <div className="about-img" ref={aboutDiv}>
+          {/* <div className="about-img" ref={aboutDiv}> */}
+          <div className="about-img">
             <button className="landing-btn">
               <a href="/about" className="white-text"><h4>ABOUT US</h4></a>
             </button>
