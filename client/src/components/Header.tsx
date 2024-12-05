@@ -49,12 +49,11 @@ function Header() {
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
               <Nav.Link as={NavLink} to="/coffee-info">Discover</Nav.Link>
 
-              <NavDropdown title="Settings">
-
-                <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/about">About</NavDropdown.Item>
-                <NavDropdown.Item as={NavLink} to="/contact">Contact</NavDropdown.Item>
-                <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
+              <NavDropdown title="Settings" menuVariant="dark" align="end" className="static-dropdown">
+              <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/about">About</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/contact">Contact</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
               </NavDropdown>
             </>
           ) : (

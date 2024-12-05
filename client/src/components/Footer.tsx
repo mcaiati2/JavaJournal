@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope, FaCoffee } from 'react-icons/fa';
 
 function Footer() {
   const date = new Date();
@@ -21,7 +21,17 @@ function Footer() {
         <div>
         </div>
         <div>
-          <p>DEV & DESIGN BY: <br/>Mike Caiati<br/> Izzy Figueroa<br/>Nina DeLucia</p>
+          <p>DEV & DESIGN BY: <br/>
+          <a href="https://github.com/mikecaiati" target="_blank" rel="noopener noreferrer" className="no-underline">
+  <FaCoffee className="coffee-icon-spacing" /> Mike Caiati
+</a><br/>
+<a href="https://github.com/izzyfigueroa" target="_blank" rel="noopener noreferrer" className="no-underline">
+  <FaCoffee className="coffee-icon-spacing" /> Izzy Figueroa
+</a><br/>
+<a href="https://github.com/ninadelucia" target="_blank" rel="noopener noreferrer" className="no-underline">
+  <FaCoffee className="coffee-icon-spacing" /> Nina DeLucia
+</a>
+          </p>
         </div>
       </Container>
     </footer>
