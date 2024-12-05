@@ -36,7 +36,7 @@ function ContactForm() {
     };
 
     return (
-        <div>
+        <div className="contact-us-image">
             <h2 className="white-text contact-header">Let's Get In Touch</h2>
             <div className="d-flex justify-content-center align-items-center mb-5">
                 <form onSubmit={onSubmit} className="thin-rounded-outline p-4 white-text shadow" style={{ width: '600px' }}>

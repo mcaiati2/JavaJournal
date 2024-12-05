@@ -124,7 +124,7 @@ function CoffeeSearch() {
 
       {error && <div>Error: {error}</div>}
 
-      <div className="m-5">
+      <div className="image-opacity m-5 ">
         {coffees.map((coffee) => (
           <section key={coffee._id}>
             <div className="thin-rounded-outline">
