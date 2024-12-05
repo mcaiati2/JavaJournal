@@ -42,3 +42,4 @@ createRoot(document.getElementById('root')!).render(
     </ApolloProvider>
   </StrictMode>,
 )
+
