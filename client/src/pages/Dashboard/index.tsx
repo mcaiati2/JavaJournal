@@ -169,7 +169,7 @@ function Dashboard() {
             {errorSavedRecipes && <p>Error loading saved recipes: {errorSavedRecipes.message}</p>}
             {savedRecipesData.savedRecipes.map((recipe: Recipe) => (
               <section key={recipe.id}>
-                <div className="thin-rounded-outline mx-5">
+                <div className="thin-rounded-outline mx-5 image-opacity">
                   <div className="m-5">
                     <h1 className="mb-4">{recipe.title}</h1>
                     <h4 className="mt-4 mb-2">Ingredients:</h4>

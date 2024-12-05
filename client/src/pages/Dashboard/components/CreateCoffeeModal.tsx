@@ -33,18 +33,20 @@ function CreateCoffeeModal({
       }
     }, { query: GET_ALL_COFFEES }]
   });
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleModalClose = () => {
     setFormData({ ...initialFormData });
     setShowCreateCoffeeModal(false);
+    setSuccessMessage(null);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
   const handleSubmit = async () => {
     try {
@@ -56,25 +58,25 @@ function CreateCoffeeModal({
       });
 
       setFormData({ ...initialFormData });
-
-      handleModalClose();
+      setSuccessMessage("Coffee logged! Add another?");
     } catch (error: any) {
       setFormData({
         ...formData,
         errorMessage: error.message
       });
     }
-  }
+  };
 
   return (
     <div>
       <Modal show={showCreateCoffeeModal} onHide={handleModalClose} >
         <Modal.Header>
-          <Modal.Title >New Coffee:</Modal.Title>
+          <Modal.Title>New Coffee:</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           {formData.errorMessage && <Alert variant="danger">{formData.errorMessage}</Alert>}
+          {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
           <Form>
             <Form.Group className="mb-3">
@@ -96,7 +98,8 @@ function CreateCoffeeModal({
                 onChange={handleInputChange}
                 as="textarea"
                 rows={3}
-                placeholder="Type your details" />
+                placeholder="Type your details"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Flavor</Form.Label>
@@ -120,7 +123,7 @@ function CreateCoffeeModal({
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
 }
 
 export default CreateCoffeeModal;

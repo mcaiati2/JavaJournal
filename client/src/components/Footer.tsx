@@ -1,18 +1,31 @@
 import { Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
 function Footer() {
   const date = new Date();
 
   return (
-    <footer className="bg-dark">
-      <Container className="d-flex justify-content-between py-5">
-        <p>Copyright &copy; {date.getFullYear()} <br></br><br></br> CONTACT US: <br></br>123.456.7890 <br></br>email@email.com</p>
-
-
-        <p>DEV & DESIGN BY: <br></br><br></br>Mike Caiati <br></br>Izzy Figueroa <br></br>Nina DeLucia </p>
+    <footer className="bg-dark text-white" aria-label="Footer">
+      <Container className="d-flex flex-column flex-md-row justify-content-between py-4">
+        <div>
+          <p>&copy; {date.getFullYear()} JavaJournal</p>
+          <NavLink to="/contact" className="text-white no-underline" aria-label="Contact Us">
+            Get In Touch 
+            <FaEnvelope className="icon-spacing" />
+            <FaFacebook className="icon-spacing" />
+            <FaTwitter className="icon-spacing" />
+            <FaInstagram className="icon-spacing" />
+          </NavLink>
+        </div>
+        <div>
+        </div>
+        <div>
+          <p>DEV & DESIGN BY: <br/>Mike Caiati<br/> Izzy Figueroa<br/>Nina DeLucia</p>
+        </div>
       </Container>
     </footer>
-  )
+  );
 }
 
 export default Footer;
