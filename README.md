@@ -54,6 +54,24 @@ npm run dev
 
 2. Open your browser and navigate to `http://localhost:5173` to view the application.
 
+This is what users will see when view our application in the browser<br>
+![screenshot of homepage](./client/public/images/homepage.png)<br><br>
+
+Users will have the options to either Login or Register an account<br>
+![screenshot of homepage](./client/public/images/register.png)<br><br>
+
+When a user is created, they will be redirected to our "My Journal" page that has all of their stored fields <br>
+![screenshot of homepage](./client/public/images/myjournal.png)<br><br>
+
+Users will will be able to add a visited shop and enter coffees that they had had. This will store all logged coffees so users can refer to drinks and their reviews.<br>
+![screenshot of homepage](./client/public/images/createshop.png)<br><br>
+
+Users will be able to access our API to search for recipes to their favorite coffees<br>
+![screenshot of homepage](./client/public/images/discover.png)<br><br>
+
+Users will have the option to change their passwords in our setting tab<br>
+![screenshot of homepage](./client/public/images/changepw.png)<br><br>
+
 ## Scripts
 
 - `client:install`: Install client dependencies
@@ -85,6 +103,11 @@ npm run cypress:open
 - [Mike Caiati](https://github.com/mcaiati2)
 - [Nina DeLucia](https://github.com/delucianina)
 - [Izzy Figueroa](https://github.com/IzzyFigueroa)
+
+## Links
+Github Repo:
+Render:
+
 
 ## License
 
