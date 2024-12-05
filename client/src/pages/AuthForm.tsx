@@ -69,7 +69,6 @@ function AuthForm({ isLogin }: { isLogin: boolean }) {
 
 
 
-
   return (
     <div>
       <div className="login-reg-bg">
