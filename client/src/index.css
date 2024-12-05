@@ -76,6 +76,10 @@ article h4 {
   color: rgb(236, 236, 236) !important;
 }
 
+.brown-text {
+  color: #252020 !important;
+}
+
 .light-link-text {
   color: #ff9393 !important;
 }
@@ -148,7 +152,7 @@ nav a:hover:not(.navbar-brand) {
   background-image: url(/images/contact-page.jpg);
   background-size: cover;
   background-position: center;
-  min-height: 600px;
+  min-height: 100vh;
 }
 
 
@@ -253,7 +257,7 @@ nav a:hover:not(.navbar-brand) {
   background-image: url(/images/french_press_dark.jpg);
   background-size: cover;
   background-position: top;
-  height: 100vh !important; /* Use 100vh instead of 100% */
+  height: 100% !important; /* Use 100vh instead of 100% */
   position: relative;
   padding: 0 !important;
   margin: 0 !important;
@@ -549,10 +553,18 @@ nav a:hover:not(.navbar-brand) {
 /* Footer */
 .no-underline {
   text-decoration: none;
+  color: inherit;
 }
 
 .icon-spacing {
-  margin-left: .65rem; 
+  margin-left: .50rem; 
+  text-decoration: none; /* Add this line */
+}
+
+.coffee-icon-spacing {
+  margin-left: 1rem; 
+  margin-right: .45rem; 
+  text-decoration: none; /* Add this line */
 }
 
 

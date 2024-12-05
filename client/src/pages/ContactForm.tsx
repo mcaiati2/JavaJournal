@@ -37,9 +37,9 @@ function ContactForm() {
 
     return (
         <div className="contact-us-image">
-            <h2 className="white-text contact-header">Let's Get In Touch</h2>
+            <h2 className="brown-text contact-header">Let's Get In Touch</h2>
             <div className="d-flex justify-content-center align-items-center mb-5">
-                <form onSubmit={onSubmit} className="thin-rounded-outline p-4 white-text shadow" style={{ width: '600px' }}>
+                <form onSubmit={onSubmit} className="thin-rounded-outline p-4 white-text shadow image-opacity" style={{ width: '600px' }}>
                     <div className="mb-3">
                         <label htmlFor="firstName" className="form-label fw-bold">First Name</label>
                         <input
