@@ -95,7 +95,7 @@ function ChangePassword() {
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="primary" type="submit">
+          <Button className="submit-btn" type="submit">
             Change Password
           </Button>
         </div>
