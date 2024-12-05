@@ -27,7 +27,14 @@
   font-family: 'EB Garamond', serif;
 }
 
-
+.sticky-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background-color: white; /* Adjust as needed */
+  padding: 10px 0; /* Adjust as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
 
 
 
@@ -105,6 +112,10 @@ article h4 {
 
 
 /* --------- NAV BAR ----------- */
+
+.welcome {
+  color: #f9c8a1 !important;
+}
 
 nav a.active:not(.navbar-brand),
 nav a:hover:not(.navbar-brand) {
@@ -259,8 +270,19 @@ nav a:hover:not(.navbar-brand) {
   margin: 30px 20px;
 } */
 
+.journal-bg-img {
+  background-image: url(/images/french_press_dark.jpg) !important;
+  background-size: cover !important;
+  background-position: bottom !important;
+  background-attachment: fixed !important;
+  height: 100% !important;
+}
+
 .fav-section {
-  background-color: #ffebe717;
+  /* background-image: url(/images/coffee_pour_1.jpg);
+  background-size: cover;
+  background-position: center; */
+  background-color: rgba(0, 0, 0, 0.733);
   margin: 75px 0 150px 0;
   padding: 40px 0 60px 0;
 }
@@ -273,10 +295,10 @@ nav a:hover:not(.navbar-brand) {
 
 .add-btn {
   padding: 10px !important;
-  margin-top: 10px;
+  margin-top: 10px !important;
   border: 1px solid #eee !important;
   border-radius: 10px !important;
-  background-color: #163d25 !important;
+  background-color: #270f0fc1 !important;
   color: #bebebe !important;
   font-style: italic !important;
   font-family: caudex, serif !important;
@@ -293,9 +315,42 @@ nav a:hover:not(.navbar-brand) {
   font-family: caudex, serif !important;
 }
 
-.add-btn:hover {
+.delete-btn {
+  padding: 10px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #270f0fc1 !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+.submit-btn {
   padding: 10px !important;
   margin-top: 10px;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #163d25 !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+.cancel-btn {
+  padding: 10px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #270f0fc1 !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+/*  ------ HOVER STATES ------ */
+.add-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px !important;
   border: 1px solid #eee !important;
   border-radius: 10px !important;
   background-color: #187a3e !important;
@@ -309,13 +364,44 @@ nav a:hover:not(.navbar-brand) {
   margin-top: 10px;
   border: 1px solid #eee !important;
   border-radius: 10px !important;
-  background-color: #673c19c1 !important;
+  background-color: #824c20c1 !important;
   color: #ffffff !important;
   font-style: italic !important;
   font-family: caudex, serif !important;
 }
 
+.delete-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: hsl(6, 66%, 38%) !important;
+  color: #bebebe !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
 
+.submit-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #187a3e !important;
+  color: #ffffff !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
+
+.cancel-btn:hover {
+  padding: 10px !important;
+  margin-top: 10px !important;
+  border: 1px solid #eee !important;
+  border-radius: 10px !important;
+  background-color: #824c20c1 !important;
+  color: #ffffff !important;
+  font-style: italic !important;
+  font-family: caudex, serif !important;
+}
 
 
 /* ----------- COFFEE SEARCH ------------- */
@@ -421,6 +507,10 @@ nav a:hover:not(.navbar-brand) {
     -ms-transform: translateX(50%);
     transform: translateX(50%);
   }
+}
+
+.italic-placeholder::placeholder {
+  font-style: italic;
 }
 
 

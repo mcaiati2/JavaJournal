@@ -45,7 +45,7 @@ function ViewCoffeeModal({
         ))}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleModalClose}>
+        <Button className="cancel-btn" onClick={handleModalClose}>
           Close
         </Button>
       </Modal.Footer>

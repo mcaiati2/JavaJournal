@@ -111,10 +111,10 @@ function CreateCoffeeModal({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleModalClose}>
+          <Button className="cancel-btn" onClick={handleModalClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button className="add-btn" onClick={handleSubmit}>
             Add Coffee
           </Button>
         </Modal.Footer>

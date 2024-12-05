@@ -81,12 +81,12 @@ function ShopForm() {
             value={formData.rating}
             onChange={handleRatingChange}
             size={24}
-            activeColor="#FFD700"
+            activeColor="#f9c8a1"
           />
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="primary" type="submit">
+          <Button className="submit-btn d-grid gap-2" type="submit">
             Submit
           </Button>
         </div>
