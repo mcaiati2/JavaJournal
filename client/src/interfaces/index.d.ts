@@ -3,7 +3,7 @@ export interface Coffee {
   title: string;
   body: string;
   flavor: string;
-  shop?: Shop; // 'may be undefined/not present bc it's optional'
+  shop?: Shop; 
 }
 
 

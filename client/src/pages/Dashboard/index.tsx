@@ -3,9 +3,6 @@ import { Button, Modal } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import ReactStars from 'react-rating-stars-component';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
 import { GET_USER_SHOPS, GET_SAVED_RECIPES } from '../../graphql/queries';
 import { Shop, Recipe } from '../../interfaces';
 import { UPDATE_SHOP_RATING, DELETE_RECIPE, DELETE_SHOP } from '../../graphql/mutations';
@@ -119,7 +116,7 @@ function Dashboard() {
   return (
     <div className="journal-bg-img">
       <div style={{ paddingTop: '70px' }}>
-        <h2 className="mt-5 mx-5 fw-light"><FontAwesomeIcon icon={faCoffee} /> My Journal</h2>
+        <h2 className="mt-5 mx-5 fw-light"> My Journal</h2>
         <hr />
 
         <div className="fav-section">

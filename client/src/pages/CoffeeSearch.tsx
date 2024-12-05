@@ -150,7 +150,7 @@ function CoffeeSearch() {
                     </li>
                   ))}
                 </ol>
-                <Button className="mt-5 add-btn" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
+                <Button className="add-btn" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
               </div>
             </div>
             <div className="spacer"></div>

@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <Navbar bg="dark" data-bs-theme="dark" className="sticky-header">
-      <Container className="nav-wrap">
+      <Container className="nav-wrap classN">
         <Navbar.Brand as={NavLink} to="/" className="crete-round-font">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
 
@@ -39,7 +39,7 @@ function Header() {
           {state.user ? (
             <>
               
-                <Nav.Link className="border-bottom mb-2 welcome">Welcome, {state.user.username}</Nav.Link>
+                <Nav.Link className="border-bottom mb-2 welcome" onClick={() => navigate('/')}>Welcome, {state.user.username}!</Nav.Link>
               
               <Nav.Link as={NavLink} to="/dashboard">My Journal</Nav.Link>
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
