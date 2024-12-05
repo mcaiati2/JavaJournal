@@ -46,6 +46,10 @@ JWT_SECRET=your_jwt_secret
 
 ## Usage
 
+[GitHub Repository](https://github.com/mcaiati2/JavaJournal)
+
+[JavaJournal on Render](https://javajournal.onrender.com/)
+
 1. Start the development server:
 
 ```sh
