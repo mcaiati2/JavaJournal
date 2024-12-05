@@ -118,7 +118,7 @@ function AuthForm({ isLogin }: { isLogin: boolean }) {
               </Form.Group>
 
               <div className="d-grid gap-2">
-                <Button variant="primary" type="submit">
+                <Button className="submit-btn" type="submit">
                   Submit
                 </Button>
               </div>
