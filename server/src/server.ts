@@ -13,9 +13,6 @@ import resolvers from './schema/resolvers.js';
 
 dotenv.config();
 
-const rapidApiKey = process.env.VITE_RAPIDAPI_KEY;
-console.log('RapidAPI Key: ', rapidApiKey)
-
 const app = express();
 const PORT = Number(process.env.PORT) || 3333;
 

@@ -6,7 +6,6 @@ export interface Coffee {
   shop?: Shop; 
 }
 
-
 export interface Shop {
   _id: string;
   name: string;
