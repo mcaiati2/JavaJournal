@@ -101,7 +101,7 @@ function CoffeeSearch() {
   return (
     <Container>
       <div className="mt-5">
-        <h1>Search Coffees</h1>
+        <h1>Find Coffee Recipe:</h1>
       </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mt-5 mb-5">
@@ -160,14 +160,14 @@ function CoffeeSearch() {
           <Modal.Title>Recipe Saved</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Recipe saved. Do you want to save more recipes or view your journal?
+          Recipe saved! Do you want to save more recipes or view your journal?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Save More Recipes
           </Button>
           <Button variant="primary" onClick={handleViewJournal}>
-            View Your Journal
+            View My Journal
           </Button>
         </Modal.Footer>
       </Modal>

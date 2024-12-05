@@ -38,9 +38,9 @@ function Header() {
 
           {state.user ? (
             <>
-              <Nav.Link as={NavLink} to="/dashboard">Favorites</Nav.Link>
+              <Nav.Link as={NavLink} to="/dashboard">My Journal</Nav.Link>
               <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
-              <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
+              <Nav.Link as={NavLink} to="/coffee-info">Discover</Nav.Link> {/* Add this line */}
               
               <NavDropdown title="Settings">
                 <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>

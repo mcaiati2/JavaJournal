@@ -101,7 +101,7 @@ function Dashboard() {
 
   return (
     <div>
-      <h2 className="mt-5 mx-5 fw-light"><FontAwesomeIcon icon={faCoffee} /> Your Favorites</h2>
+      <h2 className="mt-5 mx-5 fw-light"><FontAwesomeIcon icon={faCoffee} /> My Journal</h2>
       <hr />
 
       <div className="fav-section">

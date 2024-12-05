@@ -44,14 +44,14 @@ describe('Site Tests', () => {
 
     // Ensure the form submission is successful
     cy.url().should('include', '/dashboard');
-    cy.get('h2').contains('Your Favorites');
+    cy.get('h2').contains('My Journal');
   });
 
   it('Should login a user', () => {
     loginUser(cy);
-
+ 
     // Increase the timeout for the assertion
-    cy.get('h2', { timeout: 20000 }).should('contain.text', 'Your Favorites');
+    cy.get('h2', { timeout: 20000 }).should('contain.text', 'My Journal');
   });
 
   it('Should be able to navigate to the register page', () => {
