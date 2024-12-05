@@ -39,6 +39,7 @@ connection.once('open', async () => {
     }),
   );
 
+
     // Endpoint to serve the API key
     app.get('/api/get-api-key', (_, res) => {
       res.json({ apiKey: process.env.VITE_RAPIDAPI_KEY });

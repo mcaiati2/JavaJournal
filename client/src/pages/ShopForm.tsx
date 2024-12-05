@@ -1,4 +1,4 @@
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
@@ -56,8 +56,8 @@ function ShopForm() {
   }
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit} style={{ width: '500px' }} className="mx-auto mt-5">
+    <div>
+      <Form onSubmit={handleSubmit} className="auth-form mx-auto mt-5">
         <h2 className="text-center mt-3">Create Shop</h2>
 
         {formData.errorMessage && (
@@ -81,17 +81,17 @@ function ShopForm() {
             value={formData.rating}
             onChange={handleRatingChange}
             size={24}
-            activeColor="#FFD700"
+            activeColor="#f9c8a1"
           />
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="primary" type="submit">
+          <Button className="submit-btn d-grid gap-2" type="submit">
             Submit
           </Button>
         </div>
       </Form>
-    </Container>
+    </div>
   )
 }
 

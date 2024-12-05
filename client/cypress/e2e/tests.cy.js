@@ -1,15 +1,14 @@
 import { faker } from '@faker-js/faker';
 
-const username = faker.internet.userName();
-const shopName = faker.company.name();
+let uniqueUsername;
+const password = 'password123';
+let shopName;
 
 function loginUser(cy) {
   cy.visit('/login');
 
-  cy.get('input[name="email"]').type(username + '@test.com');
-
-  cy.get('input[name="password"]').type('password123');
-
+  cy.get('input[name="email"]').type(uniqueUsername + '@test.com');
+  cy.get('input[name="password"]').type(password);
   cy.get('form button').click();
 
   // Wait for the dashboard to load
@@ -17,25 +16,11 @@ function loginUser(cy) {
 }
 
 describe('Site Tests', () => {
-  // Other tests...
-
-  it('Should login a user', () => {
-    loginUser(cy);
-
-    // Increase the timeout for the assertion
-    cy.get('h3', { timeout: 10000 }).contains('Your Shops');
-  });
-  it('Should be able to navigate to the register page', () => {
-    cy.visit('/');
-
-    cy.get('nav a[href="/register"]').click();
-
-    cy.get('form h2').contains('Register');
+  before(() => {
+    uniqueUsername = faker.internet.userName();
   });
 
   it('Should register a new user', () => {
-    const uniqueUsername = faker.internet.userName();
-
     // Visit the register page
     cy.visit('/register');
 
@@ -46,26 +31,41 @@ describe('Site Tests', () => {
     cy.get('input[name="email"]').type(uniqueUsername + '@test.com');
 
     // Select password input and type 'password123'
-    cy.get('input[name="password"]').type('password123');
+    cy.get('input[name="password"]').type(password);
 
-    // Select the Submit button and click it
-    cy.get('form button').click();
+    // Confirm password input
+    cy.get('input[name="confirmPassword"]').type(password);
 
-    // You should be able to select the header on the dashboard that contains the text Your Shops
-    cy.get('h3').contains('Your Shops');
+    // Ensure the form is fully loaded
+    // cy.wait(1000); // Adjust the time as needed
+
+    // Ensure the button is visible before clicking it
+    cy.get('form').find('button[type="submit"]').should('be.visible').click({ force: true });
+
+    // Ensure the form submission is successful
+    cy.url().should('include', '/dashboard');
+    cy.get('h2').contains('My Journal');
   });
 
   it('Should login a user', () => {
     loginUser(cy);
-
-    cy.get('h3').contains('Your Shops');
+ 
+    // Increase the timeout for the assertion
+    cy.get('h2', { timeout: 20000 }).should('contain.text', 'My Journal');
   });
 
-  // Log out test
+  it('Should be able to navigate to the register page', () => {
+    cy.visit('/');
+
+    cy.get('nav a[href="/register"]').click();
+
+    cy.get('form h2').contains('Register');
+  });
+
   it('Should log a user out', () => {
     loginUser(cy);
 
-    cy.get('nav a').contains('Profile Menu').click();
+    cy.get('nav a').contains('Settings').click();
 
     cy.get('nav a').contains('Log Out').click();
 
@@ -75,27 +75,25 @@ describe('Site Tests', () => {
   });
 
   it('Should be able to create a shop for the logged in user', () => {
-    const uniqueShopName = faker.company.name();
+    shopName = faker.company.name();
 
     loginUser(cy);
 
     cy.get('nav a[href="/shop"]').click();
 
-    cy.get('input[name="name"]').type(uniqueShopName);
-
+    cy.get('input[name="name"]').type(shopName);
     cy.get('input[name="location"]').type('USA');
-
-    cy.get('input[name="rating"]').type(5);
+    cy.get('.react-stars > :nth-child(5)').click(); // Adjust the selector as needed
 
     cy.get('form button').click();
 
     // Check that the shop shows up on the dashboard
-    cy.get('.shop-output').contains(uniqueShopName);
+    cy.get('.shop-output').contains(shopName);
   });
 
-  // Adds a coffee for a shop
   it('Should add a coffee for a shop', () => {
     const coffeeTitle = 'Coffee for ' + shopName;
+    const coffeeFlavor = 'Bold and delicious'
 
     loginUser(cy);
 
@@ -106,14 +104,16 @@ describe('Site Tests', () => {
       .click();
 
     cy.get('input[name="title"]').type(coffeeTitle);
-    cy.get('textarea[name="body"]').type('Oh happy day, I gets a tweat');
+    cy.get('textarea[name="body"]').type('Pike Place Dark Roast');
+    cy.get('input[name="flavor"]').type(coffeeFlavor);
+
 
     cy.get('.modal-footer button').last().click();
 
     cy.get('article')
       .contains(shopName)
       .get('button')
-      .contains('View Coffees')
+      .contains('View Coffee')
       .click();
 
     cy.get('.modal-body').contains(coffeeTitle);

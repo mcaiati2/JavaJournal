@@ -67,57 +67,59 @@ function CreateCoffeeModal({
   }
 
   return (
-    <Modal show={showCreateCoffeeModal} onHide={handleModalClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>New Coffee:</Modal.Title>
-      </Modal.Header>
+    <div>
+      <Modal show={showCreateCoffeeModal} onHide={handleModalClose} >
+        <Modal.Header>
+          <Modal.Title >New Coffee:</Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        {formData.errorMessage && <Alert variant="danger">{formData.errorMessage}</Alert>}
+        <Modal.Body>
+          {formData.errorMessage && <Alert variant="danger">{formData.errorMessage}</Alert>}
 
-        <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              name="title"
-              value={formData.title}
-              type="text"
-              placeholder="Enter the name of your coffee"
-              autoFocus
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Enter your comments for the coffee</Form.Label>
-            <Form.Control
-              name="body"
-              value={formData.body}
-              onChange={handleInputChange}
-              as="textarea"
-              rows={3}
-              placeholder="Type your details" />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Flavor</Form.Label>
-            <Form.Control
-              name="flavor"
-              value={formData.flavor}
-              type="text"
-              placeholder="Enter the flavor of your coffee"
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleModalClose}>
-          Cancel
-        </Button>
-        <Button variant="primary" onClick={handleSubmit}>
-          Add Coffee
-        </Button>
-      </Modal.Footer>
-    </Modal>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="title"
+                value={formData.title}
+                type="text"
+                placeholder="Enter the name of your coffee"
+                autoFocus
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Enter your comments for the coffee</Form.Label>
+              <Form.Control
+                name="body"
+                value={formData.body}
+                onChange={handleInputChange}
+                as="textarea"
+                rows={3}
+                placeholder="Type your details" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Flavor</Form.Label>
+              <Form.Control
+                name="flavor"
+                value={formData.flavor}
+                type="text"
+                placeholder="Enter the flavor of your coffee"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="cancel-btn" onClick={handleModalClose}>
+            Cancel
+          </Button>
+          <Button className="add-btn" onClick={handleSubmit}>
+            Add Coffee
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   )
 }
 

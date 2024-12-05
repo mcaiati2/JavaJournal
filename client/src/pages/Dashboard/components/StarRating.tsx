@@ -21,7 +21,7 @@ const ShopRating: React.FC<ShopProps> = ({ shopId }) => {
         value={averageRating}
         edit={true}
         size={24}
-        activeColor="#FFD700"
+        activeColor="#f9c8a1"
       />
     </div>
   );

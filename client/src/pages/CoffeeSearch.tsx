@@ -100,22 +100,25 @@ function CoffeeSearch() {
 
   return (
     <Container>
-      <div className="mt-5">
-        <h1>Search Coffees</h1>
+      <div >
+        <h2 className="text-center mt-5">Find Coffee Recipe</h2>
       </div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mt-5 mb-5">
-          <Form.Label>Enter coffee type (e.g., mocha)</Form.Label>
+      <Form onSubmit={handleSubmit}className="auth-form mx-auto mt-5">
+        <Form.Group className="mt-5 mb-3">
+          <Form.Label>Enter coffee type</Form.Label>
           <Form.Control
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Enter coffee type"
+            placeholder="e.g. mocha"
+            className="italic-placeholder"
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="mb-3">
-          Search
-        </Button>
+        <div className="d-grid gap-2">
+          <Button className="submit-btn d-grid gap-2" type="submit">
+            Submit
+          </Button>
+        </div>
       </Form>
 
       {error && <div>Error: {error}</div>}
@@ -147,7 +150,7 @@ function CoffeeSearch() {
                     </li>
                   ))}
                 </ol>
-                <Button className="mt-5" variant="success" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
+                <Button className="add-btn" onClick={() => handleSaveRecipe(coffee)}>Save Recipe</Button>
               </div>
             </div>
             <div className="spacer"></div>
@@ -160,14 +163,14 @@ function CoffeeSearch() {
           <Modal.Title>Recipe Saved</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Recipe saved. Do you want to save more recipes or view your journal?
+          Recipe saved! Do you want to save more recipes or view your journal?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button className="cancel-btn" onClick={handleCloseModal}>
             Save More Recipes
           </Button>
-          <Button variant="primary" onClick={handleViewJournal}>
-            View Your Journal
+          <Button className="add-btn" onClick={handleViewJournal}>
+            View My Journal
           </Button>
         </Modal.Footer>
       </Modal>

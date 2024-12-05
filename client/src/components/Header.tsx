@@ -29,22 +29,26 @@ function Header() {
   }
 
   return (
-    <Navbar bg="dark" data-bs-theme="dark">
-      <Container className="nav-wrap">
+    <Navbar bg="dark" data-bs-theme="dark" className="sticky-header">
+      <Container className="nav-wrap classN">
         <Navbar.Brand as={NavLink} to="/" className="crete-round-font">JavaJournal</Navbar.Brand>
         <Nav className="ms-auto">
-          <Nav.Link as={NavLink} to="/about">About</Nav.Link>
-          
+
+
 
           {state.user ? (
             <>
-              <Nav.Link as={NavLink} to="/dashboard">Favorites</Nav.Link>
-              <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
-              <Nav.Link as={NavLink} to="/coffee-info">Coffee Info</Nav.Link> {/* Add this line */}
               
+                <Nav.Link className="border-bottom mb-2 welcome" onClick={() => navigate('/')}>Welcome, {state.user.username}!</Nav.Link>
+              
+              <Nav.Link as={NavLink} to="/dashboard">My Journal</Nav.Link>
+              <Nav.Link as={NavLink} to="/shop">Add Shop</Nav.Link>
+              <Nav.Link as={NavLink} to="/coffee-info">Discover</Nav.Link> {/* Add this line */}
+
               <NavDropdown title="Settings">
-                <NavDropdown.ItemText className="border-bottom mb-2">Welcome, {state.user.username}</NavDropdown.ItemText>
+
                 <NavDropdown.Item as={NavLink} to="/settings">Change Password</NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to="/about">About</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/contact">Contact</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout} href="/logout">Log Out</NavDropdown.Item>
               </NavDropdown>
